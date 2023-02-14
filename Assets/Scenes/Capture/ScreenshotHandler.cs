@@ -46,6 +46,8 @@ public class ScreenshotHandler : MonoBehaviour
 
             RenderTexture.ReleaseTemporary(renderTexture);
             cam.targetTexture = null;
+
+
         }
     }
 

@@ -32,7 +32,7 @@ public class GyroCamera : MonoBehaviour
     {
         if (gyroSupported && startY == 0)
         {
-            ResetGyroRotation();
+            ResetGyroRotation(); 
         }
         if (gyro != null)
         {
