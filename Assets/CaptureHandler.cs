@@ -27,6 +27,10 @@ public class CaptureHandler : MonoBehaviour
 
     private string URL = "https://my-api.plantnet.org/v2/identify/" + PROJECT + String.Format("?api-key={0}", API_KEY);
 
+    //public IEnumerator GetPlantInfo_Coroutine()
+    //{
+        
+    //}
 
     public void TakeScreenshot()
     {
