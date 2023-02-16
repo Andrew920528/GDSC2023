@@ -28,6 +28,14 @@ public class ScreenshotHandler : MonoBehaviour
         
     }
 
+    public byte[] CurrentImage
+    {
+        get
+        {
+            return currentImage;
+        }
+    }
+
     private void OnPostRender()
     {
         if (takeScreenshotOnNextFrame)
@@ -39,8 +47,8 @@ public class ScreenshotHandler : MonoBehaviour
             Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
             renderResult.ReadPixels(rect, 0, 0);
 
-            byte[] byteArray = renderResult.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Application.persistentDataPath + "/Screenshots/CameraScreenshot.png", byteArray);
+            currentImage = renderResult.EncodeToPNG();
+            System.IO.File.WriteAllBytes(Application.persistentDataPath + "/Screenshots/CameraScreenshot.png", currentImage);
         
             Debug.Log("Screenshot saved");
 
@@ -60,11 +68,6 @@ public class ScreenshotHandler : MonoBehaviour
     public static void TakeScreenshot_Static(int width, int height)
     {
         instance.TakeScreenshot(width, height);
-    }
-
-    public byte[] CurrentImage
-    {
-        get { return currentImage; }
     }
 
 }
