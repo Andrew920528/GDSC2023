@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LoginScreen.unity
     guid: 5e628638bf2974eed8cbe0765a17f747
   - enabled: 1
-    path: Assets/Scenes/World/World.unity
+    path: Assets/Scenes/World.unity
     guid: a62a14774c4d34332ac7b90c45779fc5
   - enabled: 1
-    path: Assets/Scenes/Capture/CaptureScene.unity
+    path: Assets/Scenes/CaptureScene.unity
     guid: bc1145d75893a47e18e0f9cfca84a870
   m_configObjects: {}

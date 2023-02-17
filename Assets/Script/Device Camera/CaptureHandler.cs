@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class CaptureHandler : MonoBehaviour
 {
-    private string imagePath = Application.persistentDataPath + "/Screenshots/CameraScreenshot.png";
+    private string imagePath = Application.dataPath + "/Screenshots/CameraScreenshot.png";
     public class Plant
     {
         public string name;

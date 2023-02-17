@@ -19,7 +19,7 @@ public class GetPlantData : MonoBehaviour
     void Start()
     {
         outputArea = GameObject.Find("OutputArea").GetComponent<TMP_InputField>();
-        //GameObject.Find("GetButton").GetComponent<Button>().onClick.AddListener(GetPlantInfo);
+        GameObject.Find("GetButton").GetComponent<Button>().onClick.AddListener(GetPlantInfo);
         screenshotHandler = GameObject.FindObjectOfType<ScreenshotHandler>();
     }
 
@@ -36,24 +36,28 @@ public class GetPlantData : MonoBehaviour
 
     private string URL = "https://my-api.plantnet.org/v2/identify/" + PROJECT + String.Format("?api-key={0}", API_KEY);
 
-    //void GetPlantInfo() => StartCoroutine(GetPlantInfo_Coroutine());
+    void GetPlantInfo() => StartCoroutine(GetPlantInfo_Coroutine());
 
-    //public IEnumerator GetPlantInfo_Coroutine()
-    //{
-    //    outputArea.text = "Plant info goes here";
-    //    WWWForm form = new WWWForm();
-    //    form.AddBinaryData("images", screenshotHandler.CurrentImage);
-    //    using (UnityWebRequest request = UnityWebRequest.Post(URL, form))
-    //    {
-    //        yield return request.SendWebRequest();
-    //        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-    //        {
-    //            outputArea.text = request.error;
-    //        } else
-    //        {
-    //            outputArea.text = request.downloadHandler.text;
-    //        }
-    //    }
-    //}
+    public IEnumerator GetPlantInfo_Coroutine()
+    {
+        outputArea.text = "Plant info goes here";
+        WWWForm form = new WWWForm();
+        Debug.Log(screenshotHandler.CurrentImage);
+        form.AddBinaryData("images", screenshotHandler.CurrentImage);
+        using (UnityWebRequest request = UnityWebRequest.Post(URL, form))
+        {
+            yield return request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                outputArea.text = request.error;
+            }
+            else
+            {
+                outputArea.text = request.downloadHandler.text;
+                Debug.Log(request.downloadHandler.text);
+            }
+            yield break;
+        }
+    }
 
 }

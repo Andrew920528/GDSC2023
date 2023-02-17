@@ -48,8 +48,16 @@ public class ScreenshotHandler : MonoBehaviour
             renderResult.ReadPixels(rect, 0, 0);
 
             currentImage = renderResult.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Application.persistentDataPath + "/Screenshots/CameraScreenshot.png", currentImage);
-        
+            if (Application.isEditor)
+            {
+                System.IO.File.WriteAllBytes(Application.dataPath + "/Screenshots/CameraScreenshot.png", currentImage);
+            } else
+            {
+                string name = string.Format("{0}_Capture{1}_{2}.png", Application.productName, "{0}", System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+                Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(renderResult, Application.productName + " Captures", name));
+            }
+            
+ 
             Debug.Log("Screenshot saved");
 
             RenderTexture.ReleaseTemporary(renderTexture);
