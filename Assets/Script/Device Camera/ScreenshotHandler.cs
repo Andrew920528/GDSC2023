@@ -10,23 +10,16 @@ public class ScreenshotHandler : MonoBehaviour
     private bool takeScreenshotOnNextFrame;
 
     private byte[] currentImage;
-    // Start is called before the first frame update
+
+    private GameManager gameManager;
+
 
     private void Awake()
     {
         instance = this;
         cam = gameObject.GetComponent<Camera>();
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public byte[] CurrentImage
     {
@@ -53,6 +46,7 @@ public class ScreenshotHandler : MonoBehaviour
                 System.IO.File.WriteAllBytes(Application.dataPath + "/Screenshots/CameraScreenshot.png", currentImage);
             } else
             {
+                // Save to gallery if not on editor
                 string name = string.Format("{0}_Capture{1}_{2}.png", Application.productName, "{0}", System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
                 Debug.Log("Permission result: " + NativeGallery.SaveImageToGallery(renderResult, Application.productName + " Captures", name));
             }
@@ -63,7 +57,8 @@ public class ScreenshotHandler : MonoBehaviour
             RenderTexture.ReleaseTemporary(renderTexture);
             cam.targetTexture = null;
 
-
+            // call the API to get plant data from the screenshot
+            GameObject.FindObjectOfType<GetPlantData>().GetPlantInfo(currentImage);
         }
     }
 

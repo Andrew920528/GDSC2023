@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CaptureScene.unity
     guid: bc1145d75893a47e18e0f9cfca84a870
+  - enabled: 1
+    path: Assets/Scenes/PlantinfoScene.unity
+    guid: ebb23edc85f814ff1be7d57415f832b7
   m_configObjects: {}
