@@ -59,16 +59,6 @@ public class Species
     public List<string> commonNames { get; set; }
 }
 
-public class Image
-{
-    public static Image FromFile { get; internal set; }
-    public Url url { get; set; }
-
-    internal static void FromStream(MemoryStream ms)
-    {
-        throw new NotImplementedException();
-    }
-}
 
 public class Url
 {
@@ -83,9 +73,13 @@ public class GetPlantData : MonoBehaviour
     [SerializeField]
     private int plantInfoScene;
     //TMP_InputField outputArea;
+    // byte array stores the images data
     byte[] byteArray;
     ScreenshotHandler screenshotHandler;
     private GameManager gameManager;
+
+    // loading screen while waiting for api response
+    public GameObject LoadingScreen;
 
     void Start()
     {
@@ -107,26 +101,34 @@ public class GetPlantData : MonoBehaviour
 
     private string urlParameters = String.Format("?api-key={0}", API_KEY);
 
-    private string URL = "https://my-api.plantnet.org/v2/identify/" + PROJECT + String.Format("?api-key={0}", API_KEY);
+    private string URL = "https://my-api.plantnet.org/v2/identify/all?include-related-images=true&no-reject=true&lang=en" + String.Format("&api-key={0}", API_KEY);
 
     public void GetPlantInfo(byte[] plantImage) => StartCoroutine(GetPlantInfo_Coroutine(plantImage));
 
     public IEnumerator GetPlantInfo_Coroutine(byte[] plantImage)
     {
+        LoadingScreen.SetActive(true);
+
         //outputArea.text = "Plant info goes here";
         WWWForm form = new WWWForm();
         // adds the image to the API request form
         form.AddBinaryData("images", plantImage);
-        form.AddField("organs", "fruit");
+    
         using (UnityWebRequest request = UnityWebRequest.Post(URL, form))
         {
             // sends the web request
             yield return request.SendWebRequest();
+
+        
             // log errors if there is one
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.DataProcessingError)
             {
                 //outputArea.text = request.error;
                 Debug.Log($"{request.error}: {request.downloadHandler.text}");
+            }
+            else if (request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                GameObject.FindObjectOfType<ChangeScene>().MoveToScene(plantInfoScene);
             }
             else
             {
@@ -135,9 +137,12 @@ public class GetPlantData : MonoBehaviour
                 List<Result> results = root.results;
                 Result result = results[0];
                 Species species = result.species;
-                string commonName = species.commonNames[0];
+                Debug.Log(species.commonNames);
+                string commonName = species.commonNames.Count == 0? "not available" : species.commonNames[0];
                 string scientificName = species.scientificName;
-                List<Image> images = result.images;
+                Image resultImage = result.images[0];
+                Debug.Log(result.images[0]);
+                
 
                 Debug.Log(String.Format("Common Name: {0}, Scientific Name: {1}", commonName, scientificName));
                 //outputArea.text = String.Format("Common Name: {0}, Scientific Name: {1}", commonName, scientificName);
@@ -145,8 +150,12 @@ public class GetPlantData : MonoBehaviour
                 // save the plant info to game manager
                 gameManager.PlantInfo = root;
                 gameManager.PlantImage = plantImage;
+                gameManager.ResultImage = resultImage;
+
+                // move to plant info scene
                 GameObject.FindObjectOfType<ChangeScene>().MoveToScene(plantInfoScene);
             }
+            LoadingScreen.SetActive(false);
             yield break;
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 // Class for keeping track of variables across scenes 
@@ -10,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Root plantInfo;
     private byte[] plantImage;
+    private Image resultImage;
 
     public Root PlantInfo
     {
@@ -35,6 +37,18 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
+    public Image ResultImage
+    {
+        get
+        {
+            return resultImage;
+        }
+        set
+        {
+            resultImage = value;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

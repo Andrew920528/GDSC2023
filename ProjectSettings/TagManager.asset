@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - QueryImage
+  - LoadingScreen
+  - LoadingBar
   layers:
   - Default
   - TransparentFX
