@@ -417,7 +417,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180418233}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6133125018193726973, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: MoveToScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &180418233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,7 +1498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 127.5}
+  m_AnchoredPosition: {x: 82.792, y: 127.5}
   m_SizeDelta: {x: 488.90808, y: 152.43951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778005022
