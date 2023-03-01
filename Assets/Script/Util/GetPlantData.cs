@@ -138,7 +138,7 @@ public class GetPlantData : MonoBehaviour
                 Result result = results[0];
                 Species species = result.species;
                 Debug.Log(species.commonNames);
-                string commonName = species.commonNames.Count == 0? "not available" : species.commonNames[0];
+                string commonName = species.commonNames.Count == 0? "   not available" : species.commonNames[0];
                 string scientificName = species.scientificName;
                 Image resultImage = result.images[0];
                 Debug.Log(result.images[0]);
