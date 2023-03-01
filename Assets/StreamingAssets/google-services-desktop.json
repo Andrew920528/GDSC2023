@@ -1,0 +1,36 @@
+{
+  "project_info": {
+    "project_number": "28016366034",
+    "project_id": "plantomo-72664",
+    "storage_bucket": "plantomo-72664.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28016366034:ios:9c08e61740d5a2a2ee780b",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.Plantomo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28016366034-pd75n2f8tels8fr3re73b08k0jca5ng9.apps.googleusercontent.com"
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyQJfy6WOkGwDKewLOlgCxaaJYdtie0W0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

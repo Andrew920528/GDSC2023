@@ -1631,7 +1631,7 @@ ScriptedImporter:
         rgba: 4294967040
     - name: bone_14
       guid: 7af7d3885ec7f44e89db6c74af4fcaf4
-      position: {x: 64.16952, y: -0.00002572213, z: 0}
+      position: {x: 64.169495, y: -0.0000043339323, z: 0}
       rotation: {x: 0, y: 0, z: -0.00000029392183, w: 1}
       length: 58.780758
       parentId: 6
@@ -2471,7 +2471,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    pivot: {x: 0.34789643, y: 0.43365696}
+    pivot: {x: 0.3446602, y: 0.43581456}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -2528,7 +2528,7 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
-  documentPivot: {x: 0.34789643, y: 0.43365696}
+  documentPivot: {x: 0.3446602, y: 0.43581456}
   documentAlignment: 9
   importHiddenLayers: 0
   layerMappingOption: 2
