@@ -110,8 +110,8 @@ ScriptedImporter:
     - name: bone_6
       guid: 27b00a413cff547b384b661571ace447
       position: {x: 16.288513, y: 9.979065, z: 0}
-      rotation: {x: 0, y: 0, z: 0.9953929, w: 0.09587969}
-      length: 12.061481
+      rotation: {x: 0, y: 0, z: 0.995393, w: 0.095879704}
+      length: 12.061479
       parentId: -1
       color:
         serializedVersion: 2
@@ -119,7 +119,7 @@ ScriptedImporter:
     - name: bone_5
       guid: 4a476bd679cda4e5e9d87b26c3c41097
       position: {x: 115.93976, y: 4.71698, z: 0}
-      rotation: {x: 0, y: 0, z: 0.2897871, w: 0.9570912}
+      rotation: {x: 0, y: 0, z: 0.2897871, w: 0.95709115}
       length: 10.672193
       parentId: -1
       color:
@@ -323,7 +323,7 @@ ScriptedImporter:
     - name: bone_8
       guid: 87a7fc83d99a544cd89a16585832185f
       position: {x: 116.32202, y: 8.907349, z: 0}
-      rotation: {x: 0, y: 0, z: -0.04900245, w: 0.99879867}
+      rotation: {x: 0, y: 0, z: -0.049002416, w: 0.9987987}
       length: 20.158636
       parentId: -1
       color:
@@ -832,7 +832,7 @@ ScriptedImporter:
     - name: bone_3
       guid: 48615779b70bc4890bbbed6045eb8c1f
       position: {x: 270.4296, y: 0.0016535143, z: 0}
-      rotation: {x: 0, y: 0, z: -0.007658406, w: 0.9999707}
+      rotation: {x: 0, y: 0, z: -0.007658407, w: 0.9999707}
       length: 266.4049
       parentId: 0
       color:
@@ -2113,7 +2113,7 @@ ScriptedImporter:
     - name: bone_3
       guid: 48615779b70bc4890bbbed6045eb8c1f
       position: {x: 270.42957, y: 0.0016500183, z: 0}
-      rotation: {x: 0, y: 0, z: -0.007658407, w: 0.9999707}
+      rotation: {x: 0, y: 0, z: -0.0076584076, w: 0.99997073}
       length: 266.4049
       parentId: 1
       color:
@@ -3548,7 +3548,7 @@ ScriptedImporter:
     - name: bone_3
       guid: 48615779b70bc4890bbbed6045eb8c1f
       position: {x: 270.42957, y: 0.0016592442, z: 0}
-      rotation: {x: 0, y: 0, z: -0.007658406, w: 0.99997073}
+      rotation: {x: 0, y: 0, z: -0.0076584057, w: 0.9999707}
       length: 266.40494
       parentId: 1
       color:
@@ -3719,7 +3719,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.4368932, y: 0.58899677}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -3763,10 +3763,32 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
-  documentPivot: {x: 0.5, y: 0}
-  documentAlignment: 7
+  documentPivot: {x: 0.4368932, y: 0.58899677}
+  documentAlignment: 9
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0
