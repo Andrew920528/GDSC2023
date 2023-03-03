@@ -128,8 +128,8 @@ ScriptedImporter:
     - name: bone_8
       guid: 0681379b63ca348e7aa41868de35dd3f
       position: {x: 68.94079, y: -0.000028295954, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7004295, w: 0.71372163}
-      length: 51.235443
+      rotation: {x: 0, y: 0, z: 0.7004295, w: 0.7137217}
+      length: 51.23544
       parentId: 3
       color:
         serializedVersion: 2
@@ -2247,7 +2247,7 @@ ScriptedImporter:
     - position: {x: 61.733, y: 82.065994}
       boneWeight:
         weight0: 0.53
-        weight1: 0.47
+        weight1: 0.47000003
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -2277,7 +2277,7 @@ ScriptedImporter:
     - position: {x: 83.745735, y: 35.087402}
       boneWeight:
         weight0: 0.77
-        weight1: 0.23
+        weight1: 0.23000002
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -2530,9 +2530,9 @@ ScriptedImporter:
     spriteBone:
     - name: bone_11
       guid: 39fa92292890f4e29b2b7b4d9aef4849
-      position: {x: 195.14587, y: 0.00015508238, z: 0}
-      rotation: {x: 0, y: 0, z: -0.42751864, w: 0.9040066}
-      length: 59.49697
+      position: {x: 195.14595, y: 0.000052263502, z: 0}
+      rotation: {x: 0, y: 0, z: -0.4275189, w: 0.9040064}
+      length: 59.496975
       parentId: 1
       color:
         serializedVersion: 2
@@ -2540,7 +2540,7 @@ ScriptedImporter:
     - name: bone_10
       guid: 795f77d3a9d7b4f38a37c964091ff6af
       position: {x: 151.74106, y: -25.504026, z: 0}
-      rotation: {x: 0, y: 0, z: -0.95311075, w: 0.30262196}
+      rotation: {x: 0, y: 0, z: -0.9531106, w: 0.3026223}
       length: 195.14586
       parentId: 3
       color:
@@ -2576,8 +2576,8 @@ ScriptedImporter:
     - name: bone_13
       guid: 4194c85ffc04f47258df8d61c82b0b55
       position: {x: 196.64026, y: -0.000034596123, z: 0}
-      rotation: {x: 0, y: 0, z: 0.6371979, w: 0.77070016}
-      length: 69.38387
+      rotation: {x: 0, y: 0, z: 0.6371979, w: 0.7707002}
+      length: 69.383865
       parentId: 4
       color:
         serializedVersion: 2
@@ -3087,7 +3087,7 @@ ScriptedImporter:
     - name: bone_8
       guid: 0681379b63ca348e7aa41868de35dd3f
       position: {x: 68.940796, y: -0.000052984687, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7004295, w: 0.71372163}
+      rotation: {x: 0, y: 0, z: 0.7004295, w: 0.7137217}
       length: 51.235435
       parentId: 6
       color:
@@ -3105,16 +3105,16 @@ ScriptedImporter:
     - name: bone_10
       guid: 795f77d3a9d7b4f38a37c964091ff6af
       position: {x: 151.74107, y: -25.503988, z: 0}
-      rotation: {x: 0, y: -0, z: -0.9531107, w: 0.30262196}
-      length: 195.14586
+      rotation: {x: 0, y: -0, z: -0.9531106, w: 0.3026223}
+      length: 195.14587
       parentId: 1
       color:
         serializedVersion: 2
         rgba: 4294934528
     - name: bone_11
       guid: 39fa92292890f4e29b2b7b4d9aef4849
-      position: {x: 195.14587, y: 0.00008816662, z: 0}
-      rotation: {x: 0, y: 0, z: -0.42751858, w: 0.9040066}
+      position: {x: 195.1459, y: -0.0000037729587, z: 0}
+      rotation: {x: 0, y: 0, z: -0.4275189, w: 0.9040064}
       length: 59.49698
       parentId: 9
       color:
@@ -3132,7 +3132,7 @@ ScriptedImporter:
     - name: bone_13
       guid: 4194c85ffc04f47258df8d61c82b0b55
       position: {x: 196.64024, y: -0.000031403622, z: 0}
-      rotation: {x: 0, y: 0, z: 0.63719803, w: 0.7707002}
+      rotation: {x: 0, y: 0, z: 0.637198, w: 0.7707002}
       length: 69.38384
       parentId: 11
       color:
@@ -3231,7 +3231,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.47033447}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -3275,10 +3275,32 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
-  documentPivot: {x: 0.5, y: 0}
-  documentAlignment: 7
+  documentPivot: {x: 0.5, y: 0.47033447}
+  documentAlignment: 9
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0
