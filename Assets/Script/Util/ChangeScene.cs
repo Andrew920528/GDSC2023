@@ -21,6 +21,7 @@ public class ChangeScene : MonoBehaviour
 
     public void MoveToScene(int sceneId)
     {
+        Debug.Log("click");
         sceneHistory.Add(sceneId);
         StartCoroutine(LoadSceneAsync(sceneId));
     }
