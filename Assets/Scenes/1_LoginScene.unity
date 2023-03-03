@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 22058418}
   - component: {fileID: 22058417}
   - component: {fileID: 22058416}
-  - component: {fileID: 22058419}
   m_Layer: 5
   m_Name: Login Button
   m_TagString: Untagged
@@ -257,19 +256,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22058414}
   m_CullTransparentMesh: 1
---- !u!114 &22058419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22058414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29923b6b0a0b14cbdbdb6ab79fd544a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 2
 --- !u!1 &41955197
 GameObject:
   m_ObjectHideFlags: 0
