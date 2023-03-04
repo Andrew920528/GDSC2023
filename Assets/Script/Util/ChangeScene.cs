@@ -22,11 +22,11 @@ public class ChangeScene : MonoBehaviour
     private List<int> sceneHistory = new List<int>();
 
 
-    private void Start()
-    {
-        LoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
-        LoadingBarFill = GameObject.FindGameObjectWithTag("LoadingBar").GetComponent<Image>();
-    }
+    //private void Start()
+    //{
+    //    LoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
+    //    LoadingBarFill = GameObject.FindGameObjectWithTag("LoadingBar").GetComponent<Image>();
+    //}
 
     public void MoveToScene(int sceneId)
     {
