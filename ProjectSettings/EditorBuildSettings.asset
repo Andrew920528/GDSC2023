@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/4_SettingScene.unity
     guid: ac2679d38be3f4189af0e29178d7bb72
   - enabled: 1
-    path: Assets/Scenes/InventoryScene.unity
+    path: Assets/Scenes/5_InventoryScene.unity
     guid: 319b6ec0721174e4aa8382052b193eef
   - enabled: 1
     path: Assets/Scenes/6_PlantomoWikiScene.unity

@@ -26,8 +26,10 @@ public class ChangeScene : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneId));
     }
 
+    
     IEnumerator LoadSceneAsync(int sceneId)
     {
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
         LoadingScreen.SetActive(true);
