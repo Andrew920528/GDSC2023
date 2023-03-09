@@ -6,9 +6,8 @@
 
 	public class ImmediatePositionWithLocationProvider : MonoBehaviour
 	{
-
 		bool _isInitialized;
-
+		
 		ILocationProvider _locationProvider;
 		ILocationProvider LocationProvider
 		{
@@ -34,8 +33,8 @@
 		{
 			if (_isInitialized)
 			{
-				var map = LocationProviderFactory.Instance.mapManager;
-				transform.localPosition = map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude);
+                var map = LocationProviderFactory.Instance.mapManager;
+                transform.localPosition = map.GeoToWorldPosition(LocationProvider.CurrentLocation.LatitudeLongitude);
 			}
 		}
 	}
