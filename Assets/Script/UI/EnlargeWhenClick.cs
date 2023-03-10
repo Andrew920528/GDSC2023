@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class EnlargeWhenClick : MonoBehaviour
 {
-    
+
     private EventTrigger eventTrigger;
 
     private void Start()
     {
         eventTrigger = gameObject.AddComponent<EventTrigger>();
         SetUpEnlargeWhenClicked();
-        
+
+
     }
 
     private void SetUpEnlargeWhenClicked()
@@ -29,7 +30,9 @@ public class EnlargeWhenClick : MonoBehaviour
 
         downEvent.callback.AddListener((data) =>
         {
+
             transform.localScale = new Vector3(x * 1.1f, y * 1.1f, z);
+
         });
         upEvent.callback.AddListener((data) =>
         {
