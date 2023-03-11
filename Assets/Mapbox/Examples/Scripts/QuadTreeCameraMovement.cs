@@ -89,11 +89,11 @@
 			float xMove = Input.GetAxis("Horizontal");
 			float zMove = Input.GetAxis("Vertical");
 
-			PanMapUsingKeyBoard(xMove, zMove);
+			// PanMapUsingKeyBoard(xMove, zMove);
 
 
 			//pan mouse
-			PanMapUsingTouchOrMouse();
+			// PanMapUsingTouchOrMouse();
 		}
 
 		void HandleTouch()
@@ -104,7 +104,7 @@
 			{
 				case 1:
 					{
-						PanMapUsingTouchOrMouse();
+						// PanMapUsingTouchOrMouse();
 					}
 					break;
 				case 2:
