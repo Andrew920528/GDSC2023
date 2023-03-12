@@ -9,19 +9,9 @@ public class StyleWithZoom : MonoBehaviour
     public GameObject playerFull;
     public GameObject playerHead;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        // zoom = 18: change sprite
-        // zoom = 20: sprite enlarge
-        // add location marker asset for head
-
         if(map.Zoom >= 18)
         {
             playerFull.SetActive(true);

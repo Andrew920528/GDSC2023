@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class Plantomo : MonoBehaviour
 {
-    [SerializeField] private float spawnRate = 0.10f;
-    [SerializeField] private float catchRate = 0.50f;
+    private int _id;
 
-    public float SpawnRate
-    {
-        get { return spawnRate; }
-    }
+    private string _name;
 
-    public float CatchRate
-    {
-        get { return catchRate; }
-    }
+    private string _description;
 
+    private Plant _plant;
 
 }
