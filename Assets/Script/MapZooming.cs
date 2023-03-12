@@ -6,6 +6,10 @@ using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
 using UnityEngine.EventSystems;
 using System;
+
+/// <summary>
+/// Allow Zooming on mobile/ pc
+/// </summary>
 public class MapZooming : MonoBehaviour
 {
 	[SerializeField]
@@ -21,10 +25,12 @@ public class MapZooming : MonoBehaviour
 	public Camera _referenceCamera;
 
 	[SerializeField]
-	AbstractMap _mapManager;
+	AbstractMap _map;
 
 	private bool _isInitialized = false;
 	private bool _dragStartedOnUI = false;
+
+	
 
 	void Awake()
 	{
@@ -33,10 +39,12 @@ public class MapZooming : MonoBehaviour
 			_referenceCamera = GetComponent<Camera>();
 			if (null == _referenceCamera) { Debug.LogErrorFormat("{0}: reference camera not set", this.GetType().Name); }
 		}
-		_mapManager.OnInitialized += () =>
+		_map.OnInitialized += () =>
 		{
 			_isInitialized = true;
 		};
+
+		
 	}
 
 	public void Update()
@@ -73,7 +81,7 @@ public class MapZooming : MonoBehaviour
 	void HandleMouseAndKeyBoard()
 	{
 		// zoom
-		float scrollDelta = 0.0f;
+		float scrollDelta;
 		scrollDelta = Input.GetAxis("Mouse ScrollWheel");
 		ZoomMapUsingTouchOrMouse(scrollDelta);
 
@@ -81,46 +89,41 @@ public class MapZooming : MonoBehaviour
 
 	void HandleTouch()
 	{
-		float zoomFactor = 0.0f;
+		float zoomFactor;
 		//pinch to zoom.
-		switch (Input.touchCount)
+		if (Input.touchCount == 2)
 		{
-			case 1:
-				{
-					// PanMapUsingTouchOrMouse();
-				}
-				break;
-			case 2:
-				{
-					// Store both touches.
-					Touch touchZero = Input.GetTouch(0);
-					Touch touchOne = Input.GetTouch(1);
+			
+				// Store both touches.
+				Touch touchZero = Input.GetTouch(0);
+				Touch touchOne = Input.GetTouch(1);
 
-					// Find the position in the previous frame of each touch.
-					Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-					Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+				// Find the position in the previous frame of each touch.
+				Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+				Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
-					// Find the magnitude of the vector (the distance) between the touches in each frame.
-					float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-					float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+				// Find the magnitude of the vector (the distance) between the touches in each frame.
+				float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+				float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
-					// Find the difference in the distances between each frame.
-					zoomFactor = 0.01f * (touchDeltaMag - prevTouchDeltaMag);
-				}
+				// Find the difference in the distances between each frame.
+				zoomFactor = 0.01f * (touchDeltaMag - prevTouchDeltaMag);
+				
 				ZoomMapUsingTouchOrMouse(zoomFactor);
-				break;
-			default:
-				break;
+				
 		}
 	}
 
 	void ZoomMapUsingTouchOrMouse(float zoomFactor)
 	{
-		var zoom = Mathf.Clamp(_mapManager.Zoom + zoomFactor * _zoomSpeed, _minZoom, _maxZoom);
-		if (Math.Abs(zoom - _mapManager.Zoom) > 0.0f)
+		var zoom = Mathf.Clamp(_map.Zoom + zoomFactor * _zoomSpeed, _minZoom, _maxZoom);
+		if (Math.Abs(zoom - _map.Zoom) > 0.0f)
 		{
-			_mapManager.UpdateMap(_mapManager.CenterLatitudeLongitude, zoom);
+			_map.UpdateMap(_map.CenterLatitudeLongitude, zoom);
 		}
 	}
+
+	
+
 }
 
