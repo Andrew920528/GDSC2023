@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 180418234}
   - component: {fileID: 180418233}
   - component: {fileID: 180418232}
+  - component: {fileID: 180418235}
   m_Layer: 5
   m_Name: Check It Out
   m_TagString: Untagged
@@ -417,19 +418,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 180418233}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 748016548}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: MoveToScene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &180418233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +457,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180418230}
   m_CullTransparentMesh: 1
+--- !u!114 &180418235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180418230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c36c292d8b049f6af8683b12aeb355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantInfoScene: 6
 --- !u!1 &191993744
 GameObject:
   m_ObjectHideFlags: 0
