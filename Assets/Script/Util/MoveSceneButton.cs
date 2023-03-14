@@ -7,17 +7,24 @@ using UnityEngine.SceneManagement;
 public class MoveSceneButton : MonoBehaviour
 {
     public int sceneId;
+    public float wait;
     ChangeScene gameManager;
-    // Start is called before the first frame update
+    Button button;
+    
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<ChangeScene>();
-        this.gameObject.GetComponent<Button>().onClick.AddListener(() => gameManager.MoveToScene(sceneId));
+        button = GetComponent<Button>();
+        button.onClick.AddListener(() => gameManager.MoveToScene(sceneId));
+        
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
     }
+
+
+
 }

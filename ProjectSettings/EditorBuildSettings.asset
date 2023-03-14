@@ -6,18 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartScreen.unity
+    path: Assets/Scenes/0_StartScene.unity
     guid: cc480bea495554aa3a3769d4e718612f
   - enabled: 1
-    path: Assets/Scenes/LoginScreen.unity
+    path: Assets/Scenes/1_LoginScene.unity
     guid: 5e628638bf2974eed8cbe0765a17f747
   - enabled: 1
-    path: Assets/Scenes/World.unity
+    path: Assets/Scenes/2_MapScene.unity
     guid: a62a14774c4d34332ac7b90c45779fc5
   - enabled: 1
-    path: Assets/Scenes/CaptureScene.unity
+    path: Assets/Scenes/3_AvatarActivityScene.unity
+    guid: eb32d638968e230468bf3f79c8efdaeb
+  - enabled: 1
+    path: Assets/Scenes/4_SettingScene.unity
+    guid: ac2679d38be3f4189af0e29178d7bb72
+  - enabled: 1
+    path: Assets/Scenes/5_InventoryScene.unity
+    guid: 319b6ec0721174e4aa8382052b193eef
+  - enabled: 1
+    path: Assets/Scenes/6_PlantomoWikiScene.unity
+    guid: e688f42e48b6949f2b508519079583a1
+  - enabled: 1
+    path: Assets/Scenes/7_CaptureScene.unity
     guid: bc1145d75893a47e18e0f9cfca84a870
   - enabled: 1
-    path: Assets/Scenes/PlantinfoScene.unity
-    guid: ebb23edc85f814ff1be7d57415f832b7
+    path: Assets/Scenes/8_ScanningScene.unity
+    guid: 1033c2583a7cf4b5fbc7ad96f1d78380
+  - enabled: 1
+    path: Assets/Scenes/9_PlantFoundScene.unity
+    guid: 53a68b5b54f3e4564b42faef66a5f251
+  - enabled: 1
+    path: Assets/Scenes/10_VillageScene.unity
+    guid: 22b5ae8c57fa4d74f8e190cec231012d
   m_configObjects: {}
