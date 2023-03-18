@@ -26,8 +26,17 @@ public class Result
 {
     public float score { get; set; }
     public Species species { get; set; }
-    public List<Image> images { get; set; }
+    public List<image> images { get; set; }
     public Gbif gbif { get; set; }
+}
+
+public class image
+{
+    public string organ { get; set; }
+    public string author { get; set; }
+    public string license { get; set; }
+    public string citation { get; set; }
+    public Url url { get; set; }
 }
 
 public class Query
@@ -90,11 +99,7 @@ public class GetPlantData : MonoBehaviour
         screenshotHandler = GameObject.FindObjectOfType<ScreenshotHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private const string API_KEY = "2b10RIOZXAmYw1L53Jxov8Fe";
     private static string PROJECT = "all";
@@ -132,15 +137,15 @@ public class GetPlantData : MonoBehaviour
             }
             else
             {
-                // parse results
+
                 Root root = JsonConvert.DeserializeObject<Root>(request.downloadHandler.text);
                 List<Result> results = root.results;
                 Result result = results[0];
                 Species species = result.species;
                 Debug.Log(species.commonNames);
-                string commonName = species.commonNames.Count == 0? "   not available" : species.commonNames[0];
+                string commonName = species.commonNames.Count == 0? species.scientificName : species.commonNames[0];
                 string scientificName = species.scientificName;
-                Image resultImage = result.images[0];
+                //int resultImage = result.images[0];
                 Debug.Log(result.images[0]);
                 
 
@@ -150,7 +155,7 @@ public class GetPlantData : MonoBehaviour
                 // save the plant info to game manager
                 gameManager.PlantInfo = root;
                 gameManager.PlantImage = plantImage;
-                gameManager.ResultImage = resultImage;
+                // gameManager.ResultImage = resultImage;
 
                 // move to plant info scene
                 GameObject.FindObjectOfType<ChangeScene>().MoveToScene(plantInfoScene);
