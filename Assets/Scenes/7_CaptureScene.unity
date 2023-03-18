@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407022a3ddb0448c6942add7325da389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantInfoScene: 4
+  plantInfoScene: 9
   LoadingScreen: {fileID: 1853926340}
 --- !u!114 &364101750
 MonoBehaviour:
@@ -632,6 +632,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &518796837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5550169036334781393, guid: 31df51b54ac83404e99a337dbd78a403, type: 3}
+  m_PrefabInstance: {fileID: 4127101672986709505}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2507eb19c1b431d9463bcfd8fda174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &584308622
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,10 +832,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 364101750}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: MoveToScene
-        m_Mode: 3
+      - m_Target: {fileID: 518796837}
+        m_TargetAssemblyTypeName: CaptureHandler, Assembly-CSharp
+        m_MethodName: TakeScreenshot
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

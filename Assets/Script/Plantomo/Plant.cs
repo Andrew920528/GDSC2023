@@ -16,4 +16,39 @@ public class Plant
     private string edibleClarification;
     private string lifeSpan;
 
+
+    public int GetID()
+    {
+        return _id;
+    }
+
+    public string GetCommonName()
+    {
+        return _commonName;
+    }
+
+    public string GetScientificName()
+    {
+        return _scientificName;
+    }
+
+    public string[] GetDistribution()
+    {
+        return _distribution;
+    }
+
+    public string[] GetClimates()
+    {
+        return _climates;
+    }
+
+    public string[] GetImages()
+    {
+        return _images;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
+    }
 }

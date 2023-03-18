@@ -18,6 +18,17 @@ public class CreateWikiEntry : MonoBehaviour
     public float scaleMultiplier = 40;
     public int numCol = 3;
 
+    public int plantInfoScene;
+
+    public Dictionary<int, string> plantomoDict = new Dictionary<int, string>()
+    {
+        {0,  "Northern Red Oak"},
+        {1,  "Slash Pine"},
+        {2,  "Southern Magnolia"},
+        {3,  "Star Magnolia"},
+        {4,  "Trident Maple"},
+    };
+
     void Start()
     {
         for (int i = 0; i < listPlantomos.Count; ++i)
@@ -50,10 +61,21 @@ public class CreateWikiEntry : MonoBehaviour
             border.transform.SetParent(wikiEntry.transform);
 
             wikiEntry.AddComponent<Button>();
-            wikiEntry.AddComponent<ChangeScene>();
 
             // Make each entry go to the Plant Info page when clicked
-            //wikiEntry.GetComponent<Button>().onClick.AddListener(()=>wikiEntry.GetComponent<ChangeScene>().MoveToScene(5));
+
+            Debug.Log("i: " + i);
+
+            string name = plantomoDict[i];
+            wikiEntry.GetComponent<Button>().onClick.AddListener(()=>SelectPlantomo(name));
+            
         }
+    }
+
+    public void SelectPlantomo(string name)
+    {
+        StaticData.SelectedPlantomo = name;
+        Debug.Log(StaticData.SelectedPlantomo);
+        SceneManager.LoadScene(plantInfoScene);
     }
 }

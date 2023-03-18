@@ -13,6 +13,20 @@ public class GameManager : Singleton<GameManager>
     private byte[] plantImage;
     private Image resultImage;
 
+    private DataManager dataManager;
+
+    [SerializeField]
+    private float saveWaitTime;
+
+    public void Awake()
+    {
+     
+        dataManager = GetComponent<DataManager>();
+
+        dataManager.Load();
+  
+    }
+
     public Root PlantInfo
     {
         get
@@ -49,6 +63,8 @@ public class GameManager : Singleton<GameManager>
             resultImage = value;
         }
     }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +86,12 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    
-    
+
+    IEnumerator saveGameState(float saveWaitTime)
+    {
+        dataManager.Save();
+        yield return new WaitForSecondsRealtime(saveWaitTime);
+        StartCoroutine(saveGameState(saveWaitTime));
+    }
 
 }

@@ -9,27 +9,33 @@ public class ChangeScene : MonoBehaviour
     public GameObject LoadingScreen;
     public Image LoadingBarFill;
 
-    
+    //public void MoveToScene(int sceneID)
+    //{
+    //    SceneManager.LoadScene(sceneID);   
+    //}
+
+    ////public void ReturnOneScene()
+    ////{
+    ////    SceneManager.LoadScene();
+    ////}
+    //
     private List<int> sceneHistory = new List<int>();
 
 
-    private void Start()
-    {
-        //LoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
-        //LoadingBarFill = GameObject.FindGameObjectWithTag("LoadingBar").GetComponent<Image>();
-    }
+    //private void Start()
+    //{
+    //    LoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
+    //    LoadingBarFill = GameObject.FindGameObjectWithTag("LoadingBar").GetComponent<Image>();
+    //}
 
     public void MoveToScene(int sceneId)
     {
-        Debug.Log("click");
         sceneHistory.Add(sceneId);
         StartCoroutine(LoadSceneAsync(sceneId));
     }
 
-    
     IEnumerator LoadSceneAsync(int sceneId)
     {
-
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
         LoadingScreen.SetActive(true);
