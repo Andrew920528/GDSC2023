@@ -175,7 +175,7 @@ public class EventManager : MonoBehaviour
 
         m_eventQueue.Enqueue(evt);
 
-        dataManager.SetQuests(questManager.CurrentQuests);
+        dataManager.SetQuests(questManager.currentQuests);
         dataManager.SetDistance(10);
         dataManager.Save();
 

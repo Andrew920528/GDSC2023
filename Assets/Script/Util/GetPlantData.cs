@@ -102,7 +102,6 @@ public class GetPlantData : MonoBehaviour
 
 
     private const string API_KEY = "2b10RIOZXAmYw1L53Jxov8Fe";
-    private static string PROJECT = "all";
 
     private string urlParameters = String.Format("?api-key={0}", API_KEY);
 

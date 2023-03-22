@@ -108,7 +108,7 @@ public class DataManager : MonoBehaviour
                 Debug.Log("total distance: " + gameData.totalDistance);
 
                 reader.Close();
-            } catch(Exception argException)
+            } catch(Exception)
             {
                 gameData = null;
             }

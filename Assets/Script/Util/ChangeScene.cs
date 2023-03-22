@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ChangeScene : MonoBehaviour
 {
     public GameObject LoadingScreen;
-    public Image LoadingBarFill;
+    public GameObject LoadingBarFill;
 
     //public void MoveToScene(int sceneID)
     //{
@@ -22,11 +22,13 @@ public class ChangeScene : MonoBehaviour
     private List<int> sceneHistory = new List<int>();
 
 
-    //private void Start()
-    //{
-    //    LoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
-    //    LoadingBarFill = GameObject.FindGameObjectWithTag("LoadingBar").GetComponent<Image>();
-    //}
+    private void Start()
+    {
+        LoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
+        LoadingBarFill = GameObject.FindGameObjectWithTag("LoadingBar");
+        LoadingScreen.SetActive(false);
+        LoadingBarFill.SetActive(false);
+    }
 
     public void MoveToScene(int sceneId)
     {
@@ -38,13 +40,19 @@ public class ChangeScene : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
 
-        LoadingScreen.SetActive(true);
+        if (LoadingScreen != null)
+        {
+            LoadingScreen.SetActive(true);
+            LoadingBarFill.SetActive(true);
+
+        }
+
 
         while (!operation.isDone)
         {
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
 
-            LoadingBarFill.fillAmount = progressValue;
+            LoadingBarFill.GetComponent<Image>().fillAmount = progressValue;
 
             yield return null;
         }
