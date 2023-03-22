@@ -10,11 +10,13 @@ using System.Linq;
 public class GenerateQuests : MonoBehaviour
 {
     private Button getQuestsButton;
+    private QuestManager questManager;
     // Start is called before the first frame update
     void Start()
     {
-        getQuestsButton = gameObject.GetComponent<Button>();
-        getQuestsButton.onClick.AddListener(() => GetRandomQuests());
+        gameObject.AddComponent<Button>();
+        gameObject.GetComponent<Button>().onClick.AddListener(() => ShowQuests());
+        questManager = GameObject.FindObjectOfType<QuestManager>(); 
     }
 
     // Update is called once per frame
@@ -23,8 +25,16 @@ public class GenerateQuests : MonoBehaviour
         
     }
 
-    private void GetRandomQuests()
+    public void ShowQuests()
     {
+        foreach (var quest in questManager.currentQuests) // if (!quest.Goals[0].Completed)
+        {
+            if (quest.Goals[0].CurrentAmount >= quest.Goals[0].RequiredAmount)
+            {
+                quest.Goals[0].Complete();
+            }
+            quest.Initialize();
+        }
 
     }
 }

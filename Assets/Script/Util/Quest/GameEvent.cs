@@ -22,6 +22,7 @@ public abstract class GameEvent
         public ScanningGameEvent(string obj)
         {
             scannedObject = obj;
+            Debug.Log("scanned" + obj);
         }
     }
 }

@@ -1,8 +1,10 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 
 // Class for keeping track of variables across scenes 
@@ -14,9 +16,14 @@ public class GameManager : Singleton<GameManager>
     private Image resultImage;
 
     private DataManager dataManager;
+    private QuestManager questManager;
 
     [SerializeField]
     private float saveWaitTime;
+
+    [SerializeField]
+    private int mapSceneId = 2;
+
 
     public void Awake()
     {
@@ -24,6 +31,8 @@ public class GameManager : Singleton<GameManager>
         dataManager = GetComponent<DataManager>();
 
         dataManager.Load();
+
+        questManager = GetComponent<QuestManager>();
   
     }
 
@@ -84,6 +93,12 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Scene loaded:" + scene.name);
 
+        // if it's the map scene, initialize the quests
+        if (scene.buildIndex == mapSceneId)
+        {
+            questManager.Initialize();
+        }
+
     }
 
 
@@ -93,5 +108,4 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSecondsRealtime(saveWaitTime);
         StartCoroutine(saveGameState(saveWaitTime));
     }
-
 }

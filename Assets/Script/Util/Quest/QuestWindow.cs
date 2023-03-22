@@ -26,12 +26,14 @@ public class QuestWindow : MonoBehaviour
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
         questManager = gameManager.GetComponent<QuestManager>();
-        currentQuests = questManager.CurrentQuests;
+        currentQuests = questManager.currentQuests;
 
 
         foreach (var goal in quest.Goals) if (currentQuests.Contains(quest))
             {
-            GameObject goalObj = Instantiate(goalPrefab, new Vector3(0, 0, 0), Quaternion.identity, gameObject.transform);
+            GameObject goalObj = Instantiate(
+                goalPrefab, new Vector3(0, 0, 0),
+                Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
             goalObj.transform.Find("Description").GetComponent<TMP_Text>().text = goal.GetDescription();
 
             goalObj.transform.localPosition = new Vector3(0, verticalOffset - verticalSpace * currentQuests.IndexOf(quest), 0);
@@ -84,6 +86,20 @@ public class QuestWindow : MonoBehaviour
             // get rid of the goal object
             questManager.RemoveQuest(quest);
         }
+    }
+
+    public void ShowQuests()
+    {
+        foreach (var quest in questManager.currentQuests) // if (!quest.Goals[0].Completed)
+        {
+            if (quest.Goals[0].CurrentAmount >= quest.Goals[0].RequiredAmount)
+            {
+                quest.Goals[0].Complete();
+            }
+            quest.Initialize();
+            Initialize(quest);
+        }
+
     }
 
 

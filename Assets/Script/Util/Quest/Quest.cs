@@ -79,6 +79,7 @@ public class Quest : ScriptableObject
     {
         Completed = false;
         QuestCompleted = new QuestCompletedEvent();
+        Debug.Log("quest initialize");
         foreach (var goal in Goals)
         {
             Debug.Log("goal");

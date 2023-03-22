@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System.Globalization;
@@ -16,6 +17,9 @@ public class PopulateFoundPage : MonoBehaviour
     public List<GameObject> plantomos;
     public GameObject plantomoPlaceholder;
 
+
+    private CheckoutPlantomo checkoutButton;
+
     // Creates a TextInfo based on the "en-US" culture.
     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
@@ -27,6 +31,8 @@ public class PopulateFoundPage : MonoBehaviour
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
         plantInfo = gameManager.PlantInfo;
+
+        checkoutButton = GameObject.FindObjectOfType<CheckoutPlantomo>();
 
         Result result = plantInfo.results[0];
         List<image> images = result.images;
@@ -44,6 +50,9 @@ public class PopulateFoundPage : MonoBehaviour
 
         gameObject.transform.Find("Middle Text").Find("Plant Name").GetComponent<TMP_Text>().text = commonName;
 
+        EventManager.Instance.QueueEvent(new GameEvent.ScanningGameEvent(commonName));
+        Debug.Log("scanning event queued");
+
 
         Debug.Log("gbif_id: " + gbif_id);
 
@@ -51,9 +60,9 @@ public class PopulateFoundPage : MonoBehaviour
         if (StaticData.plantomoDict.ContainsKey(commonName))
         {
             gameObject.transform.Find("Description Box").Find("Description")
-                .GetComponent<TMP_Text>().text = StaticData.plantomoDict[name].GetDescription();
+                .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].GetDescription();
 
-            Plantomo plantomoData = StaticData.plantomoDict[name];
+            Plantomo plantomoData = StaticData.plantomoDict[commonName];
             Plant plantData = plantomoData.GetPlant();
 
             plantomoPlaceholder = plantomos[plantomoData.GetID()];
@@ -61,6 +70,8 @@ public class PopulateFoundPage : MonoBehaviour
             GameObject pc = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
             pc.transform.localPosition = new Vector3(0, 300, 0);
             pc.transform.localScale = new Vector3(25, 25, 1);
+
+            checkoutButton.Checkout(commonName);
 
 
         } else
@@ -74,7 +85,7 @@ public class PopulateFoundPage : MonoBehaviour
             StartCoroutine(DownloadImage(pc ,images[0].url.m));
 
 
-
+            checkoutButton.Checkout();
         }
 
         GetPlantInfo(commonName);

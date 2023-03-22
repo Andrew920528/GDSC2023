@@ -10,7 +10,7 @@ public class SelectPot : MonoBehaviour
     public int potScene;
     public float offset = -250;
 
-    public List<Plantomo> plantomoList;
+    public List<Plantomo> plantomoList = new List<Plantomo>();
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,12 @@ public class SelectPot : MonoBehaviour
                 pot.transform.localPosition = new Vector3(offset + j * 250, i * 250, 0);
                 pot.transform.localScale = new Vector3(1, 1, 1);
 
-                pot.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(potScene));
+                pot.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    StaticData.SelectedPlantomo = plantomoList.Count > 3 * i + j ? plantomoList[3 * i + j].GetName() : null;
+                    SceneManager.LoadScene(potScene);
+                });
+                
             }
 
         }
