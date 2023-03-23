@@ -46,6 +46,7 @@ public class PlantInfoManager : MonoBehaviour
         plantNameField.text = plantInfo.results[0].species.commonNames.Count == 0 ? "No common name :(" : plantInfo.results[0].species.commonNames[0];
         descriptionField.text = plantInfo.results[0].species.genus.scientificName;
 
+        EventManager.Instance.QueueEvent(new GameEvent.ScanningGameEvent(plantNameField.text));
     }
 }
 

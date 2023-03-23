@@ -7,6 +7,8 @@ TagManager:
   - QueryImage
   - LoadingScreen
   - LoadingBar
+  - Canvas
+  - LevelUI
   layers:
   - Default
   - TransparentFX

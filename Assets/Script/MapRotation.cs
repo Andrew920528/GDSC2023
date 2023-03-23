@@ -33,7 +33,7 @@ public class MapRotation : MonoBehaviour
 		{
 			Vector3 currentPosition = _referenceCamera.ScreenToViewportPoint(Input.mousePosition);
 			Vector3 direction = previousPosition - currentPosition;
-			Debug.Log(currentPosition);
+			//Debug.Log(currentPosition);
 
 
 			Vector3 targetPosition = _referenceCamera.WorldToViewportPoint(map.transform.position);

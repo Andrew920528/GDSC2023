@@ -6,15 +6,18 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
+
     public GameObject loadingScreen;
     private Image loadingBarFill;
     
     
+
     private List<int> sceneHistory = new List<int>();
     private Canvas canvas;
 
     private void Start()
     {
+
         canvas = GetComponent<Canvas>();
         canvas.sortingOrder = 0;
 
@@ -54,14 +57,15 @@ public class ChangeScene : MonoBehaviour
         }
 
         
+
     }
 
     public void MoveToScene(int sceneId)
     {
-        Debug.Log("click");
         sceneHistory.Add(sceneId);
         StartCoroutine(LoadSceneAsync(sceneId));
     }
+
 
     public void MoveToSceneWithoutLoad(int sceneId)
     {
@@ -89,8 +93,10 @@ public class ChangeScene : MonoBehaviour
         while (!operation.isDone)
         {
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+
             minTimer.CountDown();
             loadingBarFill.fillAmount = 0.3f + progressValue;
+
 
             yield return null;
         }
