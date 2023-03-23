@@ -6,8 +6,10 @@ using TMPro;
 
 public class PopulatePot : MonoBehaviour
 {
-    public List<GameObject> plantomos;
+    public List<GameObject> plantomos = new List<GameObject>();
     public GameObject nameCard;
+    [SerializeField]
+    private int plantomoScale = 50;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class PopulatePot : MonoBehaviour
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(0, 0, 0);
-        pc.transform.localScale = new Vector3(50, 50, 1);
+        pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
 
     }

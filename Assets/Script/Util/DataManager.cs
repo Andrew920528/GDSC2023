@@ -12,18 +12,22 @@ public class DataManager : MonoBehaviour
     private Data gameData;
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
-    public DataManager(int level = 0, double totalDistance = 0,
-        Dictionary<int, QuestData> questTracker = null)
+    public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
+        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null, int plantomoID = 0
+)
     {
         gameData = new Data();
         gameData.level = level;
+        gameData.currentExperience = currentExperience;
         gameData.totalDistance = totalDistance;
         gameData.questTracker = questTracker;
+        gameData.plantomoInventory = plantomoInventory;
+        gameData.plantomoID = plantomoID;
     }
 
 
     // Here we set our level with some sort of GameManager
-    public void SetLevel(int level)
+    public void SetLevel(int level, int currentExperience)
     {
         if (gameData == null)
         {
@@ -31,6 +35,7 @@ public class DataManager : MonoBehaviour
         }
 
         gameData.level = level;
+        gameData.currentExperience = currentExperience;
     }
 
     public void SetQuests(List<Quest> quests)
@@ -48,6 +53,23 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public void SetInventory(List<Plantomo> plantomos)
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+        gameData.plantomoInventory = new List<Plantomo>();
+        foreach (Plantomo plantomo in plantomos) if (plantomo.GetName() != null)
+        {
+         
+            gameData.plantomoInventory.Add(plantomo);
+            Debug.Log(plantomo.GetName());
+        }
+        Debug.Log(gameData.plantomoInventory[gameData.plantomoInventory.Count - 1].GetName());
+        Debug.Log(gameData.plantomoInventory);
+    }
+
     public void SetDistance(double distance)
     {
         if (gameData == null)
@@ -56,6 +78,15 @@ public class DataManager : MonoBehaviour
         }
 
         gameData.totalDistance += distance;
+    }
+
+    public void SetPlantomoID()
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+        gameData.plantomoID++;
     }
 
     // The method to return the loaded game data when needed
@@ -71,11 +102,11 @@ public class DataManager : MonoBehaviour
         using (StreamWriter file = File.CreateText(dataFilePath))
         {
             // This will convert our Data object into a string of JSON
-            //string dataToWrite = JsonConvert.SerializeObject(gameData);
+            string dataToWrite = JsonConvert.SerializeObject(gameData.plantomoInventory);
 
             //string dataToWrite = JsonConvert.SerializeObject(gameData, Formatting.Indented);
 
-            //Debug.Log(dataToWrite);
+            Debug.Log(dataToWrite);
 
             JsonSerializer serializer = new JsonSerializer();
 
@@ -96,8 +127,6 @@ public class DataManager : MonoBehaviour
             string dataToLoad = reader.ReadToEnd();
             try
             {
-               
-
                 //// Here we convert the JSON formatted string into an actual Object in memory
                 ///
                 var jsonResult = JsonConvert.DeserializeObject(dataToLoad).ToString();
@@ -108,8 +137,9 @@ public class DataManager : MonoBehaviour
                 Debug.Log("total distance: " + gameData.totalDistance);
 
                 reader.Close();
-            } catch(Exception)
+            } catch(Exception e)
             {
+                Debug.Log(e.Message);
                 gameData = null;
             }
            
@@ -133,8 +163,22 @@ public class DataManager : MonoBehaviour
     {
         // The actual data we want to save goes here, for this example we'll only use an integer to represent the level
         public int level = 0;
+        public int currentExperience = 0;
         public Dictionary<int, QuestData> questTracker = null;
         public double totalDistance = 0;
+        public List<Plantomo> plantomoInventory = null;
+        public int plantomoID = 0;
+
+        public Data()
+        {
+            level = 0;
+            currentExperience = 0;
+            questTracker = new Dictionary<int, QuestData>();
+            totalDistance = 0;
+            plantomoInventory = new List<Plantomo>();
+            plantomoID = 0;
+
+        }
     }
 
     [System.Serializable]

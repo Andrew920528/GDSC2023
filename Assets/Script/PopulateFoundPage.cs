@@ -17,6 +17,9 @@ public class PopulateFoundPage : MonoBehaviour
     public List<GameObject> plantomos;
     public GameObject plantomoPlaceholder;
 
+    private DataManager dataManager;
+    private LevelSystem levelSystem;
+    public int captureExperience;
 
     private CheckoutPlantomo checkoutButton;
 
@@ -28,8 +31,9 @@ public class PopulateFoundPage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         gameManager = GameObject.FindObjectOfType<GameManager>();
+        dataManager = gameManager.GetComponent<DataManager>();
+        levelSystem = gameManager.GetComponent<LevelSystem>();
         plantInfo = gameManager.PlantInfo;
 
         checkoutButton = GameObject.FindObjectOfType<CheckoutPlantomo>();
@@ -73,6 +77,25 @@ public class PopulateFoundPage : MonoBehaviour
 
             checkoutButton.Checkout(commonName);
 
+            int plantomoID = dataManager.GetGameData().plantomoID;
+            dataManager.SetPlantomoID();
+            if (gameManager.plantomoInventory != null)
+            {
+                gameManager.plantomoInventory.Add(new Plantomo(plantomoID, commonName));
+            } else
+            {
+                gameManager.plantomoInventory = new List<Plantomo>
+                {
+                    new Plantomo(plantomoID, commonName)
+                };
+            }
+
+            Debug.Log(gameManager.plantomoInventory[gameManager.plantomoInventory.Count - 1].GetName());
+            dataManager.SetInventory(gameManager.plantomoInventory);
+            
+            dataManager.Save();
+
+            levelSystem.AddExperience(captureExperience * 5);
 
         } else
         {
@@ -84,8 +107,9 @@ public class PopulateFoundPage : MonoBehaviour
                 .GetComponent<TMP_Text>().text = "Description of this plant from GBIF API";
             StartCoroutine(DownloadImage(pc ,images[0].url.m));
 
-
             checkoutButton.Checkout();
+
+            levelSystem.AddExperience(captureExperience);
         }
 
         GetPlantInfo(commonName);
@@ -136,8 +160,6 @@ public class PopulateFoundPage : MonoBehaviour
                 }
 
                 title = result.Split("/wiki/")[1].Split("\"")[0].Replace("_", "%20");
-
-                //title = "Sea Coconut";
             }
         }
 
