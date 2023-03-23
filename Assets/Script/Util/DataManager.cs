@@ -27,7 +27,7 @@ public class DataManager : MonoBehaviour
 
 
     // Here we set our level with some sort of GameManager
-    public void SetLevel(int level, int currentExperience)
+    public void SetLevel(int level)
     {
         if (gameData == null)
         {
@@ -35,6 +35,15 @@ public class DataManager : MonoBehaviour
         }
 
         gameData.level = level;
+    }
+
+    public void SetExperience(int currentExperience)
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+
         gameData.currentExperience = currentExperience;
     }
 

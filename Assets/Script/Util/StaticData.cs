@@ -26,6 +26,7 @@ public static class StaticData
         {"Southern Magnolia" , plantomoList[2]},
         {"Trident Maple" , plantomoList[3]},
         {"Slash Pine" , plantomoList[4]},
+        {"Quercus", plantomoList[0] },
     };
 
 }

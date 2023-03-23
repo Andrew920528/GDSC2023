@@ -41,7 +41,7 @@ public class LevelSystem : MonoBehaviour
         experience = dataManager.GetGameData().currentExperience;
     }
 
-    public bool AddExperience(int experienceToAdd)
+    public void AddExperience(int experienceToAdd)
     {
         Debug.Log("adding experience");
         experience += experienceToAdd;
@@ -49,15 +49,14 @@ public class LevelSystem : MonoBehaviour
         if (experience >= experienceToNextLevel)
         {
             SetLevel(level + 1);
-            return true;
         }
 
         UpdateVisual();
 
-        dataManager.SetLevel(level, experience);
+        dataManager.SetLevel(level);
+        dataManager.SetExperience(experience);
         dataManager.Save();
-        
-        return false;
+       
     }
 
     public void SetLevel(int value)
@@ -66,9 +65,6 @@ public class LevelSystem : MonoBehaviour
         this.level = value;
         experience = experience - experienceToNextLevel;
         experienceToNextLevel = (int)(10f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
-        UpdateVisual();
-        dataManager.SetLevel(level, experience);
-        dataManager.Save();
     }
 
     public void UpdateVisual()
