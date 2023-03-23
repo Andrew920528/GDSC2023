@@ -37,8 +37,9 @@ public class CaptureHandler : MonoBehaviour
         ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
     }
 
-    public void TestScreenShot()
+    public void TestScreenShot(string imageName)
     {
+        imagePath = Application.dataPath + "/Screenshots/" + imageName;
         byte[] testImage = System.IO.File.ReadAllBytes(imagePath);
         GameObject.FindObjectOfType<GetPlantData>().GetPlantInfo(testImage);
     }

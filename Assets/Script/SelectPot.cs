@@ -36,9 +36,10 @@ public class SelectPot : MonoBehaviour
                     ()=> PlantomoAssignButtonHandler(index)
                 );
 
-                if (index < gameManager.plantomoInventory.Count)
+                Debug.Log(StaticData.plantomoInventory.Count);
+                if (index < StaticData.plantomoInventory.Count)
                 {
-                    string name = gameManager.plantomoInventory[index].GetName();
+                    string name = StaticData.plantomoInventory[index].GetName();
                     Plantomo plantomoData = StaticData.plantomoDict[name];
                     Plant plantData = plantomoData.GetPlant();
 
@@ -57,12 +58,12 @@ public class SelectPot : MonoBehaviour
     void PlantomoAssignButtonHandler(int idx)
     {
         Debug.Log(idx);
-        if (idx >= gameManager.plantomoInventory.Count)
+        if (idx >= StaticData.plantomoInventory.Count)
         {
             StaticData.SelectedPlantomo = null;
         } else
         {
-            StaticData.SelectedPlantomo = gameManager.plantomoInventory[idx].GetName();
+            StaticData.SelectedPlantomo = StaticData.plantomoInventory[idx].GetName();
         }
         //StaticData.SelectedPlantomo = gameManager.plantomoInventory.Count > idx ? gameManager.plantomoInventory[idx].GetName() : null;
         //Debug.Log(StaticData.SelectedPlantomo);

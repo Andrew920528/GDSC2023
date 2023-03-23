@@ -79,19 +79,18 @@ public class PopulateFoundPage : MonoBehaviour
 
             int plantomoID = dataManager.GetGameData().plantomoID;
             dataManager.SetPlantomoID();
-            if (gameManager.plantomoInventory != null)
+            if (StaticData.plantomoInventory != null)
             {
-                gameManager.plantomoInventory.Add(new Plantomo(plantomoID, commonName));
+                StaticData.plantomoInventory.Add(new Plantomo(plantomoID, commonName));
             } else
             {
-                gameManager.plantomoInventory = new List<Plantomo>
+                StaticData.plantomoInventory = new List<Plantomo>
                 {
                     new Plantomo(plantomoID, commonName)
                 };
             }
 
-            Debug.Log(gameManager.plantomoInventory[gameManager.plantomoInventory.Count - 1].GetName());
-            dataManager.SetInventory(gameManager.plantomoInventory);
+            dataManager.SetInventory(StaticData.plantomoInventory);
             
             dataManager.Save();
 

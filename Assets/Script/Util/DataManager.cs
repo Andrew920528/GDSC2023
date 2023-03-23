@@ -125,7 +125,13 @@ public class DataManager : MonoBehaviour
         {
             // We read in the file as a string
             string dataToLoad = reader.ReadToEnd();
-            try
+
+            // if the json file is empty
+            if (dataToLoad.Length == 0)
+            {
+                gameData = new Data();
+            }
+            else
             {
                 //// Here we convert the JSON formatted string into an actual Object in memory
                 ///
@@ -135,14 +141,11 @@ public class DataManager : MonoBehaviour
 
                 Debug.Log("quest: " + gameData.questTracker);
                 Debug.Log("total distance: " + gameData.totalDistance);
-
-                reader.Close();
-            } catch(Exception e)
-            {
-                Debug.Log(e.Message);
-                gameData = null;
             }
-           
+
+            reader.Close();
+
+
         }
         //using (StreamReader file = File.OpenText(dataFilePath))
         //{

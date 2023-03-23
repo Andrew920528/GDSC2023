@@ -8,6 +8,8 @@ public static class StaticData
     // for selecting plantomo in wiki page
     public static string SelectedPlantomo { get; set; }
 
+    public static List<Plantomo> plantomoInventory = new List<Plantomo>();
+
     public static List<Plantomo> plantomoList = new List<Plantomo>()
     {
         new Plantomo(0, "Northern Red Oak", "This is a description for Northern Red Oak." ),

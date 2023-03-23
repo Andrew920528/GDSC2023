@@ -24,8 +24,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private int mapSceneId = 2;
 
-    public List<Plantomo> plantomoInventory;
-
 
     public void Awake()
     {
@@ -36,10 +34,9 @@ public class GameManager : Singleton<GameManager>
 
         questManager = GetComponent<QuestManager>();
 
-        // loads the saved plantomos into inventory
+        StaticData.plantomoInventory = dataManager.GetGameData().plantomoInventory;
 
-        plantomoInventory = dataManager.GetGameData().plantomoInventory;
-        Debug.Log(plantomoInventory[plantomoInventory.Count - 1].GetName());
+        // loads the saved plantomos into inventory
   
     }
 

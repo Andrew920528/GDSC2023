@@ -67,6 +67,8 @@ public class LevelSystem : MonoBehaviour
         experience = experience - experienceToNextLevel;
         experienceToNextLevel = (int)(10f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
         UpdateVisual();
+        dataManager.SetLevel(level, experience);
+        dataManager.Save();
     }
 
     public void UpdateVisual()
