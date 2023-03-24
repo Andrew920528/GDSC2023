@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecc4f34b9e70464eb7e20a7e4d9fefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
+  loadingScreen: {fileID: 3531090559994881532, guid: f3d94aef789334e4bb80ce51ea1162e2, type: 3}
 --- !u!1001 &51071408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -615,6 +615,8 @@ MonoBehaviour:
   questHolder: {fileID: 5342217507576719743, guid: 6c6adfb8869c14f7fa9785068f9a4596, type: 3}
   currentQuests:
   - {fileID: 11400000, guid: e8c5e1e010e6b4df9ac72cbdc506c0fb, type: 2}
+  - {fileID: 11400000, guid: 0c2ab4b73a2134079901175187f432f1, type: 2}
+  - {fileID: 11400000, guid: 0c2ab4b73a2134079901175187f432f1, type: 2}
   goalPrefab: {fileID: 5342217507576719743, guid: 6c6adfb8869c14f7fa9785068f9a4596, type: 3}
   verticalOffset: 0
   verticalSpace: 0
