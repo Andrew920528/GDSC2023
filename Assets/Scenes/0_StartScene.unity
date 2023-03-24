@@ -310,7 +310,8 @@ PrefabInstance:
       propertyPath: loadingScreen
       value: 
       objectReference: {fileID: 3531090559994881532, guid: f3d94aef789334e4bb80ce51ea1162e2, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6133125018193726973, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6133125018193726850, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}

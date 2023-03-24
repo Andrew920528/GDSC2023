@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class CaptureHandler : MonoBehaviour
 {
-    private string imagePath = Application.dataPath + "/Screenshots/CameraScreenshot.png";
+    private string imagePath = Application.dataPath + "/Screenshots/";
     public class Plant
     {
         public string name;
@@ -37,5 +37,10 @@ public class CaptureHandler : MonoBehaviour
         ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
     }
 
+    public void TestScreenShot(string name)
+    {
+        byte[] testImage = System.IO.File.ReadAllBytes(imagePath + name);
+        GameObject.FindObjectOfType<GetPlantData>().GetPlantInfo(testImage);
+    }
 
 }

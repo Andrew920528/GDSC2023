@@ -15,7 +15,7 @@ public class ChangeScene : MonoBehaviour
 
     private void Start()
     {
-        canvas = GetComponent<Canvas>();
+        canvas = GameObject.FindObjectOfType<Canvas>();
         canvas.sortingOrder = 0;
 
         
