@@ -31,6 +31,8 @@ public class StyleWithZoom : MonoBehaviour
         float y = 108.619403f + (-14.57142857f) * map.Zoom + 0.4818763326f * map.Zoom * map.Zoom;
 
         playerFull.transform.localScale = new Vector3(scale, scale, playerFull.transform.localScale.z);
-        playerFull.transform.localPosition = new Vector3(playerFull.transform.localPosition.x, y, playerFull.transform.localPosition.z); 
+        playerFull.transform.localPosition = new Vector3(playerFull.transform.localPosition.x, y, playerFull.transform.localPosition.z);
+
+        
     }
 }
