@@ -11,8 +11,6 @@ public class DataManager : MonoBehaviour
     private Data gameData;
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
-    
-
     public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
         Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null, int plantomoID = 0)
     {

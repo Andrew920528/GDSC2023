@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - LevelUI
   - GameManager
+  - QuestHolder
   layers:
   - Default
   - TransparentFX

@@ -8,27 +8,31 @@ using System.Linq;
 
 public class Quest : ScriptableObject
 {
+    // Stores name and description of a Quest
     [System.Serializable]
     public struct Info
     {
         public string name;
         public string description;
     }
-
     [Header("Info")] public Info Information;
 
+
+    // Stores rewards of a Quest
     [System.Serializable]
-    public struct Stat
+    public struct Reward
     {
         public int currency;
         public int XP;
     }
-
-    [Header("Reward")] public Stat Reward = new Stat { currency = 10, XP = 10 };
+    [Header("Reward")] public Reward reward = new Reward { currency = 10, XP = 10 };
 
     public bool Completed { get; set; }
+
+    // Invoked when the Quest is completed
     public QuestCompletedEvent QuestCompleted;
 
+    // Each QuestGoal object is an objective
     public abstract class QuestGoal : ScriptableObject
     {
         protected string Description;
@@ -52,6 +56,7 @@ public class Quest : ScriptableObject
 
         protected void Evaluate()
         {
+            
             if (CurrentAmount >= RequiredAmount)
             {
                 Complete();
@@ -64,14 +69,12 @@ public class Quest : ScriptableObject
             Completed = true;
             GoalCompleted.Invoke();
             GoalCompleted.RemoveAllListeners();
+            
         }
 
-        public void Skip()
-        {
-            // charge the player some currency to skip the quest
-        }
     }
 
+    // each quest consist of multiple goals
     public List<QuestGoal> Goals;
 
     public void Initialize()
@@ -100,6 +103,9 @@ public class Quest : ScriptableObject
 
     public class QuestCompletedEvent : UnityEvent<Quest> { }
 
+
+
+    // Allow us to create quest object in the inspector
     #if UNITY_EDITOR
     [CustomEditor(typeof(Quest))]
 

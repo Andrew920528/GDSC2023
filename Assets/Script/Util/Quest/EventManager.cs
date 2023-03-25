@@ -42,8 +42,8 @@ public class EventManager : MonoBehaviour
 
     public void Awake()
     {
-        dataManager = GameObject.FindObjectOfType<DataManager>();
-        questManager = GameObject.FindObjectOfType<QuestManager>();
+        dataManager = GetComponent<DataManager>();
+        questManager = GetComponent<QuestManager>();
     }
 
     // override so we don't have the typecast the object

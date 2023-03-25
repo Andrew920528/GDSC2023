@@ -32,11 +32,11 @@ public class QuestManager : MonoBehaviour
         {
             currentQuests[i].Goals[0].CurrentAmount = dataManager.GetGameData().questTracker[i].currentAmount;
             currentQuests[i].Goals[0].RequiredAmount = dataManager.GetGameData().questTracker[i].requiredAmount;
-            currentQuests[i].Goals[0].Completed = dataManager.GetGameData().questTracker[i].completed;
+            currentQuests[i].Goals[0].Completed = currentQuests[i].Goals[0].CurrentAmount >= currentQuests[i].Goals[0].RequiredAmount;
         }
 
         // Only initialize incomplete quests
-        foreach (var quest in currentQuests) // if (!quest.Goals[0].Completed)
+        foreach (var quest in currentQuests) if (!quest.Goals[0].Completed)
         {
             if (quest.Goals[0].CurrentAmount >= quest.Goals[0].RequiredAmount)
             {
@@ -66,15 +66,14 @@ public class QuestManager : MonoBehaviour
 
     public void RemoveQuest(Quest quest)
     {
+        // Destroy(questHolder.transform.GetChild(currentQuests.IndexOf(quest)).gameObject);
+        questHolder = GameObject.FindGameObjectWithTag("QuestHolder");
         Destroy(questHolder.transform.GetChild(currentQuests.IndexOf(quest)).gameObject);
+        // questHolder.transform.GetChild(currentQuests.IndexOf(quest)).gameObject.SetActive(false);
         currentQuests.Remove(quest);
-
-        // Done with all quests
-        if (currentQuests.Count == 0)
-        {
-            questPage = GameObject.Find("Quest Page");
-            questPage.transform.GetChild(0).gameObject.SetActive(true);
-        }
+        dataManager.SetQuests(currentQuests);
+        dataManager.Save();
+        
     }
 
     public void Initialize()
@@ -98,10 +97,10 @@ public class QuestManager : MonoBehaviour
                     GameObject progressBarFill = goalObj.transform.Find("Progress Bar Fill").gameObject;
 
                     goalObj.AddComponent<Button>();
-
+                    
                     if (goal.Completed)
                     {
-                        //countObj.SetActive(false);
+                       
                         goalObj.transform.Find("Checkmark").gameObject.SetActive(true);
                         countObj.GetComponent<TMP_Text>().text = goal.RequiredAmount + "/" + goal.RequiredAmount;
                         progressBarFill.GetComponent<Image>().fillAmount = 1;
@@ -127,16 +126,18 @@ public class QuestManager : MonoBehaviour
     {
         // If quest is not completed, move the user to the appropriate page
         // e.g. Map for walking, Camera for scanning
+        GameObject canvas = GameObject.FindGameObjectWithTag("Canvas");
+        ChangeScene c = canvas.GetComponent<ChangeScene>();
         if (!completed)
         {
             string questType = quest.Goals[0].GetType().ToString();
             if (questType == "WalkingGoal")
             {
-                GetComponent<ChangeScene>().MoveToScene(walkingGoalScene);
+                c.MoveToScene(walkingGoalScene);
             }
             else if (questType == "ScanningGoal")
             {
-                GetComponent<ChangeScene>().MoveToScene(scanningGoalScene);
+                c.MoveToScene(scanningGoalScene);
             }
             // If the quest is completed, then claim the rewards and hide the quest.
         }
@@ -145,7 +146,10 @@ public class QuestManager : MonoBehaviour
             // TODO: claim the rewards
             // this.OnQuestCompleted(quest);
             // get rid of the goal object
+            GetComponent<LevelSystem>().AddExperience(quest.reward.XP);
+            
             this.RemoveQuest(quest);
+
         }
     }
 

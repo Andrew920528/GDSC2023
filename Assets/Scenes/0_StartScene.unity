@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 41955202}
   m_Layer: 5
   m_Name: GUI
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,6 +316,7 @@ PrefabInstance:
       objectReference: {fileID: 3531090559994881532, guid: f3d94aef789334e4bb80ce51ea1162e2, type: 3}
     m_RemovedComponents:
     - {fileID: 6133125018193726973, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
+    - {fileID: 6643704716807411480, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -611,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aaa61cb1b9a349b7979a68301bbdd84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questHolder: {fileID: 5342217507576719743, guid: 6c6adfb8869c14f7fa9785068f9a4596, type: 3}
+  questHolder: {fileID: 0}
   currentQuests:
   - {fileID: 11400000, guid: e8c5e1e010e6b4df9ac72cbdc506c0fb, type: 2}
   - {fileID: 11400000, guid: 0c2ab4b73a2134079901175187f432f1, type: 2}
