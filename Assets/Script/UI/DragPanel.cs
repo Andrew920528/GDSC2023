@@ -10,7 +10,7 @@ public class DragPanel : MonoBehaviour
     private Vector3 previousPosition;
     private Camera referenceCamera;
     private bool isDragging;
-
+    private float dragDirY;
     private float panelMaxPosition;
     private float panelMinPosition;
 
@@ -24,8 +24,7 @@ public class DragPanel : MonoBehaviour
 
         panelMinPosition = transform.position.y;
         panelMaxPosition = -1.36f;
-        Debug.Log(panelMaxPosition);
-        Debug.Log(panelMinPosition);
+        dragDirY = 0;
 
     }
 
@@ -44,7 +43,9 @@ public class DragPanel : MonoBehaviour
             // Keep Track of pointer position
             if (!isDragging)
             {
+                StopAllCoroutines();
                 previousPosition = referenceCamera.ScreenToViewportPoint(Input.mousePosition);
+                dragDirY = 0;
                 isDragging = true;
             }
 
@@ -87,17 +88,50 @@ public class DragPanel : MonoBehaviour
         Vector3 currentPosition = referenceCamera.ScreenToViewportPoint(Input.mousePosition);
         Vector3 direction = currentPosition - previousPosition;
 
-        float dragDirY = 10 * direction.y;
+        
+        dragDirY = 10 * direction.y;
+        Debug.Log(dragDirY);
 
         transform.position = new Vector2(transform.position.x,
             Math.Clamp(transform.position.y + dragDirY, panelMinPosition, panelMaxPosition));
-        Debug.Log(transform.position.y);
+        // Debug.Log(transform.position.y);
         previousPosition = currentPosition;
 
     }
 
     private void LeaveDrag(PointerEventData data)
     {
-        isDragging = false;
+        if(isDragging)
+        {
+            if (dragDirY > 0)
+            {
+                StartCoroutine(MovePanelUp());
+            } else if (dragDirY < 0)
+            {
+                StartCoroutine(MovePanelDown());
+            }
+
+            isDragging = false;
+            dragDirY = 0;
+        }
+
+    }
+
+    IEnumerator MovePanelUp()
+    {
+        while(transform.position.y <= panelMaxPosition)
+        {
+            transform.position = new Vector3(transform.position.x, Math.Clamp(transform.position.y + 0.1f, panelMinPosition, panelMaxPosition), transform.position.z);
+            yield return null;
+        }
+    }
+
+    IEnumerator MovePanelDown()
+    {
+        while (transform.position.y >= panelMinPosition)
+        {
+            transform.position = new Vector3(transform.position.x, Math.Clamp(transform.position.y -0.1f , panelMinPosition, panelMaxPosition), transform.position.z);
+            yield return null;
+        }
     }
 }

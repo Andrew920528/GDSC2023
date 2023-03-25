@@ -18,7 +18,6 @@ public class Quest : ScriptableObject
     [Header("Info")] public Info Information;
 
     [System.Serializable]
-
     public struct Stat
     {
         public int currency;

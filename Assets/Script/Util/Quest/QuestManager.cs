@@ -4,22 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class QuestManager : MonoBehaviour
 {
     [SerializeField] private GameObject questHolder;
     private GameObject questPage;
     private DataManager dataManager;
-
+    private const int mapSceneId = 2;
     public List<Quest> currentQuests;
 
-    private GameManager gameManager;
-    private QuestManager questManager;
 
     [SerializeField] private GameObject goalPrefab;
-
-    [SerializeField] private float verticalOffset;
-    [SerializeField] private float verticalSpace;
 
     [SerializeField] private int walkingGoalScene;
     [SerializeField] private int scanningGoalScene;
@@ -27,12 +22,11 @@ public class QuestManager : MonoBehaviour
     private void Awake()
     {
 
-        gameManager = GameObject.FindObjectOfType<GameManager>();
         
-        dataManager = GameObject.FindObjectOfType<DataManager>();
+        dataManager = GetComponent<DataManager>();
 
         dataManager.Load();
-
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         for (int i = 0; i < dataManager.GetGameData().questTracker.Count; ++i)
         {
@@ -65,6 +59,7 @@ public class QuestManager : MonoBehaviour
 
     private void OnQuestCompleted(Quest quest)
     {
+        // TODO
         //questHolder.transform.GetChild(currentQuests.IndexOf(quest)).Find("Checkmark").gameObject.SetActive(true);
         Debug.Log("Quest Complete!");
     }
@@ -84,16 +79,19 @@ public class QuestManager : MonoBehaviour
 
     public void Initialize()
     {
-        foreach (Quest quest in currentQuests)
+        const float verticalOffset = 225f;
+        const float verticalSpace = 225f;
+        for (int i = 0; i < currentQuests.Count; ++i)
         {
-            foreach (var goal in quest.Goals) if (currentQuests.Contains(quest))
+            Quest quest = currentQuests[i];
+            foreach (var goal in quest.Goals)
                 {
                     GameObject goalObj = Instantiate(
                         goalPrefab, new Vector3(0, 0, 0),
                         Quaternion.identity, Resources.FindObjectsOfTypeAll<GenerateQuests>()[0].gameObject.transform);
                     goalObj.transform.Find("Description").GetComponent<TMP_Text>().text = goal.GetDescription();
 
-                    goalObj.transform.localPosition = new Vector3(0, verticalOffset - verticalSpace * currentQuests.IndexOf(quest), 0);
+                    goalObj.transform.localPosition = new Vector3(0, verticalOffset - verticalSpace * i, 0);
 
 
                     GameObject countObj = goalObj.transform.Find("Progress Count").gameObject;
@@ -134,20 +132,31 @@ public class QuestManager : MonoBehaviour
             string questType = quest.Goals[0].GetType().ToString();
             if (questType == "WalkingGoal")
             {
-                gameManager.GetComponent<ChangeScene>().MoveToScene(walkingGoalScene);
+                GetComponent<ChangeScene>().MoveToScene(walkingGoalScene);
             }
             else if (questType == "ScanningGoal")
             {
-                gameManager.GetComponent<ChangeScene>().MoveToScene(scanningGoalScene);
+                GetComponent<ChangeScene>().MoveToScene(scanningGoalScene);
             }
             // If the quest is completed, then claim the rewards and hide the quest.
         }
         else
         {
-            // To do: claim the rewards
-
+            // TODO: claim the rewards
+            // this.OnQuestCompleted(quest);
             // get rid of the goal object
-            questManager.RemoveQuest(quest);
+            this.RemoveQuest(quest);
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // if it's the map scene, initialize the quests
+        if (scene.buildIndex == mapSceneId)
+        {
+            Initialize();
+            
+        }
+
     }
 }

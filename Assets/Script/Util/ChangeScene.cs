@@ -15,8 +15,13 @@ public class ChangeScene : MonoBehaviour
 
     private void Start()
     {
+        
         canvas = GetComponent<Canvas>();
-        canvas.sortingOrder = 0;
+        if (canvas != null)
+        {
+            canvas.sortingOrder = 0;
+        }
+        
 
         
 

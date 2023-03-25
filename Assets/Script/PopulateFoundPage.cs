@@ -12,7 +12,7 @@ using System.Web;
 
 public class PopulateFoundPage : MonoBehaviour
 {
-    private GameManager gameManager;
+    private GameObject gameManager;
     private Root plantInfo;
     public List<GameObject> plantomos;
     public GameObject plantomoPlaceholder;
@@ -33,10 +33,10 @@ public class PopulateFoundPage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
         dataManager = gameManager.GetComponent<DataManager>();
         levelSystem = gameManager.GetComponent<LevelSystem>();
-        plantInfo = gameManager.PlantInfo;
+        plantInfo = StaticData.plantInfo;
 
         checkoutButton = GameObject.FindObjectOfType<CheckoutPlantomo>();
 

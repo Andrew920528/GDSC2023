@@ -11,7 +11,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     private byte[] currentImage;
 
-    private GameManager gameManager;
+    
 
 
     private void Awake()

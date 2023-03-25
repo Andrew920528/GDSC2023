@@ -24,7 +24,7 @@ public class LevelSystem : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private void Awake()
+    private void Start()
     {
         if (instance != null)
         {
@@ -70,6 +70,7 @@ public class LevelSystem : MonoBehaviour
     public void UpdateVisual()
     {
         Debug.Log("updating level visual");
+        
         GameObject uiLevel = GameObject.FindGameObjectWithTag("LevelUI");
         if (uiLevel != null)
         {

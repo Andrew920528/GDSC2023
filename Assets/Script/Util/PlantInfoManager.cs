@@ -8,7 +8,6 @@ using System.IO;
 
 public class PlantInfoManager : MonoBehaviour
 {
-    private GameManager gameManager;
     private Root plantInfo;
     private Image resultImage;
     private RawImage queryImageField;
@@ -20,16 +19,16 @@ public class PlantInfoManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
-        plantInfo = gameManager.PlantInfo;
+        
+        plantInfo = StaticData.plantInfo;
 
-        Debug.Log(gameManager.PlantInfo);
+        Debug.Log(StaticData.plantInfo);
         //plantImage = GameObject.Find("Response Image").GetComponent<RawImage>();
         queryImageField = GameObject.FindGameObjectWithTag("QueryImage").GetComponent<RawImage>();
         plantNameField = GameObject.Find("Name").GetComponent<TMP_Text>();
         descriptionField = GameObject.Find("Description").GetComponent<TMP_Text>();
 
-        queryImage = gameManager.PlantImage;
+        queryImage = StaticData.plantImage;
 
         Texture2D queryTexture = new Texture2D(1, 1);
 
@@ -37,8 +36,7 @@ public class PlantInfoManager : MonoBehaviour
 
         queryImageField.texture = queryTexture;
 
-        Debug.Log(gameManager.ResultImage);
-        resultImage = gameManager.ResultImage;
+        
 
 
 
