@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class QuestManager : MonoBehaviour
 {
-    [SerializeField] private GameObject questHolder;
+    private GameObject questHolder;
     private GameObject questPage;
     private DataManager dataManager;
     private const int mapSceneId = 2;
@@ -21,8 +21,6 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
-
-        
         dataManager = GetComponent<DataManager>();
 
         dataManager.Load();
@@ -46,6 +44,8 @@ public class QuestManager : MonoBehaviour
             quest.Initialize();
             quest.QuestCompleted.AddListener(OnQuestCompleted);
         }
+
+        StaticData.plantomoInventory = dataManager.GetGameData().plantomoInventory;
 
 
         dataManager.SetQuests(currentQuests);

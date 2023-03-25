@@ -35,7 +35,7 @@ public class ChangeScene : MonoBehaviour
             this.loadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
         }
         RectTransform loadScreenRect = loadingScreen.GetComponent<RectTransform>();
-        loadingScreen.transform.parent = transform;
+        loadingScreen.transform.SetParent(transform);
         loadingScreen.transform.localPosition = new Vector3(0, 0, 0);
         loadingScreen.transform.localScale = new Vector3(1, 1, 1);
 

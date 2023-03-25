@@ -11,17 +11,7 @@ public class CheckoutPlantomo : MonoBehaviour
     private int plantInfoScene = 6;
     [SerializeField]
     public int cameraScene = 7;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Checkout(string capturedPlantomo = null)
     {

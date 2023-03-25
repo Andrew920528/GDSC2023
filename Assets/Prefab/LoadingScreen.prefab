@@ -87,8 +87,9 @@ GameObject:
   - component: {fileID: 5331518474019454832}
   - component: {fileID: 7422499907408514533}
   - component: {fileID: 6157621175947346228}
+  - component: {fileID: 7891461264816538884}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: TipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,6 +212,24 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7891461264816538884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613415218133871345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21da2882fa86a4ca1af35aefd7e17ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipList:
+  - 'Hint: Taking picture of different plants to get new Plantomo'
+  - 'Hint: Water your Plantomos to gain familiarity.'
+  - 'Hint: Go on quests to discover more Plantomos!'
+  - Did you know? We use Firebase as our backend.
+  - 'Hint: Complete Quests to level up and gain rewards!'
 --- !u!1 &3531090559994881532
 GameObject:
   m_ObjectHideFlags: 0
