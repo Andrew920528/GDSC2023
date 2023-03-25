@@ -15,8 +15,13 @@ public class ChangeScene : MonoBehaviour
 
     private void Start()
     {
+        
         canvas = GetComponent<Canvas>();
-        canvas.sortingOrder = 0;
+        if (canvas != null)
+        {
+            canvas.sortingOrder = 0;
+        }
+        
 
         
 
@@ -30,7 +35,7 @@ public class ChangeScene : MonoBehaviour
             this.loadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
         }
         RectTransform loadScreenRect = loadingScreen.GetComponent<RectTransform>();
-        loadingScreen.transform.parent = transform;
+        loadingScreen.transform.SetParent(transform);
         loadingScreen.transform.localPosition = new Vector3(0, 0, 0);
         loadingScreen.transform.localScale = new Vector3(1, 1, 1);
 
@@ -58,7 +63,7 @@ public class ChangeScene : MonoBehaviour
 
     public void MoveToScene(int sceneId)
     {
-        Debug.Log("click");
+        
         sceneHistory.Add(sceneId);
         StartCoroutine(LoadSceneAsync(sceneId));
     }

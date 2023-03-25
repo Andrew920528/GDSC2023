@@ -85,8 +85,8 @@ public class GetPlantData : MonoBehaviour
     // byte array stores the images data
     byte[] byteArray;
     ScreenshotHandler screenshotHandler;
-    private GameManager gameManager;
-
+    
+    
     // loading screen while waiting for api response
     public GameObject LoadingScreen;
 
@@ -95,7 +95,7 @@ public class GetPlantData : MonoBehaviour
         //outputArea = GameObject.Find("OutputArea").GetComponent<TMP_InputField>();
         // for testing
         //GameObject.Find("GetButton").GetComponent<Button>().onClick.AddListener(GetPlantInfo);
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        
         screenshotHandler = GameObject.FindObjectOfType<ScreenshotHandler>();
     }
 
@@ -152,12 +152,12 @@ public class GetPlantData : MonoBehaviour
                 //outputArea.text = String.Format("Common Name: {0}, Scientific Name: {1}", commonName, scientificName);
 
                 // save the plant info to game manager
-                gameManager.PlantInfo = root;
-                gameManager.PlantImage = plantImage;
-                // gameManager.ResultImage = resultImage;
+                StaticData.plantInfo = root;
+                StaticData.plantImage = plantImage;
+                
 
                 // move to plant info scene
-                GameObject.FindObjectOfType<ChangeScene>().MoveToScene(plantInfoScene);
+                GetComponent<ChangeScene>().MoveToScene(plantInfoScene);
             }
             LoadingScreen.SetActive(false);
             yield break;

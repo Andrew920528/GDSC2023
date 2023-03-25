@@ -81,7 +81,6 @@ public class MapExtentHandler : MonoBehaviour
     {
 
         float rotY = transform.eulerAngles.y;
-        Debug.Log(rotY);
         if (rotY > 180)
         {
             rotY -= 360;

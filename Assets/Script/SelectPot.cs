@@ -9,7 +9,7 @@ public class SelectPot : MonoBehaviour
     public GameObject potPrefab;
     public int potScene;
     public float offset = 0;
-    private GameManager gameManager;
+    
     private int plantomoIndex;
     public List<GameObject> plantomoList = new List<GameObject>();
 
@@ -21,7 +21,7 @@ public class SelectPot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        
         for (int i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 3; ++j)

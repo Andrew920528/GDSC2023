@@ -8,7 +8,8 @@ public class ExperienceButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelSystem = GameObject.FindObjectOfType<LevelSystem>();
+        levelSystem = GameObject.FindGameObjectWithTag("GameManager").GetComponent<LevelSystem>();
+        //levelSystem = GameObject.FindObjectOfType<LevelSystem>();
         levelSystem.UpdateVisual();
     }
 

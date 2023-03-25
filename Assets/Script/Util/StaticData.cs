@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class StaticData
 {
@@ -28,5 +29,11 @@ public static class StaticData
         {"Slash Pine" , plantomoList[4]},
         {"Quercus", plantomoList[0] },
     };
+
+
+    // Storing API response
+    public static Root plantInfo;
+    public static byte[] plantImage;
+    
 
 }

@@ -10,7 +10,9 @@ public class PopulatePot : MonoBehaviour
     public GameObject nameCard;
     [SerializeField]
     private int plantomoScale = 50;
+    private DataManager dataManager;
     // Start is called before the first frame update
+
     void Start()
     {
         // Instantiate at position (0, 0, 0) and zero rotation.

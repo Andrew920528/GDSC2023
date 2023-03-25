@@ -8,13 +8,11 @@ using Newtonsoft.Json.Converters;
 public class DataManager : MonoBehaviour
 {
     // Class for storing player data
-
     private Data gameData;
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
     public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
-        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null, int plantomoID = 0
-)
+        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null, int plantomoID = 0)
     {
         gameData = new Data();
         gameData.level = level;
@@ -170,7 +168,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    [System.Serializable]
+    [Serializable]
     public class Data
     {
         // The actual data we want to save goes here, for this example we'll only use an integer to represent the level
@@ -193,7 +191,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class QuestData
     {
         public int index = 0;

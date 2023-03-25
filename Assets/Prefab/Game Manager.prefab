@@ -9,12 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6133125018193726850}
-  - component: {fileID: 6133125018193726973}
   - component: {fileID: 4624218201274982410}
-  - component: {fileID: 6643704716807411480}
+  - component: {fileID: 716608114}
+  - component: {fileID: 716608113}
+  - component: {fileID: 716608112}
+  - component: {fileID: 716608111}
+  - component: {fileID: 716608122}
   m_Layer: 0
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,20 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6133125018193726973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6133125018193726848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecc4f34b9e70464eb7e20a7e4d9fefb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingScreen: {fileID: 3531090559994881532, guid: f3d94aef789334e4bb80ce51ea1162e2, type: 3}
-  LoadingBarFill: {fileID: 6015074922709023314, guid: b964cf86b888d4b929eeacaf59de9956, type: 3}
 --- !u!114 &4624218201274982410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _useSingleInstance: 1
---- !u!114 &6643704716807411480
+--- !u!114 &716608114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,6 +59,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 6133125018193726848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f50c0a47c1b6440aad94d75796e9794, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b8643b74ceec46249f7192b1e293d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &716608113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6133125018193726848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15fc2b3dc6b6496cb33bf893b03a0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LimitQueueProcesing: 0
+  QueueProcessTime: 0
+--- !u!114 &716608112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6133125018193726848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aaa61cb1b9a349b7979a68301bbdd84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentQuests:
+  - {fileID: 11400000, guid: e8c5e1e010e6b4df9ac72cbdc506c0fb, type: 2}
+  - {fileID: 11400000, guid: 0c2ab4b73a2134079901175187f432f1, type: 2}
+  - {fileID: 11400000, guid: 0c2ab4b73a2134079901175187f432f1, type: 2}
+  goalPrefab: {fileID: 5342217507576719743, guid: 6c6adfb8869c14f7fa9785068f9a4596, type: 3}
+  walkingGoalScene: 2
+  scanningGoalScene: 7
+--- !u!114 &716608111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6133125018193726848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182d157df3d8f4453aee258e81ec8e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  experience: 0
+  experienceToNextLevel: 0
+--- !u!114 &716608122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6133125018193726848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ecc4f34b9e70464eb7e20a7e4d9fefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 3531090559994881532, guid: f3d94aef789334e4bb80ce51ea1162e2, type: 3}
