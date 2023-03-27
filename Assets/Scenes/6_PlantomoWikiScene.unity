@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 822758012}
   - component: {fileID: 822758011}
   - component: {fileID: 822758010}
+  - component: {fileID: 822758013}
   m_Layer: 5
   m_Name: Back To Map
   m_TagString: Untagged
@@ -626,8 +627,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75.59204, y: -81.55835}
-  m_SizeDelta: {x: 81.19409, y: 88.59082}
+  m_AnchoredPosition: {x: 77, y: -84}
+  m_SizeDelta: {x: 68.63, y: 68.633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &822758010
 MonoBehaviour:
@@ -648,7 +649,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -705,7 +706,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 725d7ee5025dcf84bb43b9804761649b, type: 3}
+  m_Sprite: {fileID: -282315242, guid: 3703df9be46fb4bd78ad1667eee43b32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -723,6 +724,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822758008}
   m_CullTransparentMesh: 1
+--- !u!114 &822758013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822758008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92657be94e014459685fd9b95ef55ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &979176284
 GameObject:
   m_ObjectHideFlags: 0
