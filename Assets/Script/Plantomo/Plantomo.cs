@@ -6,61 +6,71 @@ using UnityEngine;
 public class Plantomo
 {
     [JsonProperty]
-    private int _id;
+    public int Id { get; set; }
     [JsonProperty]
-    private string _name;
+    public string Name { get; set; }
     [JsonProperty]
-    private string _description;
+    public string Description { get; set; }
     [JsonProperty]
-    private Plant _plant;
+    public Plant Plant { get; set; }
+    [JsonProperty]
+    public float Familiarity { get; set; }
+    [JsonProperty]
+    public int Level { get; set; }
+    [JsonProperty]
+    private float FamiliarityToNextLevel = 10;
 
     public Plantomo()
     {
-        _id = 0;
-        _name = null;
+        Id = 0;
+        Name = null;
+        Familiarity = 0;
+        Level = 1;
     }
 
     public Plantomo(Plantomo plantomo)
     {
-        _id = plantomo.GetID();
-        _name = plantomo.GetName();
-        _description = plantomo.GetDescription();
-        _plant = plantomo.GetPlant();
+        Id = plantomo.Id;
+        Name = plantomo.Name;
+        Description = plantomo.Description;
+        Plant = plantomo.Plant;
+        Familiarity = plantomo.Familiarity;
+        Level = plantomo.Level;
     }
 
     public Plantomo(int id, string name)
     {
-        _id = id;
-        _name = name;
+        Id = id;
+        Name = name;
+        Familiarity = 0;
+        Level = 1;
     }
 
 
-    public Plantomo(int id, string name, string description = null, Plant plant = null)
+    public Plantomo(int id, string name, string description = null, Plant plant = null, float familiarity = 0, int level = 1)
     {
-        _id = id;
-        _name = name;
-        _description = description;
-        _plant = plant;
+        Id = id;
+        Name = name;
+        Description = description;
+        Plant = plant;
+        Familiarity = familiarity;
+        Level = level;
     }
 
-    public int GetID()
+    public void GainFamiliarity(float familiarityToGain)
     {
-        return _id;
+        Familiarity += familiarityToGain;
+        if (Familiarity >= FamiliarityToNextLevel)
+        {
+            SetLevel(Level + 1);
+        }
     }
 
-    public string GetName()
+    public void SetLevel(int value)
     {
-        return _name;
-    }
-
-    public string GetDescription()
-    {
-        return _description;
-    }
-
-
-    public Plant GetPlant()
-    {
-        return _plant;
+        Debug.Log("setting plantomo level");
+        Level = value;
+        Familiarity = Familiarity - FamiliarityToNextLevel;
+        FamiliarityToNextLevel = (int)(10f * (Mathf.Pow(Level + 1, 2) - (5 * (Level + 1)) + 8));
     }
 }

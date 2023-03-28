@@ -64,7 +64,7 @@ public class CreateCard : MonoBehaviour
         // we saved the selection in a static data file in CreateWikiEntry
         string name = StaticData.SelectedPlantomo;
         Plantomo plantomoData = StaticData.plantomoDict[name];
-        Plant plantData = plantomoData.GetPlant();
+        Plant plantData = plantomoData.Plant;
 
         // Get info about the plant the plantomo is based on
         string scientificName = plantData == null ? "Scientific Name" : plantData.GetScientificName();
@@ -74,9 +74,9 @@ public class CreateCard : MonoBehaviour
         tc.transform.Find("Plant Name").GetComponent<TMP_Text>().text = name;
         nc.transform.Find("Plant Name").GetComponent<TMP_Text>().text = name;
         nc.transform.Find("Scientific Name").GetComponent<TMP_Text>().text = scientificName;
-        dc.transform.Find("Description").GetComponent<TMP_Text>().text = plantomoData.GetDescription();
+        dc.transform.Find("Description").GetComponent<TMP_Text>().text = plantomoData.Description;
 
-        GameObject plantomo = plantomos[plantomoData.GetID()];
+        GameObject plantomo = plantomos[plantomoData.Id];
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(160, -225, 0);

@@ -11,6 +11,8 @@ TagManager:
   - LevelUI
   - GameManager
   - QuestHolder
+  - PlantomoLevel
+  - CoinCount
   layers:
   - Default
   - TransparentFX

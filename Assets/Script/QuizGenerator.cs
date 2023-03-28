@@ -13,6 +13,7 @@ public class QuizGenerator : MonoBehaviour
     public GameObject answerPrefab;
     private GameObject currentQuestionObject;
     public GameObject gameOverPrefab;
+    public GameObject quizCompletePrefab;
     [SerializeField]
     private int startingLives = 3;
     private int livesLeft;
@@ -20,9 +21,13 @@ public class QuizGenerator : MonoBehaviour
     public int verticalOffset;
     public int answerOffset = 100;
 
+    private DataManager dataManager;
+
     private void Awake()
     {
+        dataManager = GameObject.FindObjectOfType<DataManager>();
         // TODO: Keep a list of questions for each plantomo, and keep the user's progress through them.
+        UpdateVisuals();
     }
 
     public void StartQuiz()
@@ -37,6 +42,7 @@ public class QuizGenerator : MonoBehaviour
         if (index >= questions.Count)
         {
             Debug.Log("End of Questions");
+            CompleteQuiz();
             return;
         }
         currentQuestionObject = Instantiate(questionPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
@@ -72,7 +78,9 @@ public class QuizGenerator : MonoBehaviour
     private void OnRightAnswer(int questionIndex)
     {
         Destroy(currentQuestionObject);
-        score += (questionIndex + 1) * 10;
+
+        int scoreMultiplier = 10;
+        score += (questionIndex + 1) * scoreMultiplier;
         gameObject.transform.Find("Score Text").GetComponent<TMP_Text>().SetText("Score: " + score);
 
         GenerateQuestion(questionIndex + 1);
@@ -91,6 +99,17 @@ public class QuizGenerator : MonoBehaviour
         gameObject.transform.Find("Lives Holder").GetChild(livesLeft).gameObject.SetActive(false);
     }
 
+    private void CompleteQuiz()
+    {
+        GameObject quizCompleteObj = Instantiate(quizCompletePrefab, transform);
+        quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.AddListener(
+            () => {
+                ClaimRewards();
+                quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+                }
+            );
+    }
+
     private void GameOver()
     {
         Debug.Log("Game Over");
@@ -98,4 +117,25 @@ public class QuizGenerator : MonoBehaviour
         Instantiate(gameOverPrefab, transform);
     }
 
+    private void ClaimRewards()
+    {
+        int coinsToGain = livesLeft * score;
+        //StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].GainFamiliarity(familiarityToGain);
+        //Debug.Log(StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level);
+        StaticData.Coins += coinsToGain;
+        dataManager.SetCoins(StaticData.Coins);
+        dataManager.Save();
+
+        UpdateVisuals();
+    }
+
+    private void UpdateVisuals()
+    {
+        if (StaticData.SelectedPlantomoIndex != -1)
+        {
+            string levelField = "lvl. " + StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level;
+            GameObject.FindGameObjectWithTag("PlantomoLevel").GetComponent<TMP_Text>().SetText(levelField);
+        }
+        GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());
+    }
 }

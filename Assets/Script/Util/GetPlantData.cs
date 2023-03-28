@@ -154,7 +154,7 @@ public class GetPlantData : MonoBehaviour
                 // save the plant info to game manager
                 StaticData.plantInfo = root;
                 StaticData.plantImage = plantImage;
-                
+
 
                 // move to plant info scene
                 GetComponent<ChangeScene>().MoveToScene(plantInfoScene);

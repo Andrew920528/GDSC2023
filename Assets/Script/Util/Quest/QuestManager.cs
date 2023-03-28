@@ -46,7 +46,7 @@ public class QuestManager : MonoBehaviour
         }
 
         StaticData.plantomoInventory = dataManager.GetGameData().plantomoInventory;
-
+        StaticData.Coins = dataManager.GetGameData().coins;
 
         dataManager.SetQuests(currentQuests);
         dataManager.Save();

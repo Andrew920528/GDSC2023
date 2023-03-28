@@ -8,8 +8,12 @@ public class PopulatePot : MonoBehaviour
 {
     public List<GameObject> plantomos = new List<GameObject>();
     public GameObject nameCard;
+    public GameObject quizButtonPrefab;
+    public GameObject levelField;
     [SerializeField]
     private int plantomoScale = 50;
+    [SerializeField]
+    private float levelFieldOffset = -350;
     private DataManager dataManager;
     // Start is called before the first frame update
 
@@ -21,28 +25,34 @@ public class PopulatePot : MonoBehaviour
         // we saved the selection in a static data file in CreateWikiEntry
         string name = StaticData.SelectedPlantomo;
 
+        GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());
+
         if (name == null)
         {
             nameCard.GetComponent<TMP_Text>().text = "This pot is empty.";
             return;
         }
         Plantomo plantomoData = StaticData.plantomoDict[name];
-        Plant plantData = plantomoData.GetPlant();
+        Plant plantData = plantomoData.Plant;
 
         nameCard.GetComponent<TMP_Text>().text = name;
 
-        GameObject plantomo = plantomos[plantomoData.GetID()];
+        GameObject plantomo = plantomos[plantomoData.Id];
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(0, 0, 0);
         pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
+        GameObject lf = Instantiate(levelField, new Vector3(0, 0, 0), Quaternion.identity, transform);
+        lf.transform.localPosition = new Vector3(0, levelFieldOffset, 0);
+        lf.transform.localScale = new Vector3(1, 1, 1);
 
-    }
+        lf.GetComponent<TMP_Text>().SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (quizButtonPrefab != null)
+        {
+            quizButtonPrefab.SetActive(true);
+        }
+
     }
 }

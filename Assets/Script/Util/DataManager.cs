@@ -12,7 +12,8 @@ public class DataManager : MonoBehaviour
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
     public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
-        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null, int plantomoID = 0)
+        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null,
+        int plantomoID = 0, int coins = 0)
     {
         gameData = new Data();
         gameData.level = level;
@@ -21,6 +22,7 @@ public class DataManager : MonoBehaviour
         gameData.questTracker = questTracker;
         gameData.plantomoInventory = plantomoInventory;
         gameData.plantomoID = plantomoID;
+        gameData.coins = coins;
     }
 
 
@@ -67,13 +69,13 @@ public class DataManager : MonoBehaviour
             gameData = new Data();
         }
         gameData.plantomoInventory = new List<Plantomo>();
-        foreach (Plantomo plantomo in plantomos) if (plantomo.GetName() != null)
+        foreach (Plantomo plantomo in plantomos) if (plantomo.Name != null)
         {
          
             gameData.plantomoInventory.Add(plantomo);
-            Debug.Log(plantomo.GetName());
+            Debug.Log(plantomo.Name);
         }
-        Debug.Log(gameData.plantomoInventory[gameData.plantomoInventory.Count - 1].GetName());
+        Debug.Log(gameData.plantomoInventory[gameData.plantomoInventory.Count - 1].Name);
         Debug.Log(gameData.plantomoInventory);
     }
 
@@ -94,6 +96,15 @@ public class DataManager : MonoBehaviour
             gameData = new Data();
         }
         gameData.plantomoID++;
+    }
+
+    public void SetCoins(int coins)
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+        gameData.coins = coins;
     }
 
     // The method to return the loaded game data when needed
@@ -178,6 +189,7 @@ public class DataManager : MonoBehaviour
         public double totalDistance = 0;
         public List<Plantomo> plantomoInventory = null;
         public int plantomoID = 0;
+        public int coins = 0;
 
         public Data()
         {
@@ -187,7 +199,7 @@ public class DataManager : MonoBehaviour
             totalDistance = 0;
             plantomoInventory = new List<Plantomo>();
             plantomoID = 0;
-
+            coins = 0;
         }
     }
 

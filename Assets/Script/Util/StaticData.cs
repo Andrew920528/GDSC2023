@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public static class StaticData
 {
-
+    // amount of coins you have to purchase actions for plantomos
+    public static int Coins { get; set; }
     // for selecting plantomo in wiki page
     public static string SelectedPlantomo { get; set; }
+    // for selecting plantomo in pot page
+    public static int SelectedPlantomoIndex { get; set; }
 
     public static List<Plantomo> plantomoInventory = new List<Plantomo>();
 

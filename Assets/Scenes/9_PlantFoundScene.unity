@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1900,7 +1900,7 @@ MonoBehaviour:
   - {fileID: 6387463517054547379, guid: d8ca7a73663634cdb9d5915d8820571a, type: 3}
   - {fileID: 7765708528948224776, guid: df50cd8f4f1044a6796fd3899b60585c, type: 3}
   - {fileID: 7224028196723119095, guid: e7fb9e05c73174107abb4d23505ec75f, type: 3}
-  plantomoPlaceholder: {fileID: 1211810797400055086, guid: e2472ba2fc56945c4884a73d66533929, type: 3}
+  plantomoPlaceholder: {fileID: 555138320878062904, guid: c9c8715bc88c3443b993507fd4a542e7, type: 3}
   captureExperience: 5
   plantomoScale: 30
 --- !u!1 &1778005020

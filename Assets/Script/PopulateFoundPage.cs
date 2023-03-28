@@ -67,7 +67,7 @@ public class PopulateFoundPage : MonoBehaviour
         {
             GameObject pc = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
             pc.transform.localPosition = new Vector3(0, 300, 0);
-            pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
+            pc.transform.localScale = new Vector3(1, 1, 1);
 
             gameObject.transform.Find("Description Box").Find("Description")
                 .GetComponent<TMP_Text>().text = "Description of this plant from GBIF API";
@@ -83,16 +83,16 @@ public class PopulateFoundPage : MonoBehaviour
         }
         else if (StaticData.plantomoDict.ContainsKey(scientificName.Split(" ")[0]))
         {
-            commonName = StaticData.plantomoDict[scientificName.Split(" ")[0]].GetName();
+            commonName = StaticData.plantomoDict[scientificName.Split(" ")[0]].Name;
         }
 
             gameObject.transform.Find("Description Box").Find("Description")
-                .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].GetDescription();
+                .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].Description;
 
             Plantomo plantomoData = StaticData.plantomoDict[commonName];
-            Plant plantData = plantomoData.GetPlant();
+            Plant plantData = plantomoData.Plant;
 
-            plantomoPlaceholder = plantomos[plantomoData.GetID()];
+            plantomoPlaceholder = plantomos[plantomoData.Id];
 
             GameObject plantomo = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
             plantomo.transform.localPosition = new Vector3(0, 300, 0);
