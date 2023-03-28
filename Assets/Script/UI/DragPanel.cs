@@ -28,6 +28,7 @@ public class DragPanel : MonoBehaviour
 
     }
 
+    
 
     private void SetUpPanelDrag()
     {
@@ -75,6 +76,7 @@ public class DragPanel : MonoBehaviour
         {
             // HandleTouch();
             Debug.Log("Use touch");
+            DragWithMouse(data);
         }
         else
         {
@@ -90,7 +92,6 @@ public class DragPanel : MonoBehaviour
 
         
         dragDirY = 10 * direction.y;
-        Debug.Log(dragDirY);
 
         transform.position = new Vector2(transform.position.x,
             Math.Clamp(transform.position.y + dragDirY, panelMinPosition, panelMaxPosition));
