@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
 {
     // Class for storing player data
     private Data gameData;
+    private DataBaseManager dbManager;
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
     public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
@@ -23,6 +24,11 @@ public class DataManager : MonoBehaviour
         gameData.plantomoInventory = plantomoInventory;
         gameData.plantomoID = plantomoID;
         gameData.coins = coins;
+    }
+
+    private void Awake()
+    {
+        dbManager = GetComponent<DataBaseManager>();
     }
 
 
@@ -133,6 +139,8 @@ public class DataManager : MonoBehaviour
             serializer.Serialize(file, gameData);
             file.Close();
         }
+        dbManager.SaveData(gameData);
+        
     }
 
     public void Load()

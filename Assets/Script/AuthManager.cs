@@ -253,8 +253,8 @@ public class AuthManager : MonoBehaviour
             }
         }
     }
-    // ==================================
-    // Test method for skipping login. Remove for production.
+
+    // Test method for skipping login. Keep for playing as guest.
     public void SkipLogin()
     {
         int mapSceneId = 2;

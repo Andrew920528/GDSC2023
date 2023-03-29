@@ -5,34 +5,33 @@ using Firebase.Database;
 
 public class DataBaseManager : MonoBehaviour
 {
-    private string name;
-    private string email;
 
     private string userID;
 
     private DatabaseReference dbReference;
+
+    private DataManager dataManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        name = "Martin Luther Kim";
-        email = "mlkim72@gatech.edu";
-
         userID = SystemInfo.deviceUniqueIdentifier;
         
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+
+        dataManager = GetComponent<DataManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void CreateUser()
+    public void SaveData(DataManager.Data data)
     {
-        User newUser = new User(name, email);
-        string json = JsonUtility.ToJson(newUser);
+        string json = JsonUtility.ToJson(data);
 
         dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+    }
+
+    public FirebaseDatabase GetData()
+    {
+        return dbReference.Database;
     }
 }
