@@ -13,6 +13,7 @@ TagManager:
   - QuestHolder
   - PlantomoLevel
   - CoinCount
+  - Item
   layers:
   - Default
   - TransparentFX

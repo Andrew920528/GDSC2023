@@ -105,7 +105,6 @@ public class QuizGenerator : MonoBehaviour
         quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.AddListener(
             () => {
                 ClaimRewards();
-                quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 }
             );
     }

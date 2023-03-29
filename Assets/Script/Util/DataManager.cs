@@ -68,15 +68,7 @@ public class DataManager : MonoBehaviour
         {
             gameData = new Data();
         }
-        gameData.plantomoInventory = new List<Plantomo>();
-        foreach (Plantomo plantomo in plantomos) if (plantomo.Name != null)
-        {
-         
-            gameData.plantomoInventory.Add(plantomo);
-            Debug.Log(plantomo.Name);
-        }
-        Debug.Log(gameData.plantomoInventory[gameData.plantomoInventory.Count - 1].Name);
-        Debug.Log(gameData.plantomoInventory);
+        gameData.plantomoInventory = plantomos;
     }
 
     public void SetDistance(double distance)
@@ -105,6 +97,15 @@ public class DataManager : MonoBehaviour
             gameData = new Data();
         }
         gameData.coins = coins;
+    }
+
+    public void SetItems(Dictionary<string, int> items)
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+        gameData.itemInventory = items;
     }
 
     // The method to return the loaded game data when needed
@@ -190,6 +191,7 @@ public class DataManager : MonoBehaviour
         public List<Plantomo> plantomoInventory = null;
         public int plantomoID = 0;
         public int coins = 0;
+        public Dictionary<string, int> itemInventory = null;
 
         public Data()
         {
@@ -200,6 +202,12 @@ public class DataManager : MonoBehaviour
             plantomoInventory = new List<Plantomo>();
             plantomoID = 0;
             coins = 0;
+            itemInventory = new Dictionary<string, int>()
+            {
+                { "Water", 0 },
+                { "Sunlight", 0 },
+                { "Soil", 0 },
+            };
         }
     }
 

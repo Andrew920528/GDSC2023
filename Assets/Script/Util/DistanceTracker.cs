@@ -14,8 +14,9 @@ public class DistanceTracker : Singleton<DistanceTracker>
 	[SerializeField]
 	private double distanceTraveled = 0;
 	[SerializeField]
-	private double updateDistanceThreshold = 70; 
-	public float waitTimeForUpdate = 5;
+	private double updateDistanceThreshold = 70;
+	[SerializeField]
+	private float waitTimeForUpdate = 5;
 
 	//private AbstractLocationProvider _locationProvider = null;
 	void Start()

@@ -14,6 +14,8 @@ public class LevelSystem : MonoBehaviour
     private int experience;
     [SerializeField]
     private int experienceToNextLevel = 0;
+    [SerializeField]
+    private int levelUpReward;
 
     private DataManager dataManager;
 
@@ -61,10 +63,14 @@ public class LevelSystem : MonoBehaviour
 
     public void SetLevel(int value)
     {
+        int coinsPerLevel = 100;
         Debug.Log("setting level");
+
         this.level = value;
         experience = experience - experienceToNextLevel;
         experienceToNextLevel = (int)(10f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
+        levelUpReward = coinsPerLevel * level;
+        StaticData.Coins += levelUpReward;
     }
 
     public void UpdateVisual()

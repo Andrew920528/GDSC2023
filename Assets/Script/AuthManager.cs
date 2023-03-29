@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Firebase;
 using Firebase.Auth;
 using TMPro;
@@ -15,6 +16,7 @@ public class AuthManager : MonoBehaviour
 
     //Login variables
     [Header("Login")]
+    public GameObject loginPanel;
     public TMP_InputField emailLoginField;
     public TMP_InputField passwordLoginField;
     public TMP_Text warningLoginText;
@@ -22,6 +24,7 @@ public class AuthManager : MonoBehaviour
 
     //Register variables
     [Header("Register")]
+    public GameObject registerPanel;
     public TMP_InputField usernameRegisterField;
     public TMP_InputField emailRegisterField;
     public TMP_InputField passwordRegisterField;
@@ -30,20 +33,32 @@ public class AuthManager : MonoBehaviour
 
     private void Awake()
     {
+        StartCoroutine(CheckAndFixDependenciesAsync());
+
+    }
+
+    private IEnumerator CheckAndFixDependenciesAsync()
+    {
         // Check that all the necessary dependencies for Firebase are present in the system
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+
+        var dependencyTask = FirebaseApp.CheckAndFixDependenciesAsync();
+
+        yield return new WaitUntil(() => dependencyTask.IsCompleted);
+
+        dependencyStatus = dependencyTask.Result;
+        if (dependencyStatus == DependencyStatus.Available)
         {
-            dependencyStatus = task.Result;
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                // If they are available then initialize Firebase
-                InitializeFirebase();
-            }
-            else
-            {
-                Debug.LogError("Could not resolve all Firebase Dependencies: " + dependencyStatus);
-            }
-        });
+            // If they are available then initialize Firebase
+            InitializeFirebase();
+            yield return new WaitForEndOfFrame();
+
+            // Check if user can log in automatically
+            StartCoroutine(CheckForAutoLogin());
+        }
+        else
+        {
+            Debug.LogError("Could not resolve all Firebase Dependencies: " + dependencyStatus);
+        }
     }
 
     private void InitializeFirebase()
@@ -51,6 +66,42 @@ public class AuthManager : MonoBehaviour
         Debug.Log("Setting up Firebase Auth");
         // Set the Firebase Instance Object
         auth = FirebaseAuth.DefaultInstance;
+    }
+
+    private IEnumerator CheckForAutoLogin()
+    {
+        if (User != null)
+        {
+            var reloadUserTask = User.ReloadAsync();
+
+            yield return new WaitUntil(() => reloadUserTask.IsCompleted);
+
+            AutoLogin();    
+        }
+        else
+        {
+            loginPanel.SetActive(true);
+        }
+    }
+
+    private void AutoLogin()
+    {
+        if (User != null)
+        {
+            int mapSceneId = 2;
+            StaticData.username = User.DisplayName;
+            SceneManager.LoadSceneAsync(mapSceneId);
+        }
+        else
+        {
+            loginPanel.SetActive(true);
+        }
+    }
+
+    public void ActivateLoginPanel(bool login)
+    {
+        loginPanel.SetActive(login);
+        registerPanel.SetActive(!login);
     }
 
     // Function for the login button
@@ -63,6 +114,10 @@ public class AuthManager : MonoBehaviour
     // Function for the register button
     public void RegisterButton()
     {
+        if (!registerPanel.activeSelf)
+        {
+            registerPanel.SetActive(true);
+        }
         // Call the login coroutine passing the email and password
         StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
@@ -110,6 +165,10 @@ public class AuthManager : MonoBehaviour
             Debug.LogFormat("User Signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
+
+            int mapSceneId = 2;
+            StaticData.username = User.DisplayName;
+            SceneManager.LoadSceneAsync(mapSceneId);
         }
     }
 
@@ -193,5 +252,12 @@ public class AuthManager : MonoBehaviour
                 }
             }
         }
+    }
+    // ==================================
+    // Test method for skipping login. Remove for production.
+    public void SkipLogin()
+    {
+        int mapSceneId = 2;
+        SceneManager.LoadScene(mapSceneId);
     }
 }
