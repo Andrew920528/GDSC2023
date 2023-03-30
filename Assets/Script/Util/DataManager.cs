@@ -124,7 +124,7 @@ public class DataManager : MonoBehaviour
 
             //string dataToWrite = JsonConvert.SerializeObject(gameData, Formatting.Indented);
 
-            Debug.Log(dataToWrite);
+            Debug.Log("data to write: " + dataToWrite);
 
             JsonSerializer serializer = new JsonSerializer();
 
@@ -177,7 +177,6 @@ public class DataManager : MonoBehaviour
         //    file.Close();
         //}
     }
-
 
     [Serializable]
     public class Data

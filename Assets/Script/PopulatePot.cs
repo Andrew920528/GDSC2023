@@ -6,7 +6,7 @@ using TMPro;
 
 public class PopulatePot : MonoBehaviour
 {
-    public List<GameObject> plantomos = new List<GameObject>();
+    
     public GameObject nameCard;
     public GameObject quizButtonPrefab;
     public GameObject levelField;
@@ -23,21 +23,23 @@ public class PopulatePot : MonoBehaviour
 
         // get info about the plantomo whose wiki page we're looking at
         // we saved the selection in a static data file in CreateWikiEntry
-        string name = StaticData.SelectedPlantomo;
+        
 
         GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());
 
-        if (name == null)
+        if (StaticData.SelectedPlantomo == null)
         {
             nameCard.GetComponent<TMP_Text>().text = "This pot is empty.";
             return;
         }
-        Plantomo plantomoData = StaticData.plantomoDict[name];
+        
+        Plantomo plantomoData = StaticData.plantomoList[StaticData.SelectedPlantomo.Id];
+        string name = plantomoData.Name;
         Plant plantData = plantomoData.Plant;
 
         nameCard.GetComponent<TMP_Text>().text = name;
 
-        GameObject plantomo = plantomos[plantomoData.Id];
+        GameObject plantomo = plantomoData.PlantomoPrefab;
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(0, 0, 0);
@@ -47,7 +49,7 @@ public class PopulatePot : MonoBehaviour
         lf.transform.localPosition = new Vector3(0, levelFieldOffset, 0);
         lf.transform.localScale = new Vector3(1, 1, 1);
 
-        lf.GetComponent<TMP_Text>().SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level);
+        lf.GetComponent<TMP_Text>().SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level);
 
         if (quizButtonPrefab != null)
         {

@@ -47,7 +47,7 @@ public class PopulateFoundPage : MonoBehaviour
 
         Gbif gbif = result.gbif;
         int gbif_id = gbif == null ? 0 : gbif.id;
-        
+
         string commonName = result.species.commonNames.Count == 0 ? result.species.scientificName : result.species.commonNames[0];
         commonName = textInfo.ToTitleCase(commonName);
         string scientificName = result.species.scientificName;
@@ -86,40 +86,38 @@ public class PopulateFoundPage : MonoBehaviour
             commonName = StaticData.plantomoDict[scientificName.Split(" ")[0]].Name;
         }
 
-            gameObject.transform.Find("Description Box").Find("Description")
-                .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].Description;
+        gameObject.transform.Find("Description Box").Find("Description")
+            .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].Description;
 
-            Plantomo plantomoData = StaticData.plantomoDict[commonName];
-            Plant plantData = plantomoData.Plant;
+        Plantomo plantomoData = StaticData.plantomoDict[commonName];
 
-            plantomoPlaceholder = plantomos[plantomoData.Id];
 
-            GameObject plantomo = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
-            plantomo.transform.localPosition = new Vector3(0, 300, 0);
-            plantomo.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
+        GameObject plantomo = Instantiate(plantomoData.PlantomoPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
+        plantomo.transform.localPosition = new Vector3(0, 300, 0);
+        plantomo.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
-            checkoutButton.Checkout(commonName);
+        checkoutButton.Checkout(commonName);
 
-            int plantomoID = dataManager.GetGameData().plantomoID;
-            dataManager.SetPlantomoID();
-            if (StaticData.plantomoInventory != null)
-            {
-                StaticData.plantomoInventory.Add(new Plantomo(plantomoID, commonName));
-            } else
-            {
-                StaticData.plantomoInventory = new List<Plantomo>
+        dataManager.SetPlantomoID();
+        if (StaticData.plantomoInventory != null)
+        {
+            StaticData.plantomoInventory.Add(new Plantomo(plantomoData.Id, commonName));
+        }
+        else
+        {
+            StaticData.plantomoInventory = new List<Plantomo>
                 {
-                    new Plantomo(plantomoID, commonName)
+                    new Plantomo(plantomoData.Id, commonName)
                 };
-            }
+        }
 
-            dataManager.SetInventory(StaticData.plantomoInventory);
+        dataManager.SetInventory(StaticData.plantomoInventory);
 
-            dataManager.Save();
+        dataManager.Save();
 
-            levelSystem.AddExperience(captureExperience * 5);
+        levelSystem.AddExperience(captureExperience * 5);
 
-        
+
     }
 
 
@@ -211,7 +209,7 @@ public class PopulateFoundPage : MonoBehaviour
             Debug.Log(request.error);
         else
             Debug.Log(((DownloadHandlerTexture)request.downloadHandler).texture);
-            plantImage.GetComponent<RawImage>().texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+        plantImage.GetComponent<RawImage>().texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
     }
 
 

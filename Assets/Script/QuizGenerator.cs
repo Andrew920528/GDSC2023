@@ -131,9 +131,9 @@ public class QuizGenerator : MonoBehaviour
 
     private void UpdateVisuals()
     {
-        if (StaticData.SelectedPlantomoIndex != -1)
+        if (StaticData.SelectedPotIndex != -1)
         {
-            string levelField = "lvl. " + StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level;
+            string levelField = "lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level;
             GameObject.FindGameObjectWithTag("PlantomoLevel").GetComponent<TMP_Text>().SetText(levelField);
         }
         GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());

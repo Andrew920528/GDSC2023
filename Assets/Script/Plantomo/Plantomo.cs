@@ -20,6 +20,9 @@ public class Plantomo
     [JsonProperty]
     private float FamiliarityToNextLevel = 10;
 
+    // Plantomo gameobject (sprite + animation)
+    public GameObject PlantomoPrefab { get; }
+
     public Plantomo()
     {
         Id = 0;
@@ -56,6 +59,13 @@ public class Plantomo
         Familiarity = familiarity;
         Level = level;
     }
+
+    public Plantomo(int id, string name, GameObject prefab, string description = null, Plant plant = null, float familiarity = 0, int level = 1)
+        : this(id, name, description, plant, familiarity, level)
+    {
+        this.PlantomoPrefab = prefab;
+    }
+
 
     public void GainFamiliarity(float familiarityToGain)
     {

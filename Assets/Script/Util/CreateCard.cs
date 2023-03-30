@@ -7,7 +7,6 @@ using TMPro;
 public class CreateCard : MonoBehaviour
 {
     // Reference to the Prefab. Drag a Prefab into this field in the Inspector.
-    public List<GameObject> plantomos;
     public GameObject titleCard;
     public GameObject descriptionCard;
     public GameObject nameCard;
@@ -38,7 +37,6 @@ public class CreateCard : MonoBehaviour
         dc.transform.localPosition = new Vector3(descCardHorOffset, descCardVertOffset, 0);
         dc.transform.localScale = new Vector3(1, 1, 1);
 
-
         GameObject nc = Instantiate(nameCard, new Vector3(0, 0, 0), Quaternion.identity, transform);
         nc.transform.localPosition = new Vector3(0, 0, 0);
         nc.transform.localScale = new Vector3(1, 1, 1);
@@ -62,9 +60,8 @@ public class CreateCard : MonoBehaviour
 
         // get info about the plantomo whose wiki page we're looking at
         // we saved the selection in a static data file in CreateWikiEntry
-        string name = StaticData.SelectedPlantomo;
-        Plantomo plantomoData = StaticData.plantomoDict[name];
-        Plant plantData = plantomoData.Plant;
+        
+        Plant plantData = StaticData.SelectedPlantomo.Plant;
 
         // Get info about the plant the plantomo is based on
         string scientificName = plantData == null ? "Scientific Name" : plantData.GetScientificName();
@@ -74,9 +71,9 @@ public class CreateCard : MonoBehaviour
         tc.transform.Find("Plant Name").GetComponent<TMP_Text>().text = name;
         nc.transform.Find("Plant Name").GetComponent<TMP_Text>().text = name;
         nc.transform.Find("Scientific Name").GetComponent<TMP_Text>().text = scientificName;
-        dc.transform.Find("Description").GetComponent<TMP_Text>().text = plantomoData.Description;
+        dc.transform.Find("Description").GetComponent<TMP_Text>().text = StaticData.SelectedPlantomo.Description;
 
-        GameObject plantomo = plantomos[plantomoData.Id];
+        GameObject plantomo = StaticData.plantomoList[StaticData.SelectedPlantomo.Id].PlantomoPrefab;
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(160, -225, 0);

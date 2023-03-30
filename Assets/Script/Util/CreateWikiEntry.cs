@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class CreateWikiEntry : MonoBehaviour
 {
-    // Script for generating wiki entries in the Plantomo Wiki page
+    // Script for generating all plantomo entries in the Plantomo Wiki page
 
     // list of plantomo models, add in inspector
-    public List<GameObject> listPlantomos;
+    // public List<GameObject> listPlantomos;
     public GameObject borderObject;
     public float spaceHorizontal = 250;
     public float spaceVertical = 250;
@@ -29,11 +29,14 @@ public class CreateWikiEntry : MonoBehaviour
         {4,  "Trident Maple"},
     };
 
+    // StaticData.plantomoList[1];
+
     void Start()
     {
-        for (int i = 0; i < listPlantomos.Count; ++i)
+        for (int i = 0; i < StaticData.plantomoList.Count; ++i)
         {
-            GameObject plantomo = listPlantomos[i];
+            // Store plantomo prefab in static data too
+            GameObject plantomo = StaticData.plantomoList[i].PlantomoPrefab; //listPlantomos[i];
 
             GameObject wikiEntry = new GameObject("WikiEntry");
             wikiEntry.transform.SetParent(this.gameObject.transform);
@@ -65,16 +68,16 @@ public class CreateWikiEntry : MonoBehaviour
             // Make each entry go to the Plant Info page when clicked
 
             Debug.Log("i: " + i);
-
-            string name = plantomoDict[i];
-            wikiEntry.GetComponent<Button>().onClick.AddListener(() => SelectPlantomo(name));
+            int ind = i;
+            
+            wikiEntry.GetComponent<Button>().onClick.AddListener(() => SelectPlantomo(ind));
 
         }
     }
 
-    public void SelectPlantomo(string name)
+    public void SelectPlantomo(int i)
     {
-        StaticData.SelectedPlantomo = name;
+        StaticData.SelectedPlantomo = StaticData.plantomoList[i];
         Debug.Log(StaticData.SelectedPlantomo);
         SceneManager.LoadScene(plantInfoScene);
     }
