@@ -367,6 +367,7 @@ RectTransform:
   m_Children:
   - {fileID: 699978845}
   - {fileID: 1696674056}
+  - {fileID: 224884561}
   - {fileID: 1444798875}
   - {fileID: 719533319}
   m_Father: {fileID: 0}
@@ -427,25 +428,18 @@ RectTransform:
   m_GameObject: {fileID: 224884560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5000002, y: 1.5000002, z: 1}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 57983377}
   - {fileID: 487329910}
   - {fileID: 403230547}
-  - {fileID: 1502182034}
-  m_Father: {fileID: 1444798875}
+  m_Father: {fileID: 177134671}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -241.19995, y: 2.2082825}
-=======
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 90, y: 56.9}
->>>>>>> refs/remotes/origin/andrew_ui_final
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &243621900
@@ -2761,7 +2755,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 224884561}
+  - {fileID: 1502182034}
   - {fileID: 755588211}
   - {fileID: 1046341936}
   m_Father: {fileID: 177134671}
@@ -2859,25 +2853,15 @@ RectTransform:
   m_GameObject: {fileID: 1502182033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-  m_LocalScale: {x: 0.6666665, y: 0.6666665, z: 1}
-=======
   m_LocalScale: {x: 1, y: 1, z: 1}
->>>>>>> refs/remotes/origin/andrew_ui_final
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 224884561}
+  m_Father: {fileID: 1444798875}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 49.663326, y: -51.472225}
-=======
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 50, y: 20}
->>>>>>> refs/remotes/origin/andrew_ui_final
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1502182036

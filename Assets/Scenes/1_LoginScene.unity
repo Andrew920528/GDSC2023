@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12729394, g: 0.1341429, b: 0.121147014, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5205,11 +5205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684e9c8be67d74f129e84b43d45e1353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
   dependencyStatus: 0
   loginPanel: {fileID: 462975381}
->>>>>>> refs/remotes/origin/andrew_ui_final
   emailLoginField: {fileID: 1651407885}
   passwordLoginField: {fileID: 651740291}
   warningLoginText: {fileID: 402276835}

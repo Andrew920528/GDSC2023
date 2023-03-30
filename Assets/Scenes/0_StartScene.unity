@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -341,18 +341,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 51071409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 7347500a23c4d44c5800cbfdcff60620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-=======
   m_Script: {fileID: 11500000, guid: 3858cf1c5d2e2426995243ccbe26a4e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   distanceTraveled: 0
   updateDistanceThreshold: 70
   waitTimeForUpdate: 5
->>>>>>> refs/remotes/origin/andrew_ui_final
 --- !u!1 &373976536
 GameObject:
   m_ObjectHideFlags: 0
