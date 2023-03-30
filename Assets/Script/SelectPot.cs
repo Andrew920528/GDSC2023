@@ -34,12 +34,13 @@ public class SelectPot : MonoBehaviour
 
                 Debug.Log(StaticData.plantomoInventory.Count);
                 if (index < StaticData.plantomoInventory.Count)
-                {
-                    
+                {  
                     Plantomo plantomoData = StaticData.plantomoList[StaticData.plantomoInventory[index].Id];
                     string name = plantomoData.Name;
                     Debug.Log("name: " + name);
-                    Plant plantData = plantomoData.Plant;
+ 
+                    Plant plantData = StaticData.plantDict[plantomoData.PlantID];
+
 
                     GameObject plantomo = plantomoData.PlantomoPrefab;
 

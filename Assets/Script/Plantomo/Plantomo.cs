@@ -1,23 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 
+[Serializable]
 public class Plantomo
 {
-    [JsonProperty]
+    [SerializeField]
     public int Id { get; set; }
-    [JsonProperty]
+    [SerializeField]
     public string Name { get; set; }
-    [JsonProperty]
+    [SerializeField]
     public string Description { get; set; }
-    [JsonProperty]
-    public Plant Plant { get; set; }
-    [JsonProperty]
+    [SerializeField]
+    public int PlantID { get; set; }
+    [SerializeField]
     public float Familiarity { get; set; }
-    [JsonProperty]
+    [SerializeField]
     public int Level { get; set; }
-    [JsonProperty]
+    [SerializeField]
     private float FamiliarityToNextLevel = 10;
 
     // Plantomo gameobject (sprite + animation)
@@ -25,10 +27,7 @@ public class Plantomo
 
     public Plantomo()
     {
-        Id = 0;
-        Name = null;
-        Familiarity = 0;
-        Level = 1;
+        // Default constructor for JSON
     }
 
     public Plantomo(Plantomo plantomo)
@@ -36,7 +35,7 @@ public class Plantomo
         Id = plantomo.Id;
         Name = plantomo.Name;
         Description = plantomo.Description;
-        Plant = plantomo.Plant;
+        PlantID = plantomo.PlantID;
         Familiarity = plantomo.Familiarity;
         Level = plantomo.Level;
     }
@@ -50,12 +49,12 @@ public class Plantomo
     }
 
 
-    public Plantomo(int id, string name, string description = null, Plant plant = null, float familiarity = 0, int level = 1)
+    public Plantomo(int id, string name, string description = null, int plantID = 0, float familiarity = 0, int level = 1)
     {
         Id = id;
         Name = name;
         Description = description;
-        Plant = plant;
+        PlantID = plantID;
         Familiarity = familiarity;
         Level = level;
     }

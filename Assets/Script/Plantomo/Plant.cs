@@ -16,6 +16,13 @@ public class Plant
     private string edibleClarification;
     private string lifeSpan;
 
+    public Plant(int id, string commonName, string scientificName)
+    {
+        _id = id;
+        _commonName = commonName;
+        _scientificName = scientificName;
+    }
+
 
     public int GetID()
     {

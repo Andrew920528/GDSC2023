@@ -9,11 +9,9 @@ public class PopulatePot : MonoBehaviour
     
     public GameObject nameCard;
     public GameObject quizButtonPrefab;
-    public GameObject levelField;
+    public TMP_Text levelField;
     [SerializeField]
     private int plantomoScale = 50;
-    [SerializeField]
-    private float levelFieldOffset = -350;
     private DataManager dataManager;
     // Start is called before the first frame update
 
@@ -25,17 +23,22 @@ public class PopulatePot : MonoBehaviour
         // we saved the selection in a static data file in CreateWikiEntry
         
 
+
         GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());
 
         if (StaticData.SelectedPlantomo == null)
         {
             nameCard.GetComponent<TMP_Text>().text = "This pot is empty.";
+            levelField.SetText("");
             return;
         }
+
         
         Plantomo plantomoData = StaticData.plantomoList[StaticData.SelectedPlantomo.Id];
         string name = plantomoData.Name;
-        Plant plantData = plantomoData.Plant;
+
+        Plant plantData = StaticData.plantDict[plantomoData.PlantID];
+
 
         nameCard.GetComponent<TMP_Text>().text = name;
 
@@ -45,11 +48,11 @@ public class PopulatePot : MonoBehaviour
         pc.transform.localPosition = new Vector3(0, 0, 0);
         pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
-        GameObject lf = Instantiate(levelField, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        lf.transform.localPosition = new Vector3(0, levelFieldOffset, 0);
-        lf.transform.localScale = new Vector3(1, 1, 1);
 
-        lf.GetComponent<TMP_Text>().SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level);
+
+
+        levelField.SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level);
+
 
         if (quizButtonPrefab != null)
         {

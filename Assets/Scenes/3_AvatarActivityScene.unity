@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,12 +345,20 @@ PrefabInstance:
       value: 27.31182
       objectReference: {fileID: 0}
     - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1290885346}
+      objectReference: {fileID: 1290885348}
     - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MoveToScene
+      value: SignOutButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SignOut, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3594089314197609322, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -469,7 +477,7 @@ PrefabInstance:
       addedObject: {fileID: 1426437581}
     - targetCorrespondingSourceObject: {fileID: 3594089314165517444, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1290885346}
+      addedObject: {fileID: 1290885348}
   m_SourcePrefab: {fileID: 100100000, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
 --- !u!1 &74549510
 GameObject:
@@ -1149,7 +1157,7 @@ GameObject:
   - component: {fileID: 296131512}
   - component: {fileID: 296131511}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,7 +1368,7 @@ GameObject:
   - component: {fileID: 388958065}
   - component: {fileID: 388958064}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2091,7 +2099,7 @@ GameObject:
   - component: {fileID: 535461169}
   - component: {fileID: 535461168}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2794,7 +2802,7 @@ GameObject:
   - component: {fileID: 764219370}
   - component: {fileID: 764219369}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3177,6 +3185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 956915068}
   - component: {fileID: 956915069}
+  - component: {fileID: 956915070}
   m_Layer: 5
   m_Name: MainActivity
   m_TagString: Untagged
@@ -3236,6 +3245,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &956915070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956915067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea493842b5a8949a997a70c7f217b396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &962095951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,7 +3415,7 @@ GameObject:
   - component: {fileID: 976495344}
   m_Layer: 5
   m_Name: Time Played
-  m_TagString: Untagged
+  m_TagString: ActivityData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4139,7 +4160,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3594089314165517444, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
   m_PrefabInstance: {fileID: 73778881}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1290885346
+--- !u!114 &1290885348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4148,10 +4169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1290885341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecc4f34b9e70464eb7e20a7e4d9fefb, type: 3}
+  m_Script: {fileID: 11500000, guid: 35ae5a5a59df94dbaab85923d4d6097b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
 --- !u!1 &1358339034
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,7 +4184,7 @@ GameObject:
   - component: {fileID: 1358339037}
   - component: {fileID: 1358339036}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Data
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4298,8 +4318,8 @@ GameObject:
   - component: {fileID: 1385744622}
   - component: {fileID: 1385744623}
   m_Layer: 5
-  m_Name: Quests completed
-  m_TagString: Untagged
+  m_Name: Quests Completed
+  m_TagString: ActivityData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4676,7 +4696,7 @@ GameObject:
   - component: {fileID: 1564816708}
   m_Layer: 5
   m_Name: Distance
-  m_TagString: Untagged
+  m_TagString: ActivityData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4808,7 +4828,7 @@ GameObject:
   - component: {fileID: 1640107518}
   m_Layer: 5
   m_Name: Quiz Completed
-  m_TagString: Untagged
+  m_TagString: ActivityData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5792,7 +5812,7 @@ GameObject:
   - component: {fileID: 1973397305}
   m_Layer: 5
   m_Name: Plantomo Found
-  m_TagString: Untagged
+  m_TagString: ActivityData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

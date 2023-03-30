@@ -47,6 +47,7 @@ public class QuestManager : MonoBehaviour
 
         StaticData.plantomoInventory = dataManager.GetGameData().plantomoInventory;
         StaticData.Coins = dataManager.GetGameData().coins;
+        StaticData.itemInventory = dataManager.GetGameData().itemInventory;
 
         dataManager.SetQuests(currentQuests);
         dataManager.Save();
@@ -110,6 +111,7 @@ public class QuestManager : MonoBehaviour
                     }
                     else
                     {
+                        Debug.Log("current progress: " + goal.CurrentAmount);
                         countObj.GetComponent<TMP_Text>().text = Math.Round(goal.CurrentAmount, 2) + "/" + goal.RequiredAmount;
                         progressBarFill.GetComponent<Image>().fillAmount = (float)(goal.CurrentAmount / goal.RequiredAmount);
                         goalObj.GetComponent<Button>().onClick.RemoveAllListeners();

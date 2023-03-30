@@ -89,7 +89,11 @@ public class PopulateFoundPage : MonoBehaviour
         gameObject.transform.Find("Description Box").Find("Description")
             .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].Description;
 
+
         Plantomo plantomoData = StaticData.plantomoDict[commonName];
+
+        Plant plantData = StaticData.plantDict[plantomoData.PlantID];
+
 
 
         GameObject plantomo = Instantiate(plantomoData.PlantomoPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);

@@ -1,6 +1,7 @@
 ﻿namespace Mapbox.Unity.Utilities
 {
 	using UnityEngine;
+	using System;
 
 	public class DontDestroyOnLoad : MonoBehaviour
 	{
@@ -17,7 +18,6 @@
 				return;
 			}
 
-			_instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
 	}
