@@ -8,6 +8,8 @@ using TMPro;
 
 public class AuthManager : MonoBehaviour
 {
+
+    private static GameObject instance;
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -33,6 +35,16 @@ public class AuthManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
+        if (instance == null)
+        {
+            instance = gameObject;
+        } else
+        {
+            Destroy(gameObject);
+        }
+
         StartCoroutine(CheckAndFixDependenciesAsync());
 
     }
@@ -70,8 +82,11 @@ public class AuthManager : MonoBehaviour
 
     private IEnumerator CheckForAutoLogin()
     {
+        Debug.Log("checking for auto log in");
+        User = FirebaseAuth.GetAuth(FirebaseApp.DefaultInstance).CurrentUser;
         if (User != null)
         {
+            Debug.Log("user found");
             var reloadUserTask = User.ReloadAsync();
 
             yield return new WaitUntil(() => reloadUserTask.IsCompleted);
@@ -86,6 +101,7 @@ public class AuthManager : MonoBehaviour
 
     private void AutoLogin()
     {
+        Debug.Log("auto logging in");
         if (User != null)
         {
             int mapSceneId = 2;
@@ -244,7 +260,7 @@ public class AuthManager : MonoBehaviour
                     }
                     else
                     {
-                        // Username is not set
+                        // Username is now set
                         // Now return to login screen
                         Debug.Log("Username is Set");
                         warningRegisterText.text = "";
@@ -259,5 +275,15 @@ public class AuthManager : MonoBehaviour
     {
         int mapSceneId = 2;
         SceneManager.LoadScene(mapSceneId);
+    }
+
+    public void LogOut()
+    {
+        if (User != null)
+        {
+            User = null;
+            auth.SignOut();
+        }
+        SceneManager.LoadScene(0);
     }
 }

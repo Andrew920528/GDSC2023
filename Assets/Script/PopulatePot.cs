@@ -12,8 +12,6 @@ public class PopulatePot : MonoBehaviour
     public TMP_Text levelField;
     [SerializeField]
     private int plantomoScale = 50;
-    [SerializeField]
-    private float levelFieldOffset = -350;
     private DataManager dataManager;
     // Start is called before the first frame update
 
@@ -32,7 +30,7 @@ public class PopulatePot : MonoBehaviour
             return;
         }
         Plantomo plantomoData = StaticData.plantomoDict[name];
-        Plant plantData = plantomoData.Plant;
+        Plant plantData = StaticData.plantDict[plantomoData.PlantID];
 
         nameCard.GetComponent<TMP_Text>().text = name;
 

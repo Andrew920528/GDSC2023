@@ -40,7 +40,7 @@ public class SelectPot : MonoBehaviour
                 {
                     string name = StaticData.plantomoInventory[index].Name;
                     Plantomo plantomoData = StaticData.plantomoDict[name];
-                    Plant plantData = plantomoData.Plant;
+                    Plant plantData = StaticData.plantDict[plantomoData.PlantID];
 
                     GameObject plantomo = plantomoList[plantomoData.Id];
 

@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
     public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
-        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null,
+        List<QuestData> questTracker = null, List<Plantomo> plantomoInventory = null,
         int plantomoID = 0, int coins = 0)
     {
         gameData = new Data();
@@ -59,12 +59,12 @@ public class DataManager : MonoBehaviour
         {
             gameData = new Data();
         }
-        gameData.questTracker = new Dictionary<int, QuestData>();
+        gameData.questTracker = new List<QuestData>();
         for (int i = 0; i < quests.Count; ++i)
         {
             Quest quest = quests[i];
-            gameData.questTracker[i] = new QuestData(i, quest.Goals[0].GetType().ToString(),
-                quest.Goals[0].CurrentAmount, quest.Goals[0].RequiredAmount, quest.Goals[0].Completed);
+            gameData.questTracker.Add(new QuestData(i, quest.Goals[0].GetType().ToString(),
+                quest.Goals[0].CurrentAmount, quest.Goals[0].RequiredAmount, quest.Goals[0].Completed));
         }
     }
 
@@ -139,7 +139,6 @@ public class DataManager : MonoBehaviour
             serializer.Serialize(file, gameData);
             file.Close();
         }
-        dbManager.SaveData(gameData);
         
     }
 
@@ -154,7 +153,7 @@ public class DataManager : MonoBehaviour
             string dataToLoad = reader.ReadToEnd();
 
             // if the json file is empty
-            if (dataToLoad.Length == 0)
+            if (dataToLoad.Length < 5)
             {
                 gameData = new Data();
             }
@@ -166,7 +165,6 @@ public class DataManager : MonoBehaviour
 
                 gameData = JsonConvert.DeserializeObject<Data>(jsonResult);
 
-                Debug.Log("quest: " + gameData.questTracker);
                 Debug.Log("total distance: " + gameData.totalDistance);
             }
 
@@ -194,7 +192,7 @@ public class DataManager : MonoBehaviour
         // The actual data we want to save goes here, for this example we'll only use an integer to represent the level
         public int level = 0;
         public int currentExperience = 0;
-        public Dictionary<int, QuestData> questTracker = null;
+        public List<QuestData> questTracker = null;
         public double totalDistance = 0;
         public List<Plantomo> plantomoInventory = null;
         public int plantomoID = 0;
@@ -205,7 +203,7 @@ public class DataManager : MonoBehaviour
         {
             level = 0;
             currentExperience = 0;
-            questTracker = new Dictionary<int, QuestData>();
+            questTracker = new List<QuestData>();
             totalDistance = 0;
             plantomoInventory = new List<Plantomo>();
             plantomoID = 0;
@@ -237,6 +235,21 @@ public class DataManager : MonoBehaviour
             this.completed = completed;
 
         }
+
+        public QuestData(QuestData questData)
+        {
+            this.index = questData.index;
+            this.questType = questData.questType;
+            this.currentAmount = questData.currentAmount;
+            this.requiredAmount = questData.requiredAmount;
+            this.completed = questData.completed;
+        }
+
+        public QuestData()
+        {
+            // Default constructor for JSON
+        }
+        
     }
 
 }

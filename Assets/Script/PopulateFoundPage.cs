@@ -90,7 +90,7 @@ public class PopulateFoundPage : MonoBehaviour
                 .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].Description;
 
             Plantomo plantomoData = StaticData.plantomoDict[commonName];
-            Plant plantData = plantomoData.Plant;
+            Plant plantData = StaticData.plantDict[plantomoData.PlantID];
 
             plantomoPlaceholder = plantomos[plantomoData.Id];
 

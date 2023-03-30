@@ -104,7 +104,7 @@ public class QuizGenerator : MonoBehaviour
         GameObject quizCompleteObj = Instantiate(quizCompletePrefab, transform);
         quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.AddListener(
             () => {
-                ClaimRewards();
+                ClaimRewards(); 
                 }
             );
     }

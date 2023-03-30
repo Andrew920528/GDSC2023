@@ -64,7 +64,7 @@ public class CreateCard : MonoBehaviour
         // we saved the selection in a static data file in CreateWikiEntry
         string name = StaticData.SelectedPlantomo;
         Plantomo plantomoData = StaticData.plantomoDict[name];
-        Plant plantData = plantomoData.Plant;
+        Plant plantData = StaticData.plantDict[plantomoData.PlantID];
 
         // Get info about the plant the plantomo is based on
         string scientificName = plantData == null ? "Scientific Name" : plantData.GetScientificName();

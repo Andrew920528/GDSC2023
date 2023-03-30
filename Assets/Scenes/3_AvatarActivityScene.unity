@@ -345,12 +345,20 @@ PrefabInstance:
       value: 27.31182
       objectReference: {fileID: 0}
     - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1290885346}
+      objectReference: {fileID: 1290885348}
     - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MoveToScene
+      value: SignOutButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594089314165518203, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SignOut, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3594089314197609322, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -469,7 +477,7 @@ PrefabInstance:
       addedObject: {fileID: 1426437581}
     - targetCorrespondingSourceObject: {fileID: 3594089314165517444, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1290885346}
+      addedObject: {fileID: 1290885348}
   m_SourcePrefab: {fileID: 100100000, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
 --- !u!1 &74549510
 GameObject:
@@ -4017,7 +4025,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3594089314165517444, guid: 07b12f64dae62494b944206eeb3fd4d0, type: 3}
   m_PrefabInstance: {fileID: 73778881}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1290885346
+--- !u!114 &1290885348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4026,10 +4034,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1290885341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ecc4f34b9e70464eb7e20a7e4d9fefb, type: 3}
+  m_Script: {fileID: 11500000, guid: 35ae5a5a59df94dbaab85923d4d6097b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
 --- !u!1 &1358339034
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,6 +35,12 @@ public static class StaticData
         {"Quercus", plantomoList[0] },
     };
 
+    public static Dictionary<int, Plant> plantDict = new Dictionary<int, Plant>
+    {
+        {0, new Plant(0, "Northern Red Oak", "Quercus rubra")},
+
+    };
+
     // map of item name and quantity
     public static Dictionary<string, int> itemInventory = new Dictionary<string, int>()
     {
