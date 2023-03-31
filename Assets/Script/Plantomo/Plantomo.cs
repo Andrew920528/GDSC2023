@@ -20,7 +20,13 @@ public class Plantomo
     [SerializeField]
     public int Level { get; set; }
     [SerializeField]
-    private float FamiliarityToNextLevel = 10;
+    public float FamiliarityToNextLevel = 10;
+    [SerializeField]
+    public int WaterLevel { get; set; }
+    [SerializeField]
+    public int SunlightLevel { get; set; }
+    [SerializeField]
+    public int SoilLevel { get; set; }
 
     // Plantomo gameobject (sprite + animation)
     public GameObject PlantomoPrefab { get; }
@@ -49,7 +55,8 @@ public class Plantomo
     //}
 
 
-    public Plantomo(int id, string name, string description = null, int plantID = 0, float familiarity = 0, int level = 1)
+    public Plantomo(int id, string name, string description = null, int plantID = 0, float familiarity = 0,
+        int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0)
     {
         Id = id;
         Name = name;
@@ -57,11 +64,15 @@ public class Plantomo
         PlantID = plantID;
         Familiarity = familiarity;
         Level = level;
+        WaterLevel = waterLevel;
+        SunlightLevel = sunlightLevel;
+        SoilLevel = soilLevel;
     }
 
 
-    public Plantomo(int id, string name, GameObject prefab, int plantID, string description = null, float familiarity = 0, int level = 1)
-        : this(id, name, description, plantID, familiarity, level)
+    public Plantomo(int id, string name, GameObject prefab, int plantID, string description = null,
+        float familiarity = 0, int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0)
+        : this(id, name, description, plantID, familiarity, level, waterLevel, sunlightLevel, soilLevel)
     {
         this.PlantomoPrefab = prefab;
     }

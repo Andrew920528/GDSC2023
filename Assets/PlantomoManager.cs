@@ -8,6 +8,16 @@ public class PlantomoManager : MonoBehaviour
     private Plantomo currentPlantomo;
     private CareGuide careGuide;
 
+    // Fetch these values from the plantomo data, they're the current Plantomo's ideal values
+    private string waterGuide;
+    private string sunlightGuide;
+    private string soilGuide;
+    private string hardinessGuide;
+
+    private int waterLevel;
+    private int sunlightLevel;
+    private int soilLevel;
+
  
     private void Awake()
     {
@@ -18,6 +28,14 @@ public class PlantomoManager : MonoBehaviour
             return;
         }
         careGuide = StaticData.plantDict[currentPlantomo.PlantID].CareGuide;
+        waterGuide = careGuide.Water;
+        sunlightGuide = careGuide.Sunlight;
+        soilGuide = careGuide.Soil;
+        hardinessGuide = careGuide.Hardiness;
+
+        waterLevel = StaticData.plantomoInventory[StaticData.SelectedPotIndex].WaterLevel;
+        sunlightLevel = StaticData.plantomoInventory[StaticData.SelectedPotIndex].SunlightLevel;
+        soilLevel = StaticData.plantomoInventory[StaticData.SelectedPotIndex].SoilLevel;
     }
 
     public void Water()
