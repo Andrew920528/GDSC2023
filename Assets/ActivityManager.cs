@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Database;
+// using Firebase.Database;
 using TMPro;
 
 public class ActivityManager : MonoBehaviour

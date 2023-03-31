@@ -118,5 +118,12 @@ public class CreateCard : MonoBehaviour
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(160, -225, 0);
         pc.transform.localScale = new Vector3(50, 50, 1);
+
+        foreach (SpriteRenderer s in pc.GetComponentsInChildren<SpriteRenderer>())
+        {
+            s.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        }
+
+
     }
 }

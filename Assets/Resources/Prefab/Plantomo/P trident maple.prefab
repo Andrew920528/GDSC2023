@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: 402570afe7280490f9a5fa7ae043829c, type: 3}
       propertyPath: m_Name
-      value: trident maple Variant
+      value: P trident maple
       objectReference: {fileID: 0}
     - target: {fileID: -8606583999085582903, guid: 402570afe7280490f9a5fa7ae043829c, type: 3}
       propertyPath: m_MaskInteraction
