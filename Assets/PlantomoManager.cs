@@ -12,6 +12,11 @@ public class PlantomoManager : MonoBehaviour
     private void Awake()
     {
         currentPlantomo = StaticData.SelectedPlantomo;
+
+        if (currentPlantomo == null)
+        {
+            return;
+        }
         careGuide = StaticData.plantDict[currentPlantomo.PlantID].CareGuide;
     }
 

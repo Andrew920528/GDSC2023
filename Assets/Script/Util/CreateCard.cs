@@ -107,7 +107,10 @@ public class CreateCard : MonoBehaviour
         }
 
         // Populate the care guide card fields
-        //GameObject.FindGameObjectWithTag("WaterData").GetComponent<TMP_Text>().text = plantData.
+        GameObject.FindGameObjectWithTag("WaterData").GetComponent<TMP_Text>().text = plantData.CareGuide.Water;
+        GameObject.FindGameObjectWithTag("SunlightData").GetComponent<TMP_Text>().text = plantData.CareGuide.Sunlight;
+        GameObject.FindGameObjectWithTag("HardinessData").GetComponent<TMP_Text>().text = plantData.CareGuide.Hardiness;
+        GameObject.FindGameObjectWithTag("SoilData").GetComponent<TMP_Text>().text = plantData.CareGuide.Soil;
     }
 
     private void CreatePlantomoObject()

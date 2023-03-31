@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,8 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92b0fcda2dcb441cb1e398fd9887dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleCard: {fileID: 2336127161662036894, guid: 28dd1c3b1c4b64d80bf7b837ce4ffd65, type: 3}
-  descriptionCard: {fileID: 1861883237510807615, guid: 2258b5bf8f2874d91a20beb10eef978e, type: 3}
+  titleCard: {fileID: 2336127161662036894, guid: a5f4e061da78848ca9182fc8400a9f39, type: 3}
+  descriptionCard: {fileID: 1861883237510807615, guid: 914d7bce03a5146688fdb51d552877fa, type: 3}
   nameCard: {fileID: 5488262152495078890, guid: 0789f854a6c8146f3957428fe6ccbdc5, type: 3}
   multiPurposeCard: {fileID: 367162603479456199, guid: ba897efb759234897b29cb203318a725, type: 3}
   imageCard: {fileID: 7397707134257361013, guid: 7c4bcce4e6ab0421fb5aea9b6d2338b2, type: 3}
@@ -930,8 +930,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 979176286}
   m_HandleRect: {fileID: 979176285}
   m_Direction: 2
-  m_Value: 1.0000001
-  m_Size: 0.2833456
+  m_Value: 1
+  m_Size: 0.28334555
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
