@@ -155,7 +155,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.Plantomo
-    Standalone: com.DefaultCompany.Plantomo-Prototype
+    Standalone: com.DefaultCompany.Plantomo
     iPhone: com.DefaultCompany.Plantomo
   buildNumber:
     Standalone: 0
@@ -835,7 +835,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 3
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1

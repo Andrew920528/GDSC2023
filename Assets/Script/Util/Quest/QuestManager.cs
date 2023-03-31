@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization.Settings;
 public class QuestManager : MonoBehaviour
 {
     private GameObject questHolder;
@@ -21,6 +22,8 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+        UnityEngine.Debug.Log(LocalizationSettings.SelectedLocale);
         dataManager = GetComponent<DataManager>();
 
         dataManager.Load();
