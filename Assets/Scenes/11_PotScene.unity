@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273, y: 470}
-  m_SizeDelta: {x: 261, y: 245}
+  m_AnchoredPosition: {x: 273, y: 489}
+  m_SizeDelta: {x: 138, y: 138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &31640661
 MonoBehaviour:
@@ -206,10 +206,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080914016}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 116996320}
+        m_TargetAssemblyTypeName: PopUpWindow, Assembly-CSharp
+        m_MethodName: PopOut
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 07af11060a5c38241bec36015a12020b, type: 3}
+  m_Sprite: {fileID: -1000289856, guid: 14c0c674bc5bc4df9a7ea523e74fb513, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 116996318}
   - component: {fileID: 116996317}
   - component: {fileID: 116996316}
+  - component: {fileID: 116996320}
   m_Layer: 5
   m_Name: QuizPanelCanvas
   m_TagString: Untagged
@@ -675,6 +676,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &116996320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116996315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db00f069738c946d48e4c851626ccfe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPopUp: {fileID: 1080914016}
+  otherProps: []
 --- !u!1 &201627006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7a3e6d163d47014c8f30ad32ec6ed28, type: 3}
+  m_Sprite: {fileID: 1714259284, guid: 3703df9be46fb4bd78ad1667eee43b32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1715,13 +1730,14 @@ GameObject:
   - component: {fileID: 1080914019}
   - component: {fileID: 1080914018}
   - component: {fileID: 1080914020}
+  - component: {fileID: 1080914021}
   m_Layer: 5
   m_Name: Quiz Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1080914017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1768,7 +1784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16c3f621595c5d84183d3b4d567b9e95, type: 3}
+  m_Sprite: {fileID: 1667018825, guid: 102288777094a4fefbc0796af4f7c8b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1808,6 +1824,26 @@ MonoBehaviour:
   startingLives: 3
   verticalOffset: -100
   answerOffset: 150
+--- !u!95 &1080914021
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080914016}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b72dbe7c08194c1c8cd8f6070e2f4d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1084282392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,7 +2113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7a3e6d163d47014c8f30ad32ec6ed28, type: 3}
+  m_Sprite: {fileID: 1714259284, guid: 3703df9be46fb4bd78ad1667eee43b32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2215,7 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1788003, g: 0.7735849, b: 0.2434354, a: 1}
+  m_Color: {r: 0.21176472, g: 0.15294118, b: 0.039215688, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2559,7 +2595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -14.4, y: -134}
+  m_AnchoredPosition: {x: -14.4, y: -159}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1774398986
@@ -2591,8 +2627,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278855478
+  m_fontColor: {r: 0.21176472, g: 0.15294118, b: 0.039215688, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3326,7 +3362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7a3e6d163d47014c8f30ad32ec6ed28, type: 3}
+  m_Sprite: {fileID: 1714259284, guid: 3703df9be46fb4bd78ad1667eee43b32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3587,12 +3623,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 814981944}
     m_Modifications:
     - target: {fileID: 5629439631669421720, guid: 37dff0b3ebb7645f697a7a4ca570caba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629439631669421720, guid: 37dff0b3ebb7645f697a7a4ca570caba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1080914016}
+      objectReference: {fileID: 116996320}
     - target: {fileID: 5629439631669421720, guid: 37dff0b3ebb7645f697a7a4ca570caba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: PopUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629439631669421720, guid: 37dff0b3ebb7645f697a7a4ca570caba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PopUpWindow, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5629439631669421723, guid: 37dff0b3ebb7645f697a7a4ca570caba, type: 3}
       propertyPath: m_Pivot.x
