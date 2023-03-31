@@ -17,8 +17,6 @@ public class LevelSystem : MonoBehaviour
     [SerializeField]
     private int levelUpReward;
 
-    private DataManager dataManager;
-
     private TextMeshProUGUI uiLevelText;
     private TextMeshProUGUI uiLevelProgressText;
 
@@ -36,11 +34,21 @@ public class LevelSystem : MonoBehaviour
 
         instance = this;
 
-        dataManager = GetComponent<DataManager>();
-        int levelFromData = dataManager.GetGameData().level;
+        int levelFromData = StaticData.PlayerStats.Level;
 
         SetLevel(levelFromData);
-        experience = dataManager.GetGameData().currentExperience;
+        experience = StaticData.PlayerStats.Experience;
+    }
+
+
+    public void SetupLeveling()
+    {
+        int levelFromData = StaticData.PlayerStats.Level;
+
+        SetLevel(levelFromData);
+        experience = StaticData.PlayerStats.Experience;
+
+        UpdateVisual();
     }
 
     public void AddExperience(int experienceToAdd)
@@ -55,10 +63,8 @@ public class LevelSystem : MonoBehaviour
 
         UpdateVisual();
 
-        dataManager.SetLevel(level);
-        dataManager.SetExperience(experience);
-        dataManager.Save();
-       
+        StaticData.PlayerStats.Level = level;
+        StaticData.PlayerStats.Experience = experience;
     }
 
     public void SetLevel(int value)
@@ -70,7 +76,7 @@ public class LevelSystem : MonoBehaviour
         experience = experience - experienceToNextLevel;
         experienceToNextLevel = (int)(10f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
         levelUpReward = coinsPerLevel * level;
-        StaticData.Coins += levelUpReward;
+        StaticData.PlayerStats.Coins += levelUpReward;
     }
 
     public void UpdateVisual()

@@ -15,6 +15,9 @@ TagManager:
   - CoinCount
   - Item
   - ActivityData
+  - LoginPanel
+  - RegisterPanel
+  - RawImage
   layers:
   - Default
   - TransparentFX

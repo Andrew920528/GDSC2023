@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 71573fefb9c164f2aa07e75fa00ce419
+=======
+guid: b2aa28eeee91341b28ea5556d9590a46
+>>>>>>> refs/remotes/origin/andrew_ui_final
 PrefabImporter:
   externalObjects: {}
   userData: 

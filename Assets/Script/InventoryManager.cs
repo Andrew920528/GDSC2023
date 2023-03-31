@@ -10,14 +10,10 @@ public class InventoryManager : MonoBehaviour
     public List<GameObject> itemPrefabs;
     public GameObject itemInfoPrefab;
     private GameObject itemInfoTab;
-    private DataManager dataManager;
    
 
     private void Awake()
     {
-        dataManager = GameObject.FindObjectOfType<DataManager>();
-        dataManager.Load();
-        StaticData.itemInventory = dataManager.GetGameData().itemInventory;
 
         coinUI = GameObject.FindObjectOfType<CoinUI>();
         int verticalSpace = 220;

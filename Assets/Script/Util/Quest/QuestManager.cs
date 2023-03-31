@@ -9,7 +9,6 @@ public class QuestManager : MonoBehaviour
 {
     private GameObject questHolder;
     private GameObject questPage;
-    private DataManager dataManager;
     private const int mapSceneId = 2;
     public List<Quest> currentQuests;
 
@@ -21,15 +20,13 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
-        dataManager = GetComponent<DataManager>();
-
-        dataManager.Load();
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        for (int i = 0; i < dataManager.GetGameData().questTracker.Count; ++i)
+        for (int i = 0; i < StaticData.QuestTracker.Count; ++i)
         {
-            currentQuests[i].Goals[0].CurrentAmount = dataManager.GetGameData().questTracker[i].currentAmount;
-            currentQuests[i].Goals[0].RequiredAmount = dataManager.GetGameData().questTracker[i].requiredAmount;
+            QuestData questData = StaticData.QuestTracker[i];
+            currentQuests[i].Goals[0].CurrentAmount = questData.currentAmount;
+            currentQuests[i].Goals[0].RequiredAmount = questData.requiredAmount;
             currentQuests[i].Goals[0].Completed = currentQuests[i].Goals[0].CurrentAmount >= currentQuests[i].Goals[0].RequiredAmount;
         }
 
@@ -44,13 +41,6 @@ public class QuestManager : MonoBehaviour
             quest.Initialize();
             quest.QuestCompleted.AddListener(OnQuestCompleted);
         }
-
-        StaticData.plantomoInventory = dataManager.GetGameData().plantomoInventory;
-        StaticData.Coins = dataManager.GetGameData().coins;
-        StaticData.itemInventory = dataManager.GetGameData().itemInventory;
-
-        dataManager.SetQuests(currentQuests);
-        dataManager.Save();
     }
 
     public void Walk(double walkedDistance)
@@ -72,8 +62,6 @@ public class QuestManager : MonoBehaviour
         Destroy(questHolder.transform.GetChild(currentQuests.IndexOf(quest)).gameObject);
         // questHolder.transform.GetChild(currentQuests.IndexOf(quest)).gameObject.SetActive(false);
         currentQuests.Remove(quest);
-        dataManager.SetQuests(currentQuests);
-        dataManager.Save();
         
     }
 
@@ -149,7 +137,9 @@ public class QuestManager : MonoBehaviour
             // this.OnQuestCompleted(quest);
             // get rid of the goal object
             GetComponent<LevelSystem>().AddExperience(quest.reward.XP);
-            
+            StaticData.PlayerStats.QuestsCompleted++;
+
+
             this.RemoveQuest(quest);
 
         }

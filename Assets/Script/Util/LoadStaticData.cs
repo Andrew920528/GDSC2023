@@ -8,25 +8,25 @@ using UnityEngine;
 public class LoadStaticData : MonoBehaviour
 {
     
-    void Awake()
+    private void Awake()
     {
         var basePlantomoPath = "Prefab/Plantomo/";
         StaticData.plantomoList = new List<Plantomo>()
         {
             new Plantomo(0, "Northern Red Oak",
-                Resources.Load(basePlantomoPath + "P northern red oak") as GameObject,
-                "This is a description for Northern Red Oak." ),
+                Resources.Load(basePlantomoPath + "P northern red oak") as GameObject, 0,
+                "The northern red oak is an oak tree in the red oak group." ),
             new Plantomo(1, "Star Magnolia",
-                Resources.Load(basePlantomoPath + "P star magnolia") as GameObject,
+                Resources.Load(basePlantomoPath + "P star magnolia") as GameObject, 1,
                 "This is a description for Star Magnolia."),
             new Plantomo(2, "Southern Magnolia",
-                Resources.Load(basePlantomoPath + "P southern magnolia") as GameObject,
+                Resources.Load(basePlantomoPath + "P southern magnolia") as GameObject, 2,
                 "This is a description for Southern Magnolia."),
             new Plantomo(3, "Trident Maple",
-                Resources.Load(basePlantomoPath + "P trident maple") as GameObject,
+                Resources.Load(basePlantomoPath + "P trident maple") as GameObject, 3,
                 "This is a description for Trident Maple."),
             new Plantomo(4, "Slash Pine",
-                Resources.Load(basePlantomoPath + "P slash pine") as GameObject,
+                Resources.Load(basePlantomoPath + "P slash pine") as GameObject, 4,
                 "This is a description for Slash Pine."),
         };
 
@@ -34,13 +34,30 @@ public class LoadStaticData : MonoBehaviour
         StaticData.plantomoDict = new Dictionary<string, Plantomo>
         {
             {"Northern Red Oak" , StaticData.plantomoList[0] },
+            {"Quercus rubra", StaticData.plantomoList[0] },
             {"Star Magnolia" , StaticData.plantomoList[1]},
             {"Southern Magnolia" , StaticData.plantomoList[2]},
+            {"Bull bay" , StaticData.plantomoList[2]}, // include aliases
             {"Trident Maple" , StaticData.plantomoList[3]},
             {"Slash Pine" , StaticData.plantomoList[4]},
-            {"Quercus", StaticData.plantomoList[0] },
+            
         };
-    }
 
+
+        // If we didn't get the necessary data from Firebase, we instantiate them here
+
+        if (StaticData.plantomoInventory == null)
+            StaticData.plantomoInventory = new List<Plantomo>();
+        if (StaticData.itemInventory == null)
+            StaticData.itemInventory = new Dictionary<string, int>();
+        if (StaticData.PlayerStats == null)
+            StaticData.PlayerStats = new PlayerStats();
+        if (StaticData.QuestTracker == null)
+            StaticData.QuestTracker = new List<QuestData>();
+        if (StaticData.plantDict == null)
+        {
+        // Populate the plant dict somehow if firebase missed
+        }
+    }
 
 }

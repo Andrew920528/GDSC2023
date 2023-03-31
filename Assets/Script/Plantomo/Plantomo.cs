@@ -40,13 +40,13 @@ public class Plantomo
         Level = plantomo.Level;
     }
 
-    public Plantomo(int id, string name)
-    {
-        Id = id;
-        Name = name;
-        Familiarity = 0;
-        Level = 1;
-    }
+    //public Plantomo(int id, string name)
+    //{
+    //    Id = id;
+    //    Name = name;
+    //    Familiarity = 0;
+    //    Level = 1;
+    //}
 
 
     public Plantomo(int id, string name, string description = null, int plantID = 0, float familiarity = 0, int level = 1)
@@ -59,8 +59,9 @@ public class Plantomo
         Level = level;
     }
 
-    public Plantomo(int id, string name, GameObject prefab, string description = null, int plant = 0, float familiarity = 0, int level = 1)
-        : this(id, name, description, plant, familiarity, level)
+
+    public Plantomo(int id, string name, GameObject prefab, int plantID, string description = null, float familiarity = 0, int level = 1)
+        : this(id, name, description, plantID, familiarity, level)
     {
         this.PlantomoPrefab = prefab;
     }

@@ -18,6 +18,8 @@
 				return;
 			}
 
+			_instance = this;
+
 			DontDestroyOnLoad(gameObject);
 		}
 	}
