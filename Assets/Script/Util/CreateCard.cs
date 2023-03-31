@@ -99,11 +99,15 @@ public class CreateCard : MonoBehaviour
 
         mpc.transform.Find("Text Body").GetComponent<TMP_Text>().text = scientificDesc;
 
+        // Get the images for gallery from plant data
         GameObject[] images = GameObject.FindGameObjectsWithTag("RawImage");
         for (int i = 0; i < images.Length; ++i)
         {
             StartCoroutine(PopulateFoundPage.DownloadImage(images[i], plantData.Images[i]));
         }
+
+        // Populate the care guide card fields
+        //GameObject.FindGameObjectWithTag("WaterData").GetComponent<TMP_Text>().text = plantData.
     }
 
     private void CreatePlantomoObject()

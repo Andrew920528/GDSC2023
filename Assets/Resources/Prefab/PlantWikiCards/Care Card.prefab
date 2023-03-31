@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 8475802293710353582}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: HardinessData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1388,7 +1388,7 @@ GameObject:
   - component: {fileID: 8475802295110317926}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: SunlightData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1850,7 +1850,7 @@ GameObject:
   - component: {fileID: 8475802295685117126}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: WaterData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2120,7 +2120,7 @@ GameObject:
   - component: {fileID: 8760949558479282876}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: SoilData
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

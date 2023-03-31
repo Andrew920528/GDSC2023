@@ -18,6 +18,10 @@ TagManager:
   - LoginPanel
   - RegisterPanel
   - RawImage
+  - WaterData
+  - SunlightData
+  - HardinessData
+  - SoilData
   layers:
   - Default
   - TransparentFX
