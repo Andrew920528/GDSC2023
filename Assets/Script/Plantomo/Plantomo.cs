@@ -59,7 +59,7 @@ public class Plantomo
         Level = level;
     }
 
-    public Plantomo(int id, string name, GameObject prefab, string description = null, Plant plant = null, float familiarity = 0, int level = 1)
+    public Plantomo(int id, string name, GameObject prefab, string description = null, int plant = 0, float familiarity = 0, int level = 1)
         : this(id, name, description, plant, familiarity, level)
     {
         this.PlantomoPrefab = prefab;
