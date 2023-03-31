@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Firebase.Database;
 using Firebase.Auth;
 using Firebase.Extensions;
@@ -135,8 +136,13 @@ public class DataBaseManager : MonoBehaviour
 
     public IEnumerator SaveData()
     {
+        // Don't save before login
+        if (SceneManager.GetActiveScene().buildIndex < 2)
+        {
+            yield break;
+        }
         currentUser = FirebaseAuth.GetAuth(app: FirebaseDatabase.DefaultInstance.App).CurrentUser;
-        if (currentUser == null) yield return null;
+        if (currentUser == null) yield break;
 
         FirebaseData gameData = new FirebaseData(
                 stats: StaticData.PlayerStats,

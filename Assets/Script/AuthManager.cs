@@ -71,7 +71,7 @@ public class AuthManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
             // Check if user can log in automatically
-            StartCoroutine(CheckForAutoLogin());
+            //StartCoroutine(CheckForAutoLogin());
         }
         else
         {
@@ -98,7 +98,7 @@ public class AuthManager : MonoBehaviour
 
             yield return new WaitUntil(() => reloadUserTask.IsCompleted);
 
-            //AutoLogin();    
+            AutoLogin();    
         }
         else
         {
@@ -106,26 +106,26 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    //private void AutoLogin()
-    //{
-    //    if (dbManager == null)
-    //    {
-    //        dbManager = FindObjectOfType<DataBaseManager>();
-    //    }
-    //    Debug.Log("auto logging in");
-    //    checkAutoLogin = false;
-    //    if (User != null)
-    //    {
-    //        dbManager.Load(User.UserId);
-    //        int mapSceneId = 2;
-    //        StaticData.username = User.DisplayName;
-    //        SceneManager.LoadSceneAsync(mapSceneId);
-    //    }
-    //    else
-    //    {
-    //        loginPanel.SetActive(true);
-    //    }
-    //}
+    private void AutoLogin()
+    {
+        if (dbManager == null)
+        {
+            dbManager = FindObjectOfType<DataBaseManager>();
+        }
+        Debug.Log("auto logging in");
+        checkAutoLogin = false;
+        if (User != null)
+        {
+            dbManager.Load(User.UserId);
+            int mapSceneId = 2;
+            StaticData.username = User.DisplayName;
+            SceneManager.LoadSceneAsync(mapSceneId);
+        }
+        else
+        {
+            loginPanel.SetActive(true);
+        }
+    }
 
     public void ActivateLoginPanel(bool login)
     {
@@ -201,9 +201,8 @@ public class AuthManager : MonoBehaviour
 
             int mapSceneId = 2;
             StaticData.username = User.DisplayName;
+
             dbManager.Load(User.UserId);
-
-
             SceneManager.LoadSceneAsync(mapSceneId);
         }
     }

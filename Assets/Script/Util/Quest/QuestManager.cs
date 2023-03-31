@@ -18,7 +18,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private int walkingGoalScene;
     [SerializeField] private int scanningGoalScene;
 
-    private void Awake()
+    private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
 
