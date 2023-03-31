@@ -67,7 +67,7 @@ public class PopulateFoundPage : MonoBehaviour
             pc.transform.localPosition = new Vector3(0, 300, 0);
             pc.transform.localScale = new Vector3(1, 1, 1);
 
-            gameObject.transform.Find("Description Box").Find("Description")
+            gameObject.transform.Find("DescriptionCard").Find("Description")
                 .GetComponent<TMP_Text>().text = "Description of this plant from GBIF API";
             StartCoroutine(DownloadImage(pc, images[0].url.m));
 
@@ -84,7 +84,7 @@ public class PopulateFoundPage : MonoBehaviour
             commonName = StaticData.plantomoDict[scientificName.Split(" ")[0]].Name;
         }
 
-        gameObject.transform.Find("Description Box").Find("Description")
+        gameObject.transform.Find("DescriptionCard").Find("Description")
             .GetComponent<TMP_Text>().text = StaticData.plantomoDict[commonName].Description;
 
 
@@ -188,7 +188,7 @@ public class PopulateFoundPage : MonoBehaviour
 
                 description = description.Split(".")[0] + ".";
 
-                descriptionBox.transform.Find("Description Box").Find("Description")
+                descriptionBox.transform.Find("DescriptionCard").Find("Description")
         .GetComponent<TMP_Text>().text = description;
 
             }

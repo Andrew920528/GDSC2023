@@ -306,9 +306,18 @@ public class AuthManager : MonoBehaviour
         dbManager.SaveData();
         if (User != null)
         {
-            auth.SignOut();
-            auth = null;
+            StartCoroutine(ContinueLogout());
         }
+        
+    }
+
+    public IEnumerator ContinueLogout()
+    {
+        if (User != null)
+        {
+            yield return null;
+        }
+
         SceneManager.LoadScene(0);
     }
 }

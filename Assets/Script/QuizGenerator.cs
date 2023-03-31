@@ -99,12 +99,14 @@ public class QuizGenerator : MonoBehaviour
     private void CompleteQuiz()
     {
         StaticData.PlayerStats.QuizCompleted++;
+        StaticData.plantomoInventory[StaticData.SelectedPotIndex].QuizCompleted = true;
         GameObject quizCompleteObj = Instantiate(quizCompletePrefab, transform);
         quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.AddListener(
             () => {
                 ClaimRewards(); 
                 }
             );
+        
     }
 
     private void GameOver()
@@ -131,6 +133,5 @@ public class QuizGenerator : MonoBehaviour
             string levelField = "lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level;
             GameObject.FindGameObjectWithTag("PlantomoLevel").GetComponent<TMP_Text>().SetText(levelField);
         }
-        GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.PlayerStats.Coins.ToString());
     }
 }

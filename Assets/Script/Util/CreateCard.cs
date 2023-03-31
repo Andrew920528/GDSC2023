@@ -94,7 +94,7 @@ public class CreateCard : MonoBehaviour
         string scientificDesc = plantData == null ? "Plant Data Not Available" : plantData.Description;
 
 
-        nc.transform.Find("Plant Name").GetComponent<TMP_Text>().text = name;
+        nc.transform.Find("Plant Name").GetComponent<TMP_Text>().text = plantomoName;
         nc.transform.Find("Scientific Name").GetComponent<TMP_Text>().text = scientificName;
 
         mpc.transform.Find("Text Body").GetComponent<TMP_Text>().text = scientificDesc;

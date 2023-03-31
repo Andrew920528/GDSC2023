@@ -27,6 +27,8 @@ public class Plantomo
     public int SunlightLevel { get; set; }
     [SerializeField]
     public int SoilLevel { get; set; }
+    [SerializeField]
+    public bool QuizCompleted { get; set; }
 
     // Plantomo gameobject (sprite + animation)
     public GameObject PlantomoPrefab { get; }
@@ -56,7 +58,7 @@ public class Plantomo
 
 
     public Plantomo(int id, string name, string description = null, int plantID = 0, float familiarity = 0,
-        int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0)
+        int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0, bool quizCompleted = false)
     {
         Id = id;
         Name = name;
@@ -67,12 +69,13 @@ public class Plantomo
         WaterLevel = waterLevel;
         SunlightLevel = sunlightLevel;
         SoilLevel = soilLevel;
+        QuizCompleted = quizCompleted;
     }
 
 
     public Plantomo(int id, string name, GameObject prefab, int plantID, string description = null,
-        float familiarity = 0, int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0)
-        : this(id, name, description, plantID, familiarity, level, waterLevel, sunlightLevel, soilLevel)
+        float familiarity = 0, int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0, bool quizCompleted = false)
+        : this(id, name, description, plantID, familiarity, level, waterLevel, sunlightLevel, soilLevel, quizCompleted)
     {
         this.PlantomoPrefab = prefab;
     }
