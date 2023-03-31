@@ -1900,7 +1900,7 @@ MonoBehaviour:
   - {fileID: 6387463517054547379, guid: d8ca7a73663634cdb9d5915d8820571a, type: 3}
   - {fileID: 7765708528948224776, guid: df50cd8f4f1044a6796fd3899b60585c, type: 3}
   - {fileID: 7224028196723119095, guid: e7fb9e05c73174107abb4d23505ec75f, type: 3}
-  plantomoPlaceholder: {fileID: 555138320878062904, guid: c9c8715bc88c3443b993507fd4a542e7, type: 3}
+  plantomoPlaceholder: {fileID: 555138320878062904, guid: 1f87624a83fad442199e0ad967a9a2d4, type: 3}
   captureExperience: 5
   plantomoScale: 30
 --- !u!1 &1778005020

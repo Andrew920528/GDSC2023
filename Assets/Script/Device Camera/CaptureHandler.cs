@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class CaptureHandler : MonoBehaviour
 {
+    public GameObject cameraLens;
     private string imagePath = Application.dataPath + "/Screenshots/";
     public class Plant
     {
@@ -34,7 +35,8 @@ public class CaptureHandler : MonoBehaviour
 
     public void TakeScreenshot()
     {
-        ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
+
+        ScreenshotHandler.TakeScreenshot_Static();
     }
 
     public void TestScreenShot(string name)

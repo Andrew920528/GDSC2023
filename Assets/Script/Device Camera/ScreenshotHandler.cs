@@ -7,9 +7,14 @@ public class ScreenshotHandler : MonoBehaviour
     private static ScreenshotHandler instance;
     private Camera cam;
 
+    public RectTransform CaptureArea;
+
     private bool takeScreenshotOnNextFrame;
 
     private byte[] currentImage;
+
+    [SerializeField]
+    private int lensVerticalOffest = 100;
 
     
 
@@ -33,11 +38,16 @@ public class ScreenshotHandler : MonoBehaviour
     {
         if (takeScreenshotOnNextFrame)
         {
+            int width = (int) CaptureArea.rect.width;
+            int height = (int)CaptureArea.rect.height;
+            float startX = CaptureArea.offsetMin.x;
+            float startY = CaptureArea.offsetMin.y;
+
             takeScreenshotOnNextFrame = false;
             RenderTexture renderTexture = cam.targetTexture;
 
-            Texture2D renderResult = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
-            Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
+            Texture2D renderResult = new Texture2D(width, height, TextureFormat.ARGB32, false);
+            Rect rect = new Rect(startX, startY, width, height);
             renderResult.ReadPixels(rect, 0, 0);
 
             currentImage = renderResult.EncodeToPNG();
@@ -62,15 +72,14 @@ public class ScreenshotHandler : MonoBehaviour
         }
     }
 
-    private void TakeScreenshot(int width, int height)
+    private void TakeScreenshot()
     {
-        cam.targetTexture = RenderTexture.GetTemporary(width, height, 16);
         takeScreenshotOnNextFrame = true;
     }
 
-    public static void TakeScreenshot_Static(int width, int height)
+    public static void TakeScreenshot_Static()
     {
-        instance.TakeScreenshot(width, height);
+        instance.TakeScreenshot();
     }
 
 }
