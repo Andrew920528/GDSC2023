@@ -34,6 +34,7 @@ public static class StaticData
         { "Water", 0 },
         { "Sunlight", 0 },
         { "Soil", 0 },
+        {"Coins", 0 },
     };
 
     public static List<Item> itemList = new List<Item>()

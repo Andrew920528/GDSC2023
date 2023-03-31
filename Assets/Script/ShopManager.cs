@@ -9,9 +9,11 @@ public class ShopManager : MonoBehaviour
     private CoinUI coinUI;
     public TMP_Text warningText;
     public List<GameObject> itemPrefabs;
+    private InventoryManager inventoryManager;
 
     private void Awake()
     {
+        inventoryManager = FindObjectOfType<InventoryManager>();
         coinUI = GameObject.FindObjectOfType<CoinUI>();
         int verticalSpace = 220;
         int verticalOffset = 250;
@@ -47,9 +49,11 @@ public class ShopManager : MonoBehaviour
                 StaticData.itemInventory.Add(item.Name, 1);
             }
             StaticData.PlayerStats.Coins -= item.Price;
+   
             warningText.text = "";
             coinUI.UpdateUI();
             Debug.Log("Successfully bought item!");
+            inventoryManager.UpdateItems();
         }
         else
         {
