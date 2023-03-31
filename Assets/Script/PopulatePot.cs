@@ -12,8 +12,7 @@ public class PopulatePot : MonoBehaviour
     public TMP_Text levelField;
     [SerializeField]
     private int plantomoScale = 50;
-    private DataManager dataManager;
-    // Start is called before the first frame update
+
 
     void Start()
     {
@@ -21,10 +20,6 @@ public class PopulatePot : MonoBehaviour
 
         // get info about the plantomo whose wiki page we're looking at
         // we saved the selection in a static data file in CreateWikiEntry
-        
-
-
-        GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());
 
         if (StaticData.SelectedPlantomo == null)
         {
@@ -47,8 +42,6 @@ public class PopulatePot : MonoBehaviour
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
         pc.transform.localPosition = new Vector3(0, 0, 0);
         pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
-
-
 
 
         levelField.SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level);

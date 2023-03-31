@@ -9,7 +9,9 @@ using TMPro;
 public class AuthManager : MonoBehaviour
 {
 
-    private static GameObject instance;
+    public static AuthManager instance;
+    private DataBaseManager dbManager;
+    private static bool checkAutoLogin;
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -32,19 +34,23 @@ public class AuthManager : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
+    public TMP_Text confirmRegisterText;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-
         if (instance == null)
         {
-            instance = gameObject;
-        } else
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
         {
-            Destroy(gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
+        dbManager = FindObjectOfType<DataBaseManager>();
         StartCoroutine(CheckAndFixDependenciesAsync());
 
     }
@@ -82,6 +88,7 @@ public class AuthManager : MonoBehaviour
 
     private IEnumerator CheckForAutoLogin()
     {
+        if (!checkAutoLogin) yield return null;
         Debug.Log("checking for auto log in");
         User = FirebaseAuth.GetAuth(FirebaseApp.DefaultInstance).CurrentUser;
         if (User != null)
@@ -91,7 +98,7 @@ public class AuthManager : MonoBehaviour
 
             yield return new WaitUntil(() => reloadUserTask.IsCompleted);
 
-            AutoLogin();    
+            //AutoLogin();    
         }
         else
         {
@@ -99,20 +106,26 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    private void AutoLogin()
-    {
-        Debug.Log("auto logging in");
-        if (User != null)
-        {
-            int mapSceneId = 2;
-            StaticData.username = User.DisplayName;
-            SceneManager.LoadSceneAsync(mapSceneId);
-        }
-        else
-        {
-            loginPanel.SetActive(true);
-        }
-    }
+    //private void AutoLogin()
+    //{
+    //    if (dbManager == null)
+    //    {
+    //        dbManager = FindObjectOfType<DataBaseManager>();
+    //    }
+    //    Debug.Log("auto logging in");
+    //    checkAutoLogin = false;
+    //    if (User != null)
+    //    {
+    //        dbManager.Load(User.UserId);
+    //        int mapSceneId = 2;
+    //        StaticData.username = User.DisplayName;
+    //        SceneManager.LoadSceneAsync(mapSceneId);
+    //    }
+    //    else
+    //    {
+    //        loginPanel.SetActive(true);
+    //    }
+    //}
 
     public void ActivateLoginPanel(bool login)
     {
@@ -140,6 +153,10 @@ public class AuthManager : MonoBehaviour
 
     private IEnumerator Login(string email, string password)
     {
+        if (dbManager == null)
+        {
+            dbManager = FindObjectOfType<DataBaseManager>();
+        }
         // Call the Firebase auth signin function passing the email and password
         var loginTask = auth.SignInWithEmailAndPasswordAsync(email, password);
 
@@ -184,6 +201,9 @@ public class AuthManager : MonoBehaviour
 
             int mapSceneId = 2;
             StaticData.username = User.DisplayName;
+            dbManager.Load(User.UserId);
+
+
             SceneManager.LoadSceneAsync(mapSceneId);
         }
     }
@@ -264,6 +284,7 @@ public class AuthManager : MonoBehaviour
                         // Now return to login screen
                         Debug.Log("Username is Set");
                         warningRegisterText.text = "";
+                        confirmRegisterText.text = "Registered! Please Log in.";
                     }
                 }
             }
@@ -279,10 +300,15 @@ public class AuthManager : MonoBehaviour
 
     public void LogOut()
     {
+        if (dbManager == null)
+        {
+            dbManager = FindObjectOfType<DataBaseManager>();
+        }
+        dbManager.SaveData();
         if (User != null)
         {
-            User = null;
             auth.SignOut();
+            auth = null;
         }
         SceneManager.LoadScene(0);
     }

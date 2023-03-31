@@ -8,7 +8,11 @@ public static class StaticData
     // The username of Firebase user
     public static string username { get; set; }
     // amount of coins you have to purchase actions for plantomos
-    public static int Coins { get; set; }
+
+    // for keeping track of player stats
+    public static PlayerStats PlayerStats = new PlayerStats();
+
+    public static List<QuestData> QuestTracker;
     // for selecting plantomo in wiki page
     public static Plantomo SelectedPlantomo { get; set; }
     // for selecting plantomo in pot page
@@ -20,13 +24,9 @@ public static class StaticData
 
 
     // useful for mapping api result to plantomo
-    public static Dictionary<string, Plantomo> plantomoDict; 
+    public static Dictionary<string, Plantomo> plantomoDict;
 
-    public static Dictionary<int, Plant> plantDict = new Dictionary<int, Plant>
-    {
-        {0, new Plant(0, "Northern Red Oak", "Quercus rubra")},
-
-    };
+    public static Dictionary<int, Plant> plantDict = new Dictionary<int, Plant>();
 
     // map of item name and quantity
     public static Dictionary<string, int> itemInventory = new Dictionary<string, int>()

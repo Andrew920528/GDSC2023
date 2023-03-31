@@ -19,7 +19,7 @@ public class DataManager : MonoBehaviour
         gameData = new Data();
         gameData.level = level;
         gameData.currentExperience = currentExperience;
-        gameData.totalDistance = totalDistance;
+        gameData.distanceWalked = totalDistance;
         gameData.questTracker = questTracker;
         gameData.plantomoInventory = plantomoInventory;
         gameData.plantomoID = plantomoID;
@@ -84,7 +84,7 @@ public class DataManager : MonoBehaviour
             gameData = new Data();
         }
 
-        gameData.totalDistance += distance;
+        gameData.distanceWalked += distance;
     }
 
     public void SetPlantomoID()
@@ -165,7 +165,7 @@ public class DataManager : MonoBehaviour
 
                 gameData = JsonConvert.DeserializeObject<Data>(jsonResult);
 
-                Debug.Log("total distance: " + gameData.totalDistance);
+                Debug.Log("total distance: " + gameData.distanceWalked);
             }
 
             reader.Close();
@@ -192,7 +192,7 @@ public class DataManager : MonoBehaviour
         public int level = 0;
         public int currentExperience = 0;
         public List<QuestData> questTracker = null;
-        public double totalDistance = 0;
+        public double distanceWalked = 0;
         public List<Plantomo> plantomoInventory = null;
         public int plantomoID = 0;
         public int coins = 0;
@@ -203,11 +203,29 @@ public class DataManager : MonoBehaviour
             level = 0;
             currentExperience = 0;
             questTracker = new List<QuestData>();
-            totalDistance = 0;
+            distanceWalked = 0;
             plantomoInventory = new List<Plantomo>();
             plantomoID = 0;
             coins = 0;
             itemInventory = new Dictionary<string, int>()
+            {
+                { "Water", 0 },
+                { "Sunlight", 0 },
+                { "Soil", 0 },
+            };
+        }
+
+        public Data(int level, int currentExperience, List<QuestData> questTracker, int distanceWalked,
+            List<Plantomo> plantomoInventory, int plantomoID, int coins, Dictionary<string, int> itemInventory)
+        {
+            this.level = level;
+            this.currentExperience = currentExperience;
+            this.questTracker = questTracker;
+            this.distanceWalked = distanceWalked;
+            this.plantomoInventory = plantomoInventory;
+            this.plantomoID = plantomoID;
+            this.coins = coins;
+            this.itemInventory = new Dictionary<string, int>
             {
                 { "Water", 0 },
                 { "Sunlight", 0 },

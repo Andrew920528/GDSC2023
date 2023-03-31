@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 41955199}
   - component: {fileID: 41955198}
   - component: {fileID: 41955202}
+  - component: {fileID: 41955203}
   m_Layer: 5
   m_Name: GUI
   m_TagString: Canvas
@@ -243,6 +244,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 3531090559994881532, guid: f3d94aef789334e4bb80ce51ea1162e2, type: 3}
+--- !u!114 &41955203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41955197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7347500a23c4d44c5800cbfdcff60620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &51071408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,8 +269,8 @@ PrefabInstance:
       value: Game Manager
       objectReference: {fileID: 0}
     - target: {fileID: 6133125018193726848, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
-      propertyPath: m_TagString
-      value: GameManager
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6133125018193726850, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
       propertyPath: m_RootOrder
@@ -303,50 +316,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4624218201274982410, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6133125018193726848, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 51071410}
-    - targetCorrespondingSourceObject: {fileID: 6133125018193726848, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 51071411}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
---- !u!1 &51071409 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6133125018193726848, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
+--- !u!114 &51071410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 51071410, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
   m_PrefabInstance: {fileID: 51071408}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &51071410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51071409}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ea061bc5892e44f1b24e5a9ca1b7061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &51071411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51071409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3858cf1c5d2e2426995243ccbe26a4e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceTraveled: 0
-  updateDistanceThreshold: 70
-  waitTimeForUpdate: 5
 --- !u!1 &373976536
 GameObject:
   m_ObjectHideFlags: 0

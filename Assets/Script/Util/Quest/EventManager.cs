@@ -37,12 +37,10 @@ public class EventManager : MonoBehaviour
     private Dictionary<System.Delegate, EventDelegate> delegateLookup = new Dictionary<System.Delegate, EventDelegate>();
     private Dictionary<System.Delegate, System.Delegate> onceLookups = new Dictionary<System.Delegate, System.Delegate>();
 
-    private DataManager dataManager;
     private QuestManager questManager;
 
     public void Awake()
     {
-        dataManager = GetComponent<DataManager>();
         questManager = GetComponent<QuestManager>();
     }
 
@@ -174,10 +172,6 @@ public class EventManager : MonoBehaviour
         }
 
         m_eventQueue.Enqueue(evt);
-
-        dataManager.SetQuests(questManager.currentQuests);
-        dataManager.SetDistance(10);
-        dataManager.Save();
 
         return true;
     }

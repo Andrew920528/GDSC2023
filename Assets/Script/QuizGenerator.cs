@@ -21,11 +21,8 @@ public class QuizGenerator : MonoBehaviour
     public int verticalOffset;
     public int answerOffset = 100;
 
-    private DataManager dataManager;
-
     private void Awake()
     {
-        dataManager = GameObject.FindObjectOfType<DataManager>();
         // TODO: Keep a list of questions for each plantomo, and keep the user's progress through them.
         UpdateVisuals();
     }
@@ -101,6 +98,7 @@ public class QuizGenerator : MonoBehaviour
 
     private void CompleteQuiz()
     {
+        StaticData.PlayerStats.QuizCompleted++;
         GameObject quizCompleteObj = Instantiate(quizCompletePrefab, transform);
         quizCompleteObj.transform.GetComponentInChildren<Button>().onClick.AddListener(
             () => {
@@ -121,9 +119,7 @@ public class QuizGenerator : MonoBehaviour
         int coinsToGain = livesLeft * score;
         //StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].GainFamiliarity(familiarityToGain);
         //Debug.Log(StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level);
-        StaticData.Coins += coinsToGain;
-        dataManager.SetCoins(StaticData.Coins);
-        dataManager.Save();
+        StaticData.PlayerStats.Coins += coinsToGain;
 
         UpdateVisuals();
     }
@@ -135,6 +131,6 @@ public class QuizGenerator : MonoBehaviour
             string levelField = "lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level;
             GameObject.FindGameObjectWithTag("PlantomoLevel").GetComponent<TMP_Text>().SetText(levelField);
         }
-        GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.Coins.ToString());
+        GameObject.FindGameObjectWithTag("CoinCount").GetComponent<TMP_Text>().SetText(StaticData.PlayerStats.Coins.ToString());
     }
 }

@@ -9,11 +9,9 @@ public class ShopManager : MonoBehaviour
     private CoinUI coinUI;
     public TMP_Text warningText;
     public List<GameObject> itemPrefabs;
-    private DataManager dataManager;
 
     private void Awake()
     {
-        dataManager = GameObject.FindObjectOfType<DataManager>();
         coinUI = GameObject.FindObjectOfType<CoinUI>();
         int verticalSpace = 220;
         int verticalOffset = 250;
@@ -36,7 +34,7 @@ public class ShopManager : MonoBehaviour
     }
     public void BuyItem(Item item)
     {
-        if (StaticData.Coins >= item.Price)
+        if (StaticData.PlayerStats.Coins >= item.Price)
         {
             // Able to buy item
 
@@ -45,16 +43,13 @@ public class ShopManager : MonoBehaviour
                 StaticData.itemInventory[item.Name]++;
             } else
             {
-                StaticData.itemInventory[item.Name] = 1;
+                // Initialize item if not found in dictionary
+                StaticData.itemInventory.Add(item.Name, 1);
             }
-            StaticData.Coins -= item.Price;
+            StaticData.PlayerStats.Coins -= item.Price;
             warningText.text = "";
             coinUI.UpdateUI();
             Debug.Log("Successfully bought item!");
-
-            dataManager.SetCoins(StaticData.Coins);
-            dataManager.SetItems(StaticData.itemInventory);
-            dataManager.Save();
         }
         else
         {

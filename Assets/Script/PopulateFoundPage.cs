@@ -17,7 +17,6 @@ public class PopulateFoundPage : MonoBehaviour
     public List<GameObject> plantomos;
     public GameObject plantomoPlaceholder;
 
-    private DataManager dataManager;
     private LevelSystem levelSystem;
     public int captureExperience;
 
@@ -34,7 +33,6 @@ public class PopulateFoundPage : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        dataManager = gameManager.GetComponent<DataManager>();
         levelSystem = gameManager.GetComponent<LevelSystem>();
         plantInfo = StaticData.plantInfo;
 
@@ -94,34 +92,27 @@ public class PopulateFoundPage : MonoBehaviour
 
         Plant plantData = StaticData.plantDict[plantomoData.PlantID];
 
-
-
-        GameObject plantomo = Instantiate(plantomoData.PlantomoPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
-        plantomo.transform.localPosition = new Vector3(0, 300, 0);
-        plantomo.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
+        GameObject plantomoObj = Instantiate(plantomoData.PlantomoPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
+        plantomoObj.transform.localPosition = new Vector3(0, 300, 0);
+        plantomoObj.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
         checkoutButton.Checkout(commonName);
 
-        dataManager.SetPlantomoID();
         if (StaticData.plantomoInventory != null)
         {
-            StaticData.plantomoInventory.Add(new Plantomo(plantomoData.Id, commonName));
+            StaticData.plantomoInventory.Add(new Plantomo(plantomoData));
         }
         else
         {
             StaticData.plantomoInventory = new List<Plantomo>
                 {
-                    new Plantomo(plantomoData.Id, commonName)
+                    new Plantomo(plantomoData)
                 };
         }
 
-        dataManager.SetInventory(StaticData.plantomoInventory);
-
-        dataManager.Save();
-
         levelSystem.AddExperience(captureExperience * 5);
 
-
+        StaticData.PlayerStats.PlantomosCollected++;
     }
 
 
@@ -205,10 +196,11 @@ public class PopulateFoundPage : MonoBehaviour
         }
     }
 
-    IEnumerator DownloadImage(GameObject plantImage, string MediaUrl)
+    public static IEnumerator DownloadImage(GameObject plantImage, string MediaUrl)
     {
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(MediaUrl);
-        yield return request.SendWebRequest();
+        var downloadTask = request.SendWebRequest();
+        yield return new WaitUntil(() => downloadTask.isDone);
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.DataProcessingError)
             Debug.Log(request.error);
         else
