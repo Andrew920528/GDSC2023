@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI Text_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d3b9d4c68b2b56242adb2f1efe4fcfff, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 3467746042623295518
+  m_TableData:
+  - m_Id: 515022921728
+    m_Localized: Activity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1318672539648
+    m_Localized: 'Info about you goes here
+
+
+      Steps walked
+
+
+      Friends made
+
+
+      ...
+
+
+      etc.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16274495250432
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16456855199744
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16572005621760
+    m_Localized: Notification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17164136488960
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 3467746042623295518
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0020420db6110000

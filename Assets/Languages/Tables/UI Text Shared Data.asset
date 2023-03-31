@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Text
+  m_TableCollectionNameGuidString: d3b9d4c68b2b56242adb2f1efe4fcfff
+  m_Entries:
+  - m_Id: 515022921728
+    m_Key: Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1318672539648
+    m_Key: info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16274495250432
+    m_Key: SettingsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16456855199744
+    m_Key: AudioTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16572005621760
+    m_Key: NotificationsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17164136488960
+    m_Key: LanguageTitle
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3467746042623295512
+  references:
+    version: 2
+    RefIds:
+    - rid: 3467746042623295512
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1680281448828
