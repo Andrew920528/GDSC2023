@@ -65,7 +65,7 @@ public class PopulateFoundPage : MonoBehaviour
         {
             GameObject pc = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
             pc.transform.localPosition = new Vector3(0, 300, 0);
-            pc.transform.localScale = new Vector3(1, 1, 1);
+            pc.transform.localScale = new Vector3(1.5f, 1.5f, 1);
 
             gameObject.transform.Find("DescriptionCard").Find("Description")
                 .GetComponent<TMP_Text>().text = "Description of this plant from GBIF API";
