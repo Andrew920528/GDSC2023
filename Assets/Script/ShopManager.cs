@@ -49,7 +49,6 @@ public class ShopManager : MonoBehaviour
                 StaticData.itemInventory.Add(item.Name, 1);
             }
             StaticData.PlayerStats.Coins -= item.Price;
-   
             warningText.text = "";
             coinUI.UpdateUI();
             Debug.Log("Successfully bought item!");

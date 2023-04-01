@@ -19,7 +19,8 @@ public class DistanceTracker : Singleton<DistanceTracker>
 	private float waitTimeForUpdate = 5;
 
 	//private AbstractLocationProvider _locationProvider = null;
-	void Start()
+
+	void OnEnable()
 	{
 		Input.location.Start();
 

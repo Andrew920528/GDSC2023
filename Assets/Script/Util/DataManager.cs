@@ -29,6 +29,8 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         dbManager = GetComponent<DataBaseManager>();
+
+
     }
 
 
