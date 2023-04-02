@@ -12,6 +12,7 @@ public class Item
     public int Price { get; set; }
     [SerializeField]
     public string Description { get; set; }
+    public GameObject ItemPrefab { get; }
 
     public Item(string name, int quantity, int price, string description)
     {
@@ -19,5 +20,14 @@ public class Item
         Quantity = quantity;
         Price = price;
         Description = description;
+    }
+
+    public Item(string name, int quantity, int price, string description, GameObject itemObject)
+    {
+        Name = name;
+        Quantity = quantity;
+        Price = price;
+        Description = description;
+        ItemPrefab = itemObject;
     }
 }

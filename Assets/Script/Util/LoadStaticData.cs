@@ -30,6 +30,15 @@ public class LoadStaticData : MonoBehaviour
                 "This is a description for Slash Pine."),
         };
 
+        var baseItemPath = "Prefab/Items/";
+        StaticData.itemList = new List<Item>()
+        {
+            new Item("Water", 1, 100, "The elixir of life. It quenches the thirst of any Plantomo.",
+            Resources.Load(baseItemPath + "P water item") as GameObject),
+            new Item("Soil", 1, 100, "Just a bag of soil.",
+            Resources.Load(baseItemPath + "P soil item") as GameObject),
+        };
+
 
         StaticData.plantomoDict = new Dictionary<string, Plantomo>
         {

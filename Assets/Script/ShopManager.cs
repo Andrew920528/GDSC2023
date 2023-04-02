@@ -6,25 +6,26 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
-    private CoinUI coinUI;
     public TMP_Text warningText;
-    public List<GameObject> itemPrefabs;
     private InventoryManager inventoryManager;
+    private GameObject[] coinUIObjects;
 
     private void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
-        coinUI = GameObject.FindObjectOfType<CoinUI>();
+        coinUIObjects = GameObject.FindGameObjectsWithTag("CoinCount");
         int verticalSpace = 220;
         int verticalOffset = 250;
 
-        for (int i = 0; i < itemPrefabs.Count; ++i)
+        List<Item> itemList = StaticData.itemList;
+
+        for (int i = 0; i < itemList.Count; ++i)
         {
-            Item item = StaticData.itemList[i];
-            GameObject itemObj = Instantiate(itemPrefabs[i], transform);
+            Item item = itemList[i];
+            GameObject itemObj = Instantiate(item.ItemPrefab, transform);
             itemObj.transform.localPosition = new Vector3(0, verticalOffset + i * -verticalSpace, 0);
             itemObj.transform.localScale = new Vector3(1, 1, 1);
-
+                
             Button buyButton = itemObj.GetComponentInChildren<Button>();
 
             buyButton.onClick.AddListener(() =>
@@ -49,8 +50,12 @@ public class ShopManager : MonoBehaviour
                 StaticData.itemInventory.Add(item.Name, 1);
             }
             StaticData.PlayerStats.Coins -= item.Price;
+            foreach (GameObject g in coinUIObjects)
+            {
+                g.GetComponent<TMP_Text>().text = StaticData.PlayerStats.Coins.ToString();
+            }
+
             warningText.text = "";
-            coinUI.UpdateUI();
             Debug.Log("Successfully bought item!");
             inventoryManager.UpdateItems();
         }

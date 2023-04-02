@@ -12,6 +12,7 @@ public class PopulatePot : MonoBehaviour
     public TMP_Text levelField;
     [SerializeField]
     private int plantomoScale = 50;
+    private float plantomoOffsetY = 70;
 
 
     void Start()
@@ -40,7 +41,7 @@ public class PopulatePot : MonoBehaviour
         GameObject plantomo = plantomoData.PlantomoPrefab;
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
-        pc.transform.localPosition = new Vector3(0, 0, 0);
+        pc.transform.localPosition = new Vector3(0, plantomoOffsetY, -1);
         pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
 

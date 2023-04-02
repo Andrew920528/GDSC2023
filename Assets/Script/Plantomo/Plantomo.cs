@@ -16,17 +16,17 @@ public class Plantomo
     [SerializeField]
     public int PlantID { get; set; }
     [SerializeField]
-    public float Familiarity { get; set; }
+    public int Familiarity { get; set; }
     [SerializeField]
     public int Level { get; set; }
     [SerializeField]
-    public float FamiliarityToNextLevel = 10;
+    public int FamiliarityToNextLevel = 3;
     [SerializeField]
     public int WaterLevel { get; set; }
     [SerializeField]
     public int SunlightLevel { get; set; }
     [SerializeField]
-    public int SoilLevel { get; set; }
+    public string SoilType { get; set; }
     [SerializeField]
     public bool QuizCompleted { get; set; }
 
@@ -46,6 +46,7 @@ public class Plantomo
         PlantID = plantomo.PlantID;
         Familiarity = plantomo.Familiarity;
         Level = plantomo.Level;
+        FamiliarityToNextLevel = 3;
     }
 
     //public Plantomo(int id, string name)
@@ -57,8 +58,8 @@ public class Plantomo
     //}
 
 
-    public Plantomo(int id, string name, string description = null, int plantID = 0, float familiarity = 0,
-        int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0, bool quizCompleted = false)
+    public Plantomo(int id, string name, string description = null, int plantID = 0, int familiarity = 0,
+        int level = 1, int waterLevel = 0, int sunlightLevel = 0, string soilType = null, bool quizCompleted = false)
     {
         Id = id;
         Name = name;
@@ -68,20 +69,22 @@ public class Plantomo
         Level = level;
         WaterLevel = waterLevel;
         SunlightLevel = sunlightLevel;
-        SoilLevel = soilLevel;
+        SoilType = soilType;
         QuizCompleted = quizCompleted;
+        FamiliarityToNextLevel = 3;
     }
 
 
     public Plantomo(int id, string name, GameObject prefab, int plantID, string description = null,
-        float familiarity = 0, int level = 1, int waterLevel = 0, int sunlightLevel = 0, int soilLevel = 0, bool quizCompleted = false)
-        : this(id, name, description, plantID, familiarity, level, waterLevel, sunlightLevel, soilLevel, quizCompleted)
+        int familiarity = 0, int level = 1, int waterLevel = 0, int sunlightLevel = 0, string soilType = null, bool quizCompleted = false)
+        : this(id, name, description, plantID, familiarity, level, waterLevel, sunlightLevel, soilType, quizCompleted)
     {
         this.PlantomoPrefab = prefab;
-    }
+        FamiliarityToNextLevel = 3;
+}
 
 
-    public void GainFamiliarity(float familiarityToGain)
+    public void GainFamiliarity(int familiarityToGain)
     {
         Familiarity += familiarityToGain;
         if (Familiarity >= FamiliarityToNextLevel)
@@ -94,7 +97,7 @@ public class Plantomo
     {
         Debug.Log("setting plantomo level");
         Level = value;
-        Familiarity = Familiarity - FamiliarityToNextLevel;
-        FamiliarityToNextLevel = (int)(10f * (Mathf.Pow(Level + 1, 2) - (5 * (Level + 1)) + 8));
+        Familiarity = 0;
+        FamiliarityToNextLevel = 3;
     }
 }

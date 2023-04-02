@@ -51,6 +51,7 @@ public class AuthManager : MonoBehaviour
         }
 
         dbManager = FindObjectOfType<DataBaseManager>();
+        checkAutoLogin = true;
         StartCoroutine(CheckAndFixDependenciesAsync());
 
     }
@@ -71,7 +72,7 @@ public class AuthManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
             // Check if user can log in automatically
-            //StartCoroutine(CheckForAutoLogin());
+            StartCoroutine(CheckForAutoLogin());
         }
         else
         {
@@ -88,7 +89,7 @@ public class AuthManager : MonoBehaviour
 
     private IEnumerator CheckForAutoLogin()
     {
-        if (!checkAutoLogin) yield return null;
+        if (!checkAutoLogin) yield break;
         Debug.Log("checking for auto log in");
         User = FirebaseAuth.GetAuth(FirebaseApp.DefaultInstance).CurrentUser;
         if (User != null)
@@ -113,7 +114,7 @@ public class AuthManager : MonoBehaviour
             dbManager = FindObjectOfType<DataBaseManager>();
         }
         Debug.Log("auto logging in");
-        checkAutoLogin = false;
+        
         if (User != null)
         {
             dbManager.Load(User.UserId);
@@ -299,6 +300,7 @@ public class AuthManager : MonoBehaviour
 
     public void LogOut()
     {
+        checkAutoLogin = false;
         if (dbManager == null)
         {
             dbManager = FindObjectOfType<DataBaseManager>();

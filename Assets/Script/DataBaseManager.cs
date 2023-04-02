@@ -18,11 +18,11 @@ public class DataBaseManager : MonoBehaviour
 
     private FirebaseFirestore firestoreDb;
 
-    private CollectionReference plantsReference;
-
     private FirebaseUser currentUser;
 
     public static DataBaseManager instance;
+
+    private bool hasLoad;
 
     // Start is called before the first frame update
 
@@ -37,6 +37,7 @@ public class DataBaseManager : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
+        hasLoad = false;
     }
 
 
@@ -47,7 +48,7 @@ public class DataBaseManager : MonoBehaviour
         firestoreDb = FirebaseFirestore.DefaultInstance;
 
         // Don't need user data for loading firestore
-        StartCoroutine(LoadFirestoreData());
+        LoadFirestoreData();
     }
 
     // Wrapper Method for loading firebase data for user
@@ -84,12 +85,20 @@ public class DataBaseManager : MonoBehaviour
                 StaticData.QuestTracker = gameData.QuestTracker;
 
             GetComponent<LevelSystem>().SetupLeveling();
+
+            hasLoad = true;
         }
     }
 
-    private IEnumerator LoadFirestoreData()
+    private void LoadFirestoreData()
     {
-        plantsReference = firestoreDb.Collection("PlantsDatabase");
+        StartCoroutine(LoadPlantsDatabase());
+        StartCoroutine(LoadQuestionsDatabase());
+    }
+
+    private IEnumerator LoadPlantsDatabase()
+    {
+        var plantsReference = firestoreDb.Collection("PlantsDatabase");
         var readTask = plantsReference.GetSnapshotAsync();
 
         yield return new WaitUntil(() => readTask.IsCompleted);
@@ -97,7 +106,8 @@ public class DataBaseManager : MonoBehaviour
         if (readTask.Exception != null)
         {
             Debug.LogError("Firestore read failed with exception: " + readTask.Exception);
-        } else
+        }
+        else
         {
             QuerySnapshot snapshot = readTask.Result;
 
@@ -133,11 +143,45 @@ public class DataBaseManager : MonoBehaviour
         }
     }
 
+    private IEnumerator LoadQuestionsDatabase()
+    {
+        var quetionsReference = firestoreDb.Collection("QuestionsDatabase");
+        var readTask = quetionsReference.GetSnapshotAsync();
+
+        yield return new WaitUntil(() => readTask.IsCompleted);
+
+        if (readTask.Exception != null)
+        {
+            Debug.LogError("Firestore read failed with exception: " + readTask.Exception);
+        }
+        else
+        {
+            QuerySnapshot snapshot = readTask.Result;
+            StaticData.questionList = new List<QuizQuestion>();
+
+            for (int i = 0; i < snapshot.Count; ++i)
+            {
+                DocumentSnapshot doc = snapshot[i];
+
+                //string description = JsonConvert.SerializeObject(doc.GetValue<string>(new FieldPath("Description")));
+                string json = JsonConvert.SerializeObject(doc);
+                string question = doc.GetValue<string>("question");
+                List<string> answerChoices = doc.GetValue<List<string>>("answer_choices");
+                int answerIndex = doc.GetValue<int>("answer_index");
+
+                QuizQuestion q = new(question, answerChoices, answerIndex);
+
+                StaticData.questionList.Add(q);
+                Debug.Log(question);
+            }
+        }
+    }
+
 
     public IEnumerator SaveData()
     {
         // Don't save before login
-        if (SceneManager.GetActiveScene().buildIndex < 2)
+        if (SceneManager.GetActiveScene().buildIndex < 2 || !hasLoad)
         {
             yield break;
         }

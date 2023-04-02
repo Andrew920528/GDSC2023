@@ -15,6 +15,8 @@ public class SelectPot : MonoBehaviour
     [SerializeField]
     private int spacing = 250;
 
+    public GameObject locationMarker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +48,17 @@ public class SelectPot : MonoBehaviour
                     GameObject plantomo = plantomoData.PlantomoPrefab;
 
                     GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform);
-                    pc.transform.localPosition = new Vector3(offset + j * spacing, i * -spacing, 0);
+                    GameObject marker = Instantiate(locationMarker, new Vector3(0, 0, 0), Quaternion.identity, transform);
+                    pc.transform.localPosition = new Vector3(offset + j * spacing, i * -spacing + 170, 0);
                     pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
+
+                    marker.transform.localPosition = new Vector3(offset + j * spacing, i * -spacing+ 130, 0);
+                    marker.transform.localScale = new Vector3(30, 30, 1);
+
+                    marker.AddComponent<Button>();
+                    marker.GetComponent<Button>().onClick.AddListener(
+                    () => PlantomoAssignButtonHandler(index)
+                );
                 }
                 
             }

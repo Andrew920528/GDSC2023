@@ -11,15 +11,14 @@ public class SignOut : MonoBehaviour
     private void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
+        if (authManager == null)
+        {
+            authManager = FindObjectOfType<AuthManager>();
+        }
     }
 
     public void SignOutButton()
     {
-        if (User != null)
-        {
-            User = null;
-            auth.SignOut();
-        }
-        SceneManager.LoadScene(0);
+        authManager.LogOut();
     }
 }

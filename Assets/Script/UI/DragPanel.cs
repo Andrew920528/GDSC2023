@@ -13,6 +13,7 @@ public class DragPanel : MonoBehaviour
     private float dragDirY;
     private float panelMaxPosition;
     private float panelMinPosition;
+    private float velocity = 1f;
 
 
     private void Start()
@@ -120,9 +121,10 @@ public class DragPanel : MonoBehaviour
 
     IEnumerator MovePanelUp()
     {
-        while(transform.position.y <= panelMaxPosition)
+        
+        while (transform.position.y <= panelMaxPosition)
         {
-            transform.position = new Vector3(transform.position.x, Math.Clamp(transform.position.y + 0.1f, panelMinPosition, panelMaxPosition), transform.position.z);
+            transform.position = new Vector3(transform.position.x, Math.Clamp(transform.position.y + velocity, panelMinPosition, panelMaxPosition), transform.position.z);
             yield return null;
         }
     }
@@ -131,7 +133,7 @@ public class DragPanel : MonoBehaviour
     {
         while (transform.position.y >= panelMinPosition)
         {
-            transform.position = new Vector3(transform.position.x, Math.Clamp(transform.position.y -0.1f , panelMinPosition, panelMaxPosition), transform.position.z);
+            transform.position = new Vector3(transform.position.x, Math.Clamp(transform.position.y -velocity , panelMinPosition, panelMaxPosition), transform.position.z);
             yield return null;
         }
     }

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class QuizGenerator : MonoBehaviour
 {
-    public List<Question> questions = new List<Question>();
+    public List<QuizQuestion> questions;
     public GameObject questionPrefab;
     public GameObject answerPrefab;
     private GameObject currentQuestionObject;
@@ -24,6 +24,7 @@ public class QuizGenerator : MonoBehaviour
     private void Awake()
     {
         // TODO: Keep a list of questions for each plantomo, and keep the user's progress through them.
+        questions = StaticData.questionList;
         UpdateVisuals();
     }
 
@@ -46,22 +47,29 @@ public class QuizGenerator : MonoBehaviour
         currentQuestionObject.transform.localPosition = new Vector3(0, verticalOffset, 0);
         currentQuestionObject.transform.localScale = new Vector3(1, 1, 1);
 
-        Question q = questions[index];
+        QuizQuestion q = questions[index];
         currentQuestionObject.transform.Find("Question Text").GetComponent<TMP_Text>().
-            SetText(q.questionType.questionTypeList[q.questionType.questionTypeIndex]);
+            SetText(q.Question);
 
-        Debug.Log("question type: " + q.questionType.questionTypeIndex);
 
-        for (int i = 0; i < q.answerChoices.Count; ++i)
+        // Scale the Answers vertically if there are only 2 choices
+        int verticalScale = q.AnswerChoices.Count == 2 ? 2 : 1;
+
+        for (int optionIndex = 0; optionIndex < q.AnswerChoices.Count; ++optionIndex)
         {
-            int verticalScale = q.answerChoices.Count == 2 ? 2 : 1;
+            var option = q.AnswerChoices[optionIndex];
             GameObject ans = Instantiate(answerPrefab, new Vector3(0, 0, 0),
                 Quaternion.identity, currentQuestionObject.transform.Find("Answer Holder"));
-            ans.transform.localPosition = new Vector3(i % 2 * answerOffset * 1.5f, i / 2 * -answerOffset, 0);
-            ans.transform.localScale = new Vector3(1, verticalScale, 1);
-            ans.GetComponentInChildren<TMP_Text>().SetText(q.answerChoices[i]);
 
-            if (i == q.correctAnswerIndex)
+            float offsetX = optionIndex % 2 * answerOffset * 1.5f;
+            float offsetY = optionIndex / 2 * -answerOffset;
+            ans.transform.localPosition = new Vector3(offsetX, offsetY, 0);
+            ans.transform.localScale = new Vector3(1, verticalScale, 1);
+
+            // set text for answer choice
+            ans.GetComponentInChildren<TMP_Text>().text = option;
+
+            if (optionIndex == q.CorrectAnswerIndex)
             {
                 ans.GetComponent<Button>().onClick.AddListener(() => OnRightAnswer(index));
             } else
