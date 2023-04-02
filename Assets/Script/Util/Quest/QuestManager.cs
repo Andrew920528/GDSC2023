@@ -72,6 +72,7 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < currentQuests.Count; ++i)
         {
             Quest quest = currentQuests[i];
+            quest.Initialize();
             foreach (var goal in quest.Goals)
                 {
                     GameObject goalObj = Instantiate(
@@ -118,11 +119,16 @@ public class QuestManager : MonoBehaviour
         // e.g. Map for walking, Camera for scanning
         GameObject canvas = GameObject.FindGameObjectWithTag("Canvas");
         ChangeScene c = canvas.GetComponent<ChangeScene>();
-        if (!completed)
+        GameObject questcanvas = GameObject.FindGameObjectWithTag("QuestCanvas");
+
+        if (!quest.Completed)
         {
+            questcanvas.SetActive(false);
             string questType = quest.Goals[0].GetType().ToString();
-            if (questType == "WalkingGoal")
+
+            if (questType == "WalkingGoal" || questType == "LocationGoal")
             {
+                
                 c.MoveToScene(walkingGoalScene);
             }
             else if (questType == "ScanningGoal")
@@ -136,13 +142,15 @@ public class QuestManager : MonoBehaviour
             // TODO: claim the rewards
             // this.OnQuestCompleted(quest);
             // get rid of the goal object
-            GetComponent<LevelSystem>().AddExperience(quest.reward.XP);
+            GetComponent<LevelSystem>().AddExperience(quest.Reward.XP);
             StaticData.PlayerStats.QuestsCompleted++;
 
 
             this.RemoveQuest(quest);
 
         }
+
+        
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)

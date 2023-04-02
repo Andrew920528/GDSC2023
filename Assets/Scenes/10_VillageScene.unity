@@ -1875,8 +1875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64.6, y: -5}
-  m_SizeDelta: {x: 148.86, y: 51.36}
+  m_AnchoredPosition: {x: 62.5, y: -3.6}
+  m_SizeDelta: {x: 181.1, y: 54.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290753081
 MonoBehaviour:
@@ -1898,7 +1898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 555
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b9b6d35d43b094ff6b2435ea310fa39b, type: 2}
   m_sharedMaterial: {fileID: -6610401457883975622, guid: b9b6d35d43b094ff6b2435ea310fa39b, type: 2}
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_fontSizeMin: 60
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -2012,11 +2012,11 @@ RectTransform:
   m_Father: {fileID: 2005315907}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.655, y: 546}
-  m_SizeDelta: {x: 774.69, y: 144.36}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.0000009536743, y: -121}
+  m_SizeDelta: {x: 774.69, y: 144.35999}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1381425040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3671,8 +3671,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 1.3049927, y: 30}
-  m_SizeDelta: {x: -2.6099854, y: 1415.3799}
+  m_AnchoredPosition: {x: 1, y: 36}
+  m_SizeDelta: {x: 272.06, y: 1902.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2049951552
 MonoBehaviour:
@@ -3738,11 +3738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5221205214324855114, guid: 6ee565cac4eec4e6eaf64628363ed09a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5221205214324855114, guid: 6ee565cac4eec4e6eaf64628363ed09a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5221205214324855114, guid: 6ee565cac4eec4e6eaf64628363ed09a, type: 3}
       propertyPath: m_LocalPosition.z

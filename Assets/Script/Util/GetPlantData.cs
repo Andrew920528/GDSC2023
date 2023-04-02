@@ -85,6 +85,7 @@ public class GetPlantData : MonoBehaviour
     // byte array stores the images data
     byte[] byteArray;
     ScreenshotHandler screenshotHandler;
+    public GameObject scanningPanel;
     
     
     // loading screen while waiting for api response
@@ -157,6 +158,7 @@ public class GetPlantData : MonoBehaviour
 
 
                 // move to plant info scene
+                scanningPanel.SetActive(false);
                 GetComponent<ChangeScene>().MoveToScene(plantInfoScene);
             }
             LoadingScreen.SetActive(false);

@@ -25,4 +25,16 @@ public abstract class GameEvent
             Debug.Log("scanned" + obj);
         }
     }
+
+    public class LocationGameEvent : GameEvent
+    {
+        public double latitude;
+        public double longitude;
+
+        public LocationGameEvent(double latitude, double longitude)
+        {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+    }
 }

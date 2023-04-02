@@ -45,7 +45,7 @@ public class QuizGenerator : MonoBehaviour
         }
         currentQuestionObject = Instantiate(questionPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
         currentQuestionObject.transform.localPosition = new Vector3(0, verticalOffset, 0);
-        currentQuestionObject.transform.localScale = new Vector3(1, 1, 1);
+        currentQuestionObject.transform.localScale = new Vector3(2, 2, 1);
 
         QuizQuestion q = questions[index];
         currentQuestionObject.transform.Find("Question Text").GetComponent<TMP_Text>().

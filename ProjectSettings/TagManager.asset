@@ -22,6 +22,10 @@ TagManager:
   - SunlightData
   - HardinessData
   - SoilData
+  - DisableOnScreenshot
+  - QuestCanvas
+  - ScannedImage
+  - ScanningPanel
   layers:
   - Default
   - TransparentFX

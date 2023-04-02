@@ -20,12 +20,12 @@ public class Quest : ScriptableObject
 
     // Stores rewards of a Quest
     [System.Serializable]
-    public struct Reward
+    public struct Stat
     {
         public int currency;
         public int XP;
     }
-    [Header("Reward")] public Reward reward = new Reward { currency = 10, XP = 10 };
+    [Header("Stat")] public Stat Reward = new Stat { currency = 10, XP = 10 };
 
     public bool Completed { get; set; }
 
@@ -54,11 +54,21 @@ public class Quest : ScriptableObject
             GoalCompleted = new UnityEvent();
         }
 
-        protected void Evaluate()
+        public void Evaluate()
         {
             
             if (CurrentAmount >= RequiredAmount)
             {
+                Complete();
+            }
+        }
+
+        public void Evaluate(double latitude, double longitude)
+        {
+            Debug.Log("" + DistanceTracker.instance.HaversineDistance(latitude, longitude));
+            if (DistanceTracker.instance.HaversineDistance(latitude, longitude) < 30)
+            {
+                CurrentAmount = RequiredAmount;
                 Complete();
             }
         }
@@ -80,7 +90,10 @@ public class Quest : ScriptableObject
     public void Initialize()
     {
         Completed = false;
+        Goals[0].Completed = false;
+        Goals[0].CurrentAmount = 0;
         QuestCompleted = new QuestCompletedEvent();
+        
         Debug.Log("quest initialize");
         foreach (var goal in Goals)
         {
@@ -92,7 +105,7 @@ public class Quest : ScriptableObject
 
     private void CheckGoals()
     {
-        Completed = Goals.All(g => g.Completed);
+        Completed = Goals[0].Completed;
         if (Completed)
         {
             // give reward

@@ -63,7 +63,7 @@ public class PopulateFoundPage : MonoBehaviour
 
         if (!StaticData.plantomoDict.ContainsKey(commonName) && !StaticData.plantomoDict.ContainsKey(scientificName.Split(" ")[0]))
         {
-            GameObject pc = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
+            GameObject pc = Instantiate(plantomoPlaceholder, new Vector3(0, 0, 0), Quaternion.identity, transform);
             pc.transform.localPosition = new Vector3(0, 300, 0);
             pc.transform.localScale = new Vector3(1f, 1f, 1);
 

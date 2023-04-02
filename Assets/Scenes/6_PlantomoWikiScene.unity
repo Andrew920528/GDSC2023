@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18018606, g: 0.22559257, b: 0.30678663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -243,10 +243,10 @@ RectTransform:
   m_Father: {fileID: 748016547}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.269989, y: -810.98}
-  m_SizeDelta: {x: 48.76001, y: 1385.3}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -160}
+  m_SizeDelta: {x: 848.76, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &330401113
 MonoBehaviour:
@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 979176285}
   m_Direction: 2
   m_Value: 1.0000001
-  m_Size: 0.2833456
+  m_Size: 0.39388865
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1219,10 +1219,10 @@ RectTransform:
   m_Father: {fileID: 748016547}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 3, y: -764}
-  m_SizeDelta: {x: 720.63, y: 936.63}
+  m_AnchoredPosition: {x: -2.53, y: -192.06}
+  m_SizeDelta: {x: 709.57, y: -429.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1380270943
 MonoBehaviour:
@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1471,7 +1471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00024414062, y: -0.0025024414}
+  m_AnchoredPosition: {x: 0.00024414062, y: -0.0024414062}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1950529445
@@ -1537,8 +1537,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998674123}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -198.43, y: -9.95, z: 1.0001271}
-  m_LocalScale: {x: 294, y: 920.7, z: 1}
+  m_LocalPosition: {x: -137.57, y: 1.92, z: 1.0001271}
+  m_LocalScale: {x: 416.8332, y: 1296.353, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1380270942}

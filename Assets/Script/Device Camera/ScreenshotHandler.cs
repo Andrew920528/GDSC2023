@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenshotHandler : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ScreenshotHandler : MonoBehaviour
 
     private byte[] currentImage;
 
+    private RawImage scannedImage;
+    public GameObject scanningPanel;
     
 
 
@@ -52,8 +55,14 @@ public class ScreenshotHandler : MonoBehaviour
             Rect rect = new Rect(bl.x, bl.y, width, height);
 
             renderResult.ReadPixels(rect, 0, 0);
+            renderResult.Apply();
+
+            scanningPanel.SetActive(true);
+            scannedImage = scanningPanel.GetComponentInChildren<RawImage>();
+            scannedImage.texture = renderResult;
 
             currentImage = renderResult.EncodeToPNG();
+
             if (Application.isEditor)
             {
                 System.IO.File.WriteAllBytes(Application.dataPath + "/Screenshots/CameraScreenshot.png", currentImage);
@@ -86,7 +95,7 @@ public class ScreenshotHandler : MonoBehaviour
         {
             g.SetActive(false);
         }
-        cam.targetTexture = RenderTexture.GetTemporary(width, height, 16);
+        cam.targetTexture = RenderTexture.GetTemporary((int)CaptureArea.rect.width, (int)CaptureArea.rect.height, 16);
         takeScreenshotOnNextFrame = true;
     }
 
