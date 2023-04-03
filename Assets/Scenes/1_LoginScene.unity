@@ -1142,11 +1142,11 @@ PrefabInstance:
     - target: {fileID: 716608112, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
       propertyPath: currentQuests.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 1f1f3a81e678d4f7eb19505809f8e9be, type: 2}
+      objectReference: {fileID: 11400000, guid: 3a9c145e0efbe4079902ed0b495972b0, type: 2}
     - target: {fileID: 716608112, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
       propertyPath: currentQuests.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 78bc4c02678fc4063bfd1171095d2cf1, type: 2}
+      objectReference: {fileID: 11400000, guid: e12f41fba36904e22b63f043c1c74cb4, type: 2}
     - target: {fileID: 716608112, guid: 76bf95155ee014fe0b5966b112629c7c, type: 3}
       propertyPath: currentQuests.Array.data[2]
       value: 

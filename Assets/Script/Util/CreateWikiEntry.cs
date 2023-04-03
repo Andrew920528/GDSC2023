@@ -61,8 +61,6 @@ public class CreateWikiEntry : MonoBehaviour
             wikiEntry.AddComponent<Button>();
 
             // Make each entry go to the Plant Info page when clicked
-
-            Debug.Log("i: " + i);
             int ind = i;
             
             wikiEntry.GetComponent<Button>().onClick.AddListener(() => SelectPlantomo(ind));

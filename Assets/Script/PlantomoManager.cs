@@ -76,6 +76,7 @@ public class PlantomoManager : MonoBehaviour
         if (StaticData.itemInventory["Water"] <= 0)
         {
             Debug.Log("We're out of water! Buy more in the shop.");
+            return;
         }
         CurrentPlantomo.WaterLevel++;
         StaticData.itemInventory["Water"]--;

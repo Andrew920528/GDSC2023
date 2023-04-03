@@ -9,6 +9,8 @@ public class ShopManager : MonoBehaviour
     public TMP_Text warningText;
     private InventoryManager inventoryManager;
     private GameObject[] coinUIObjects;
+    public GameObject itemInfoPrefab;
+    public GameObject itemsHolder;
 
     private void Awake()
     {
@@ -22,7 +24,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < itemList.Count; ++i)
         {
             Item item = itemList[i];
-            GameObject itemObj = Instantiate(item.ItemPrefab, transform);
+            GameObject itemObj = Instantiate(item.ItemPrefab, itemsHolder.transform);
             itemObj.transform.localPosition = new Vector3(0, verticalOffset + i * -verticalSpace, 0);
             itemObj.transform.localScale = new Vector3(1, 1, 1);
                 
@@ -30,10 +32,21 @@ public class ShopManager : MonoBehaviour
 
             buyButton.onClick.AddListener(() =>
             {
-                BuyItem(item);
+                ShowItemInfo(item);
             });
             
         }
+    }
+
+    private void ShowItemInfo(Item item)
+    {
+        itemInfoPrefab.SetActive(true);
+        TMP_Text[] itemTexts = itemInfoPrefab.GetComponentsInChildren<TMP_Text>();
+        itemTexts[0].text = item.Name;
+        itemTexts[1].text = item.Description;
+
+        itemInfoPrefab.GetComponentInChildren<Image>().sprite = item.ItemPrefab.GetComponentInChildren<Image>().sprite;
+        itemInfoPrefab.GetComponentInChildren<Button>().onClick.AddListener( () => BuyItem(item));
     }
     public void BuyItem(Item item)
     {

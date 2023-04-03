@@ -172,13 +172,12 @@ public class DataBaseManager : MonoBehaviour
                 QuizQuestion q = new(question, answerChoices, answerIndex);
 
                 StaticData.questionList.Add(q);
-                Debug.Log(question);
             }
         }
     }
 
 
-    public IEnumerator SaveData()
+    public IEnumerator  SaveData()
     {
         // Don't save before login
         if (SceneManager.GetActiveScene().buildIndex < 2 || !hasLoad)

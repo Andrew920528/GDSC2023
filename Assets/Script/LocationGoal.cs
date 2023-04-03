@@ -16,11 +16,20 @@ public class LocationGoal : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
-        EventManager.Instance.AddListener<GameEvent.LocationGameEvent>(OnWalking);
+        EventManager.Instance.AddListener<GameEvent.LocationGameEvent>(OnRelocate);
     }
 
-    public void OnWalking(GameEvent.LocationGameEvent eventInfo)
+    public void OnRelocate(GameEvent.LocationGameEvent eventInfo)
     {
-        Evaluate(eventInfo.latitude, eventInfo.longitude);
+        Evaluate();
+    }
+
+    public new void Evaluate()
+    {
+        if (DistanceTracker.instance.HaversineDistance(GoalLatitude, GoalLongitude) < 20)
+        {
+            CurrentAmount = RequiredAmount;
+            Complete();
+        }
     }
 }

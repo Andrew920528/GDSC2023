@@ -72,7 +72,6 @@ public class QuestManager : MonoBehaviour
         for (int i = 0; i < currentQuests.Count; ++i)
         {
             Quest quest = currentQuests[i];
-            quest.Initialize();
             foreach (var goal in quest.Goals)
                 {
                     GameObject goalObj = Instantiate(

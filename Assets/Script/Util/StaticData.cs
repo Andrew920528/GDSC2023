@@ -22,6 +22,8 @@ public static class StaticData
 
     public static List<Plantomo> plantomoList;
 
+    public static Dictionary<string, string> plantMap;
+
 
     // useful for mapping api result to plantomo
     public static Dictionary<string, Plantomo> plantomoDict;

@@ -15,7 +15,6 @@ public class CheckoutPlantomo : MonoBehaviour
 
     public void Checkout(string capturedPlantomo = null)
     {
-        Debug.Log(capturedPlantomo);
         if (capturedPlantomo != null)
         {
             StaticData.SelectedPlantomo = StaticData.plantomoDict[capturedPlantomo];

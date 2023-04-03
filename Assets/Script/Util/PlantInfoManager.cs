@@ -22,8 +22,6 @@ public class PlantInfoManager : MonoBehaviour
         
         plantInfo = StaticData.plantInfo;
 
-        Debug.Log(StaticData.plantInfo);
-        //plantImage = GameObject.Find("Response Image").GetComponent<RawImage>();
         queryImageField = GameObject.FindGameObjectWithTag("QueryImage").GetComponent<RawImage>();
         plantNameField = GameObject.Find("Name").GetComponent<TMP_Text>();
         descriptionField = GameObject.Find("Description").GetComponent<TMP_Text>();

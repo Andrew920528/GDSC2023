@@ -68,7 +68,6 @@ public class SelectPot : MonoBehaviour
 
     void PlantomoAssignButtonHandler(int idx)
     {
-        Debug.Log(idx);
         if (idx >= StaticData.plantomoInventory.Count)
         {
             StaticData.SelectedPlantomo = null;

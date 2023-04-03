@@ -20,14 +20,7 @@ public class RandomizeTip : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("start called");
         int randomInt = Random.Range(0, tipList.Count);
         GetComponent<TMP_Text>().text = tipList[randomInt];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

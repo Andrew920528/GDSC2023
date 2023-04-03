@@ -26,11 +26,11 @@ public class Result
 {
     public float score { get; set; }
     public Species species { get; set; }
-    public List<image> images { get; set; }
+    public List<PlantImage> images { get; set; }
     public Gbif gbif { get; set; }
 }
 
-public class image
+public class PlantImage
 {
     public string organ { get; set; }
     public string author { get; set; }

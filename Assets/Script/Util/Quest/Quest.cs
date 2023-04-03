@@ -37,7 +37,7 @@ public class Quest : ScriptableObject
     {
         protected string Description;
         public double CurrentAmount { get; set; }
-        public double RequiredAmount = 1;
+        public double RequiredAmount;
 
         public bool Completed { get; set; }
         [HideInInspector] public UnityEvent GoalCompleted;
@@ -63,15 +63,6 @@ public class Quest : ScriptableObject
             }
         }
 
-        public void Evaluate(double latitude, double longitude)
-        {
-            Debug.Log("" + DistanceTracker.instance.HaversineDistance(latitude, longitude));
-            if (DistanceTracker.instance.HaversineDistance(latitude, longitude) < 30)
-            {
-                CurrentAmount = RequiredAmount;
-                Complete();
-            }
-        }
 
         public void Complete()
         {
@@ -90,8 +81,6 @@ public class Quest : ScriptableObject
     public void Initialize()
     {
         Completed = false;
-        Goals[0].Completed = false;
-        Goals[0].CurrentAmount = 0;
         QuestCompleted = new QuestCompletedEvent();
         
         Debug.Log("quest initialize");
@@ -100,6 +89,10 @@ public class Quest : ScriptableObject
             Debug.Log("goal");
             goal.Initialize();
             goal.GoalCompleted.AddListener(delegate { CheckGoals(); });
+            if (goal.CurrentAmount >= goal.RequiredAmount)
+            {
+                goal.Complete();
+            }
         }
     }
 
@@ -145,7 +138,7 @@ public class Quest : ScriptableObject
 
             m_QuestGoalListProperty = serializedObject.FindProperty(nameof(Quest.Goals));
 
-            var lookup = typeof(Quest.QuestGoal);
+            var lookup = typeof(QuestGoal);
 
             // Loads all the classes that inherit from our quest goal class
             m_QuestGoalType = System.AppDomain.CurrentDomain.GetAssemblies()

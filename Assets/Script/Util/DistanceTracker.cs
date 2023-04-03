@@ -57,10 +57,8 @@ public class DistanceTracker : Singleton<DistanceTracker>
 		
 		distanceTraveled = HaversineDistance(lastLocation, location);
 		Debug.Log("distance update:" + distanceTraveled);
-		Debug.Log(distanceTraveled < updateDistanceThreshold);
 		if (distanceTraveled < updateDistanceThreshold)
         {
-			Debug.Log("walking event queued");
 			EventManager.Instance.QueueEvent(new GameEvent.WalkingGameEvent(distanceTraveled));
 			EventManager.Instance.QueueEvent(new GameEvent.LocationGameEvent(currentLocation.latitude, currentLocation.longitude));
 		}
@@ -153,7 +151,7 @@ public class DistanceTracker : Singleton<DistanceTracker>
         {
 			if (q.Goals[0] is LocationGoal)
             {
-				q.Goals[0].Evaluate(eventInfo.latitude, eventInfo.longitude);
+				q.Goals[0].Evaluate();
             }
         }
 	}

@@ -26,6 +26,8 @@ TagManager:
   - QuestCanvas
   - ScannedImage
   - ScanningPanel
+  - PlantName
+  - Title
   layers:
   - Default
   - TransparentFX

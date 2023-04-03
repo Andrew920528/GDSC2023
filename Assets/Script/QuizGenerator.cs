@@ -39,7 +39,6 @@ public class QuizGenerator : MonoBehaviour
     {
         if (index >= questions.Count)
         {
-            Debug.Log("End of Questions");
             CompleteQuiz();
             return;
         }
@@ -99,7 +98,6 @@ public class QuizGenerator : MonoBehaviour
         {
             GameOver();
         }
-        Debug.Log("Wrong Answer");
 
         gameObject.transform.Find("Lives Holder").GetChild(livesLeft).gameObject.SetActive(false);
     }
@@ -119,7 +117,6 @@ public class QuizGenerator : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("Game Over");
         Destroy(currentQuestionObject);
         Instantiate(gameOverPrefab, transform);
     }
@@ -127,8 +124,6 @@ public class QuizGenerator : MonoBehaviour
     private void ClaimRewards()
     {
         int coinsToGain = livesLeft * score;
-        //StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].GainFamiliarity(familiarityToGain);
-        //Debug.Log(StaticData.plantomoInventory[StaticData.SelectedPlantomoIndex].Level);
         StaticData.PlayerStats.Coins += coinsToGain;
 
         UpdateVisuals();
