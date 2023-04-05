@@ -99,7 +99,6 @@ public class QuestManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("current progress: " + goal.CurrentAmount);
                         countObj.GetComponent<TMP_Text>().text = Math.Round(goal.CurrentAmount, 2) + "/" + goal.RequiredAmount;
                         progressBarFill.GetComponent<Image>().fillAmount = (float)(goal.CurrentAmount / goal.RequiredAmount);
                         goalObj.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -158,7 +157,7 @@ public class QuestManager : MonoBehaviour
         if (scene.buildIndex == mapSceneId)
         {
             Initialize();
-            
+            GetComponent<LevelSystem>().UpdateVisual();
         }
 
     }

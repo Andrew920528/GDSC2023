@@ -11,7 +11,7 @@ public class AuthManager : MonoBehaviour
 
     public static AuthManager instance;
     private DataBaseManager dbManager;
-    private static bool checkAutoLogin;
+    private bool checkAutoLogin;
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -38,6 +38,7 @@ public class AuthManager : MonoBehaviour
 
     private void Awake()
     {
+        checkAutoLogin = true;
         if (instance == null)
         {
             instance = this;
@@ -48,10 +49,10 @@ public class AuthManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
             DontDestroyOnLoad(gameObject);
+            checkAutoLogin = false;
         }
 
-        dbManager = FindObjectOfType<DataBaseManager>();
-        checkAutoLogin = true;
+        dbManager = FindObjectOfType<DataBaseManager>().GetInstance();
         StartCoroutine(CheckAndFixDependenciesAsync());
 
     }
@@ -109,6 +110,7 @@ public class AuthManager : MonoBehaviour
 
     private void AutoLogin()
     {
+        if (!checkAutoLogin) return;
         if (dbManager == null)
         {
             dbManager = FindObjectOfType<DataBaseManager>();
@@ -154,10 +156,6 @@ public class AuthManager : MonoBehaviour
 
     private IEnumerator Login(string email, string password)
     {
-        if (dbManager == null)
-        {
-            dbManager = FindObjectOfType<DataBaseManager>();
-        }
         // Call the Firebase auth signin function passing the email and password
         var loginTask = auth.SignInWithEmailAndPasswordAsync(email, password);
 
@@ -196,13 +194,14 @@ public class AuthManager : MonoBehaviour
         {
             // User is now logged in
             User = loginTask.Result;
-            Debug.LogFormat("User Signed in successfully: {0} ({1})", User.DisplayName, User.Email);
+            Debug.LogFormat("User Signed in successfully: {0} ({1}) ({2})", User.DisplayName, User.Email, User.UserId);
             warningLoginText.text = "";
             confirmLoginText.text = "Logged In";
 
             int mapSceneId = 2;
             StaticData.username = User.DisplayName;
 
+            dbManager = FindObjectOfType<DataBaseManager>().GetInstance();
             dbManager.Load(User.UserId);
             SceneManager.LoadSceneAsync(mapSceneId);
         }

@@ -145,8 +145,6 @@ public class GetPlantData : MonoBehaviour
                 Debug.Log(species.commonNames);
                 string commonName = species.commonNames.Count == 0 ? species.scientificName : species.commonNames[0];
                 string scientificName = species.scientificName;
-                //int resultImage = result.images[0];
-                Debug.Log(result.images[0]);
 
 
                 Debug.Log(String.Format("Common Name: {0}, Scientific Name: {1}", commonName, scientificName));

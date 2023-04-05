@@ -28,16 +28,27 @@ public class DataBaseManager : MonoBehaviour
 
     private void Awake()
     {
-
         //if (instance == null)
         //{
         //    instance = this;
         //    DontDestroyOnLoad(gameObject);
-        //} else 
+        //}
+        //else if (instance != this)
         //{
-        //    Destroy(gameObject);
+        //    Destroy(instance.gameObject);
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);  
         //}
         hasLoad = false;
+    }
+
+    public DataBaseManager GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        return instance;
     }
 
 
@@ -73,18 +84,31 @@ public class DataBaseManager : MonoBehaviour
             Debug.Log("Reatime Database Loaded to Static Data file");
             DataSnapshot snapShot = readTask.Result;
             string json = snapShot.GetRawJsonValue();
-            FirebaseData gameData = JsonConvert.DeserializeObject<FirebaseData>(json);
+            
+            if (json == null)
+            {
+                Debug.Log("New User Detected");
+                // If user is new and Firebase data is empty
+                StaticData.plantomoInventory = new List<Plantomo>();
+                StaticData.itemInventory = new Dictionary<string, int>();
+                StaticData.PlayerStats = new PlayerStats();
+                StaticData.QuestTracker = new List<QuestData>();
+            }
+            else
+            {
+                FirebaseData gameData = JsonConvert.DeserializeObject<FirebaseData>(json);
 
-            if (gameData.PlantomoInventory != null)
-                StaticData.plantomoInventory = gameData.PlantomoInventory;
-            if (gameData.ItemInventory != null)
-                StaticData.itemInventory = gameData.ItemInventory;
-            if (gameData.PlayerStats != null)
-                StaticData.PlayerStats = gameData.PlayerStats;
-            if (gameData.QuestTracker != null)
-                StaticData.QuestTracker = gameData.QuestTracker;
+                if (gameData.PlantomoInventory != null)
+                    StaticData.plantomoInventory = gameData.PlantomoInventory;
+                if (gameData.ItemInventory != null)
+                    StaticData.itemInventory = gameData.ItemInventory;
+                if (gameData.PlayerStats != null)
+                    StaticData.PlayerStats = gameData.PlayerStats;
+                if (gameData.QuestTracker != null)
+                    StaticData.QuestTracker = gameData.QuestTracker;
 
-            GetComponent<LevelSystem>().SetupLeveling();
+                GetComponent<LevelSystem>().SetupLeveling();
+            }
 
             hasLoad = true;
         }

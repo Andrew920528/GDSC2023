@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlantomoManager : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class PlantomoManager : MonoBehaviour
         {"high", 3},
     };
 
+    // GameObject holding the familiarity level
+    public GameObject familiarityHolder;
+
  
     private void Awake()
     {
@@ -44,6 +48,13 @@ public class PlantomoManager : MonoBehaviour
         {
             return;
         }
+
+        GetInitialValues();
+        UpdateVisuals();
+    }
+
+    private void GetInitialValues()
+    {
         CareGuide = StaticData.plantDict[CurrentPlantomo.PlantID].CareGuide;
         WaterGuide = CareGuide.Water;
         SunlightGuide = CareGuide.Sunlight;
@@ -59,7 +70,20 @@ public class PlantomoManager : MonoBehaviour
         MaxWaterLevel = MaxWaterLevelDict[WaterGuide];
         SunlightLevel = plantomoData.SunlightLevel;
         SoilType = plantomoData.SoilType;
+    }
 
+    private void UpdateVisuals()
+    {
+        familiarityHolder.SetActive(true);
+        Image[] hearts = familiarityHolder.GetComponentsInChildren<Image>();
+
+        for (int i = 0; i < 3; ++i)
+        {
+            if (i < Familiarity)
+                hearts[i].color = Color.white;
+            else
+                hearts[i].color = Color.black;
+        }
     }
 
     public void WaterPlant()
@@ -72,6 +96,7 @@ public class PlantomoManager : MonoBehaviour
         {
             Debug.Log("Are you sure? The Plantomo is already full.");
             // If the user goes through with it, decrease familiarity level.
+            // Show Popup asking the question. If yes, 
         }
         if (StaticData.itemInventory["Water"] <= 0)
         {
@@ -82,6 +107,11 @@ public class PlantomoManager : MonoBehaviour
         StaticData.itemInventory["Water"]--;
         InventoryManager.instance.UpdateItems();
         WaterLevel++;
+        if (WaterLevel >= 1)
+        {
+            Familiarity++;
+        }
+        UpdateVisuals();
     }
 
     public void ChangeSoil(string soil)

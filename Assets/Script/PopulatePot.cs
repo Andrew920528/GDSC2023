@@ -8,7 +8,6 @@ public class PopulatePot : MonoBehaviour
 {
     
     public GameObject nameCard;
-    public GameObject quizButtonPrefab;
     public TMP_Text levelField;
     [SerializeField]
     private int plantomoScale = 50;
@@ -46,12 +45,6 @@ public class PopulatePot : MonoBehaviour
 
 
         levelField.SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level);
-
-
-        if (quizButtonPrefab != null)
-        {
-            quizButtonPrefab.SetActive(true);
-        }
 
     }
 }

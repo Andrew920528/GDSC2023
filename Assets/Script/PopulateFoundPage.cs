@@ -117,7 +117,6 @@ public class PopulateFoundPage : MonoBehaviour
 
         foreach (string name in result.species.commonNames)
         {
-            Debug.Log(name);
             if (StaticData.plantomoDict.ContainsKey(name))
             {
                 finalName = name;
@@ -148,7 +147,6 @@ public class PopulateFoundPage : MonoBehaviour
         uriBuilder.Query = q.ToString();
         URL = uriBuilder.ToString();
         string title = "";
-        Debug.Log(URL);
 
         using (UnityWebRequest request = UnityWebRequest.Get(URL))
         {
@@ -178,7 +176,6 @@ public class PopulateFoundPage : MonoBehaviour
         string descriptionURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&redirects&titles=" + title;
         using (UnityWebRequest request = UnityWebRequest.Get(descriptionURL))
         {
-            Debug.Log(descriptionURL);
             // sends the web request
             yield return request.SendWebRequest();
 
@@ -200,8 +197,8 @@ public class PopulateFoundPage : MonoBehaviour
 
                 description = description.Split(".")[0] + ".";
 
-                descriptionBox.transform.Find("DescriptionCard").Find("Description")
-        .GetComponent<TMP_Text>().text = description;
+                GameObject.FindGameObjectWithTag("Description")
+            .GetComponent<TMP_Text>().text = description;
 
             }
             yield break;

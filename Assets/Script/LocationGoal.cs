@@ -26,7 +26,8 @@ public class LocationGoal : Quest.QuestGoal
 
     public new void Evaluate()
     {
-        if (DistanceTracker.instance.HaversineDistance(GoalLatitude, GoalLongitude) < 20)
+        DistanceTracker distanceTracker = DataBaseManager.instance.GetComponent<DistanceTracker>();
+        if (distanceTracker.HaversineDistance(GoalLatitude, GoalLongitude) < 20)
         {
             CurrentAmount = RequiredAmount;
             Complete();

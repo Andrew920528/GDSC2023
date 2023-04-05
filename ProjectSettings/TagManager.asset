@@ -28,6 +28,7 @@ TagManager:
   - ScanningPanel
   - PlantName
   - Title
+  - Description
   layers:
   - Default
   - TransparentFX

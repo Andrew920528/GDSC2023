@@ -19,9 +19,9 @@ public class DistanceTracker : Singleton<DistanceTracker>
 	private float waitTimeForUpdate = 5;
 	public static DistanceTracker instance;
 
-	//private AbstractLocationProvider _locationProvider = null;
+    //private AbstractLocationProvider _locationProvider = null;
 
-	void OnEnable()
+    void OnEnable()
 	{
 		Input.location.Start();
 
@@ -34,11 +34,6 @@ public class DistanceTracker : Singleton<DistanceTracker>
 
 		EventManager.Instance.AddListener<GameEvent.WalkingGameEvent>(Walk);
 		EventManager.Instance.AddListener<GameEvent.LocationGameEvent>(CheckLocation);
-
-		if (instance == null)
-        {
-			instance = this;
-        }
 
 		StartCoroutine(UpdateLocation(currentLocation));
 	}
@@ -59,6 +54,7 @@ public class DistanceTracker : Singleton<DistanceTracker>
 		Debug.Log("distance update:" + distanceTraveled);
 		if (distanceTraveled < updateDistanceThreshold)
         {
+			if (instance != null)
 			EventManager.Instance.QueueEvent(new GameEvent.WalkingGameEvent(distanceTraveled));
 			EventManager.Instance.QueueEvent(new GameEvent.LocationGameEvent(currentLocation.latitude, currentLocation.longitude));
 		}
@@ -145,9 +141,9 @@ public class DistanceTracker : Singleton<DistanceTracker>
 		}
 	}
 
-	public void CheckLocation(GameEvent.LocationGameEvent eventInfo)
+	public static void CheckLocation(GameEvent.LocationGameEvent eventInfo)
 	{
-		foreach (Quest q in GetComponent<QuestManager>().currentQuests)
+		foreach (Quest q in FindObjectOfType<QuestManager>().currentQuests)
         {
 			if (q.Goals[0] is LocationGoal)
             {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
@@ -34,15 +35,17 @@ public class LevelSystem : MonoBehaviour
 
         instance = this;
 
-        int levelFromData = StaticData.PlayerStats.Level;
-
-        SetLevel(levelFromData);
-        experience = StaticData.PlayerStats.Experience;
+        StartCoroutine(SetupLeveling());
     }
 
 
-    public void SetupLeveling()
+    public IEnumerator SetupLeveling()
     {
+        // Wait until we get to the map scene
+        while (SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            yield return null;
+        }
         int levelFromData = StaticData.PlayerStats.Level;
 
         SetLevel(levelFromData);
@@ -77,6 +80,7 @@ public class LevelSystem : MonoBehaviour
         experienceToNextLevel = (int)(10f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
         levelUpReward = coinsPerLevel * level;
         StaticData.PlayerStats.Coins += levelUpReward;
+        UpdateVisual();
     }
 
     public void UpdateVisual()

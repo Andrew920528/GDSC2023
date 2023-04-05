@@ -21,19 +21,19 @@ public class ActivityManager : MonoBehaviour
             switch (g.name)
             {
                 case "Distance":
-                    g.transform.Find("Data").GetComponent<TMP_Text>().text = stats.DistanceWalked.ToString();
+                    g.transform.Find("Data").GetComponentInChildren<TMP_Text>().text = "2.5km";
                     break;
                 case "Plantomo Found":
-                    g.transform.Find("Data").GetComponent<TMP_Text>().text = stats.PlantomosCollected.ToString();
+                    g.transform.Find("Data").GetComponentInChildren<TMP_Text>().text = stats.PlantomosCollected.ToString();
                     break;
                 case "Quests Completed":
-                    g.transform.Find("Data").GetComponent<TMP_Text>().text = stats.QuestsCompleted.ToString();
+                    g.transform.Find("Data").GetComponentInChildren<TMP_Text>().text = stats.QuestsCompleted.ToString();
                     break;
                 case "Quiz Completed":
-                    g.transform.Find("Data").GetComponent<TMP_Text>().text = stats.QuizCompleted.ToString();
+                    g.transform.Find("Data").GetComponentInChildren<TMP_Text>().text = stats.QuizCompleted.ToString();
                     break;
                 case "Time Played":
-                    g.transform.Find("Data").GetComponent<TMP_Text>().text = stats.TimePlayed.ToString();
+                    g.transform.Find("Data").GetComponentInChildren<TMP_Text>().text = stats.TimePlayed.ToString();
                     break;
             }
         }
