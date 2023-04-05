@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 
@@ -14,8 +15,8 @@ public class LevelSystem : MonoBehaviour
     private int experience;
     [SerializeField]
     private int experienceToNextLevel = 0;
-
-    private DataManager dataManager;
+    [SerializeField]
+    private int levelUpReward;
 
     private TextMeshProUGUI uiLevelText;
     private TextMeshProUGUI uiLevelProgressText;
@@ -34,11 +35,23 @@ public class LevelSystem : MonoBehaviour
 
         instance = this;
 
-        dataManager = GetComponent<DataManager>();
-        int levelFromData = dataManager.GetGameData().level;
+        StartCoroutine(SetupLeveling());
+    }
+
+
+    public IEnumerator SetupLeveling()
+    {
+        // Wait until we get to the map scene
+        while (SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            yield return null;
+        }
+        int levelFromData = StaticData.PlayerStats.Level;
 
         SetLevel(levelFromData);
-        experience = dataManager.GetGameData().currentExperience;
+        experience = StaticData.PlayerStats.Experience;
+
+        UpdateVisual();
     }
 
     public void AddExperience(int experienceToAdd)
@@ -53,18 +66,21 @@ public class LevelSystem : MonoBehaviour
 
         UpdateVisual();
 
-        dataManager.SetLevel(level);
-        dataManager.SetExperience(experience);
-        dataManager.Save();
-       
+        StaticData.PlayerStats.Level = level;
+        StaticData.PlayerStats.Experience = experience;
     }
 
     public void SetLevel(int value)
     {
+        int coinsPerLevel = 100;
         Debug.Log("setting level");
+
         this.level = value;
         experience = experience - experienceToNextLevel;
         experienceToNextLevel = (int)(10f * (Mathf.Pow(level + 1, 2) - (5 * (level + 1)) + 8));
+        levelUpReward = coinsPerLevel * level;
+        StaticData.PlayerStats.Coins += levelUpReward;
+        UpdateVisual();
     }
 
     public void UpdateVisual()

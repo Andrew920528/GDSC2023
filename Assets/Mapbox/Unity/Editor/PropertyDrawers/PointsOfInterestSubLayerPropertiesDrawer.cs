@@ -39,11 +39,13 @@ namespace Mapbox.Unity.Map
 
 		public void DrawUI(SerializedProperty property)
 		{
+			Debug.Log("start of DrawUI");
 			objectId = property.serializedObject.targetObject.GetInstanceID().ToString();
 			var prefabItemArray = property.FindPropertyRelative("locationPrefabList");
 			var layersRect = EditorGUILayout.GetControlRect(GUILayout.MinHeight(Mathf.Max(prefabItemArray.arraySize + 1, 1) * _lineHeight + MultiColumnHeader.DefaultGUI.defaultHeight),
 															GUILayout.MaxHeight((prefabItemArray.arraySize + 1) * _lineHeight + MultiColumnHeader.DefaultGUI.defaultHeight));
 
+			Debug.Log("start of if statement");
 			if (!m_Initialized)
 			{
 				bool firstInit = m_MultiColumnHeaderState == null;
@@ -92,6 +94,7 @@ namespace Mapbox.Unity.Map
 			if (selectedLayers.Count > 0)
 			{
 				//ensure that selectedLayers[0] isn't out of bounds
+				Debug.Log("before selected layers check bounds");
 				if (selectedLayers[0] - FeatureSubLayerTreeView.uniqueIdPoI > prefabItemArray.arraySize - 1)
 				{
 					selectedLayers[0] = prefabItemArray.arraySize - 1 + FeatureSubLayerTreeView.uniqueIdPoI;
@@ -99,26 +102,39 @@ namespace Mapbox.Unity.Map
 
 				SelectionIndex = selectedLayers[0];
 
+				Debug.Log("after selected layers check bounds");
+
 			}
 			else
 			{
+				Debug.Log("before selected layers assignment to selectionindex");
 				selectedLayers = new int[1] { SelectionIndex };
 				if (SelectionIndex > 0 && (SelectionIndex - FeatureSubLayerTreeView.uniqueIdPoI <= prefabItemArray.arraySize - 1))
 				{
 					layerTreeView.SetSelection(selectedLayers);
 				}
+
+				Debug.Log("after selected layers assignment to selectionindex");
 			}
 
+			Debug.Log("before editorguiutility");
 
 			GUILayout.Space(EditorGUIUtility.singleLineHeight);
 			EditorGUILayout.BeginHorizontal();
 
+			Debug.Log("before Add layer button");
+
 			if (GUILayout.Button(new GUIContent("Add Layer"), (GUIStyle)"minibuttonleft"))
 			{
+
+				Debug.Log("before incrementing array size");
 				prefabItemArray.arraySize++;
+				Debug.Log("after incrementing array size");
 
 				var prefabItem = prefabItemArray.GetArrayElementAtIndex(prefabItemArray.arraySize - 1);
 				var prefabItemName = prefabItem.FindPropertyRelative("coreOptions.sublayerName");
+
+				Debug.Log("after getarrayelementatindex");
 
 				prefabItemName.stringValue = "New Location";
 
@@ -144,7 +160,10 @@ namespace Mapbox.Unity.Map
 				{
 					isLayerAdded = true;
 				}
+				Debug.Log("after adding layer");
 			}
+
+			Debug.Log("after Add layer button");
 
 			if (GUILayout.Button(new GUIContent("Remove Selected"), (GUIStyle)"minibuttonright"))
 			{
@@ -168,18 +187,26 @@ namespace Mapbox.Unity.Map
 				layerTreeView.SetSelection(selectedLayers);
 			}
 
+			Debug.Log("after remove selected button");
+
 			EditorGUILayout.EndHorizontal();
 
 			if (selectedLayers.Count == 1 && prefabItemArray.arraySize != 0 && selectedLayers[0] - FeatureSubLayerTreeView.uniqueIdPoI >= 0)
 			{
+				Debug.Log("if 1");
 				//ensure that selectedLayers[0] isn't out of bounds
 				if (selectedLayers[0] - FeatureSubLayerTreeView.uniqueIdPoI > prefabItemArray.arraySize - 1)
 				{
+					Debug.Log("if 2");
 					selectedLayers[0] = prefabItemArray.arraySize - 1 + FeatureSubLayerTreeView.uniqueIdPoI;
 				}
 				SelectionIndex = selectedLayers[0];
 
+				Debug.Log("selectedLayers[0]");
+
 				var layerProperty = prefabItemArray.GetArrayElementAtIndex(SelectionIndex - FeatureSubLayerTreeView.uniqueIdPoI);
+
+				Debug.Log("prefabitemarray.getelementatindex");
 
 				layerProperty.isExpanded = true;
 				var subLayerCoreOptions = layerProperty.FindPropertyRelative("coreOptions");
@@ -188,7 +215,9 @@ namespace Mapbox.Unity.Map
 				{
 					GUI.enabled = false;
 				}
+				Debug.Log("before drawlayerlocation");
 				DrawLayerLocationPrefabProperties(layerProperty, property);
+				Debug.Log("after drawlayerlocation");
 				if (!isLayerActive)
 				{
 					GUI.enabled = true;
@@ -199,6 +228,8 @@ namespace Mapbox.Unity.Map
 				GUILayout.Space(15);
 				GUILayout.Label("Select a visualizer to see properties");
 			}
+
+			Debug.Log("after prefabarraysize");
 		}
 
 		void DrawLayerLocationPrefabProperties(SerializedProperty layerProperty, SerializedProperty property)

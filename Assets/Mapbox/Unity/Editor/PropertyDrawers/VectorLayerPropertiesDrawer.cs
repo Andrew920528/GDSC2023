@@ -91,13 +91,13 @@
 			}
 
 			ShowSepartor();
-
 			//Draw Feature section.
 			ShowFeatures = EditorGUILayout.Foldout(ShowFeatures, "FEATURES");
 			if (ShowFeatures)
 			{
 				_vectorSublayerDrawer.DrawUI(property);
 			}
+
 		}
 
 		public void PostProcessLayerProperties(SerializedProperty property)

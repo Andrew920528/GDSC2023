@@ -20,12 +20,12 @@ public class Quest : ScriptableObject
 
     // Stores rewards of a Quest
     [System.Serializable]
-    public struct Reward
+    public struct Stat
     {
         public int currency;
         public int XP;
     }
-    [Header("Reward")] public Reward reward = new Reward { currency = 10, XP = 10 };
+    [Header("Stat")] public Stat Reward = new Stat { currency = 10, XP = 10 };
 
     public bool Completed { get; set; }
 
@@ -37,7 +37,7 @@ public class Quest : ScriptableObject
     {
         protected string Description;
         public double CurrentAmount { get; set; }
-        public double RequiredAmount = 1;
+        public double RequiredAmount;
 
         public bool Completed { get; set; }
         [HideInInspector] public UnityEvent GoalCompleted;
@@ -54,7 +54,7 @@ public class Quest : ScriptableObject
             GoalCompleted = new UnityEvent();
         }
 
-        protected void Evaluate()
+        public void Evaluate()
         {
             
             if (CurrentAmount >= RequiredAmount)
@@ -62,6 +62,7 @@ public class Quest : ScriptableObject
                 Complete();
             }
         }
+
 
         public void Complete()
         {
@@ -81,18 +82,23 @@ public class Quest : ScriptableObject
     {
         Completed = false;
         QuestCompleted = new QuestCompletedEvent();
+        
         Debug.Log("quest initialize");
         foreach (var goal in Goals)
         {
             Debug.Log("goal");
             goal.Initialize();
             goal.GoalCompleted.AddListener(delegate { CheckGoals(); });
+            if (goal.CurrentAmount >= goal.RequiredAmount)
+            {
+                goal.Complete();
+            }
         }
     }
 
     private void CheckGoals()
     {
-        Completed = Goals.All(g => g.Completed);
+        Completed = Goals[0].Completed;
         if (Completed)
         {
             // give reward
@@ -132,7 +138,7 @@ public class Quest : ScriptableObject
 
             m_QuestGoalListProperty = serializedObject.FindProperty(nameof(Quest.Goals));
 
-            var lookup = typeof(Quest.QuestGoal);
+            var lookup = typeof(QuestGoal);
 
             // Loads all the classes that inherit from our quest goal class
             m_QuestGoalType = System.AppDomain.CurrentDomain.GetAssemblies()

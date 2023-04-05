@@ -11,6 +11,24 @@ TagManager:
   - LevelUI
   - GameManager
   - QuestHolder
+  - PlantomoLevel
+  - CoinCount
+  - Item
+  - ActivityData
+  - LoginPanel
+  - RegisterPanel
+  - RawImage
+  - WaterData
+  - SunlightData
+  - HardinessData
+  - SoilData
+  - DisableOnScreenshot
+  - QuestCanvas
+  - ScannedImage
+  - ScanningPanel
+  - PlantName
+  - Title
+  - Description
   layers:
   - Default
   - TransparentFX
@@ -47,4 +65,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GameOverUI
+    uniqueID: 2884168055
     locked: 0

@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScreenshotHandler : MonoBehaviour
 {
     private static ScreenshotHandler instance;
     private Camera cam;
+    public RectTransform CaptureArea;
+    private GameObject[] disableOnScreenshot;
 
     private bool takeScreenshotOnNextFrame;
 
     private byte[] currentImage;
 
+    private RawImage scannedImage;
+    public GameObject scanningPanel;
     
 
 
@@ -18,6 +23,7 @@ public class ScreenshotHandler : MonoBehaviour
     {
         instance = this;
         cam = gameObject.GetComponent<Camera>();
+        disableOnScreenshot = GameObject.FindGameObjectsWithTag("DisableOnScreenshot");
     }
 
 
@@ -36,11 +42,27 @@ public class ScreenshotHandler : MonoBehaviour
             takeScreenshotOnNextFrame = false;
             RenderTexture renderTexture = cam.targetTexture;
 
-            Texture2D renderResult = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
-            Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
+            var corners = new Vector3[4];
+            CaptureArea.GetWorldCorners(corners);
+            var bl = RectTransformUtility.WorldToScreenPoint(cam, corners[0]);
+            var tl = RectTransformUtility.WorldToScreenPoint(cam, corners[1]);
+            var tr = RectTransformUtility.WorldToScreenPoint(cam, corners[2]);
+
+            var height = tl.y - bl.y;
+            var width = tr.x - bl.x;
+
+            Texture2D renderResult = new Texture2D((int)width, (int)height, TextureFormat.ARGB32, false);
+            Rect rect = new Rect(bl.x, bl.y, width, height);
+
             renderResult.ReadPixels(rect, 0, 0);
+            renderResult.Apply();
+
+            scanningPanel.SetActive(true);
+            scannedImage = scanningPanel.GetComponentInChildren<RawImage>();
+            scannedImage.texture = renderResult;
 
             currentImage = renderResult.EncodeToPNG();
+
             if (Application.isEditor)
             {
                 System.IO.File.WriteAllBytes(Application.dataPath + "/Screenshots/CameraScreenshot.png", currentImage);
@@ -57,6 +79,11 @@ public class ScreenshotHandler : MonoBehaviour
             RenderTexture.ReleaseTemporary(renderTexture);
             cam.targetTexture = null;
 
+            foreach (GameObject g in disableOnScreenshot)
+            {
+                g.SetActive(true);
+            }
+
             // call the API to get plant data from the screenshot
             GameObject.FindObjectOfType<GetPlantData>().GetPlantInfo(currentImage);
         }
@@ -64,7 +91,11 @@ public class ScreenshotHandler : MonoBehaviour
 
     private void TakeScreenshot(int width, int height)
     {
-        cam.targetTexture = RenderTexture.GetTemporary(width, height, 16);
+        foreach (GameObject g in disableOnScreenshot)
+        {
+            g.SetActive(false);
+        }
+        cam.targetTexture = RenderTexture.GetTemporary((int)CaptureArea.rect.width, (int)CaptureArea.rect.height, 16);
         takeScreenshotOnNextFrame = true;
     }
 

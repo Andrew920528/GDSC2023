@@ -9,19 +9,17 @@ public class SelectPot : MonoBehaviour
     public GameObject potPrefab;
     public int potScene;
     public float offset = 0;
-    
-    private int plantomoIndex;
-    public List<GameObject> plantomoList = new List<GameObject>();
 
     [SerializeField]
     private int plantomoScale = 25;
     [SerializeField]
     private int spacing = 250;
 
+    public GameObject locationMarker;
+
     // Start is called before the first frame update
     void Start()
     {
-        
         for (int i = 0; i < 3; ++i)
         {
             for (int j = 0; j < 3; ++j)
@@ -36,18 +34,31 @@ public class SelectPot : MonoBehaviour
                     ()=> PlantomoAssignButtonHandler(index)
                 );
 
-                Debug.Log(StaticData.plantomoInventory.Count);
                 if (index < StaticData.plantomoInventory.Count)
                 {
-                    string name = StaticData.plantomoInventory[index].GetName();
-                    Plantomo plantomoData = StaticData.plantomoDict[name];
-                    Plant plantData = plantomoData.GetPlant();
 
-                    GameObject plantomo = plantomoList[plantomoData.GetID()];
+                    Plantomo plantomoData = StaticData.plantomoList[StaticData.plantomoInventory[index].Id];
+
+                    string name = plantomoData.Name;
+
+ 
+                    Plant plantData = StaticData.plantDict[plantomoData.PlantID];
+
+
+                    GameObject plantomo = plantomoData.PlantomoPrefab;
 
                     GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform);
-                    pc.transform.localPosition = new Vector3(offset + j * spacing, i * -spacing, 0);
+                    GameObject marker = Instantiate(locationMarker, new Vector3(0, 0, 0), Quaternion.identity, transform);
+                    pc.transform.localPosition = new Vector3(offset + j * spacing, i * -spacing + 170, 0);
                     pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
+
+                    marker.transform.localPosition = new Vector3(offset + j * spacing, i * -spacing+ 130, 0);
+                    marker.transform.localScale = new Vector3(30, 30, 1);
+
+                    marker.AddComponent<Button>();
+                    marker.GetComponent<Button>().onClick.AddListener(
+                    () => PlantomoAssignButtonHandler(index)
+                );
                 }
                 
             }
@@ -57,13 +68,14 @@ public class SelectPot : MonoBehaviour
 
     void PlantomoAssignButtonHandler(int idx)
     {
-        Debug.Log(idx);
         if (idx >= StaticData.plantomoInventory.Count)
         {
             StaticData.SelectedPlantomo = null;
+            StaticData.SelectedPotIndex = -1;
         } else
         {
-            StaticData.SelectedPlantomo = StaticData.plantomoInventory[idx].GetName();
+            StaticData.SelectedPlantomo = StaticData.plantomoInventory[idx];
+            StaticData.SelectedPotIndex = idx;
         }
         //StaticData.SelectedPlantomo = gameManager.plantomoInventory.Count > idx ? gameManager.plantomoInventory[idx].GetName() : null;
         //Debug.Log(StaticData.SelectedPlantomo);

@@ -13,19 +13,14 @@ public class ScanningGoal : Quest.QuestGoal
     public override void Initialize()
     {
         base.Initialize();
-        Debug.Log("Scanning Goal initialize");
         EventManager.Instance.AddListener<GameEvent.ScanningGameEvent>(OnScanning);
     }
 
     private void OnScanning(GameEvent.ScanningGameEvent eventInfo)
     {
-        Debug.Log("on scanning called");
-        Debug.Log(eventInfo.scannedObject);
-        Debug.Log(targetObject);
         if (eventInfo.scannedObject == targetObject)
         {
             // Increment quest progress on scan matching object
-            Debug.Log("scanned right object, incrementing count");
             CurrentAmount++;
             Evaluate();
         }

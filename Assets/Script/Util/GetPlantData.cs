@@ -26,11 +26,11 @@ public class Result
 {
     public float score { get; set; }
     public Species species { get; set; }
-    public List<image> images { get; set; }
+    public List<PlantImage> images { get; set; }
     public Gbif gbif { get; set; }
 }
 
-public class image
+public class PlantImage
 {
     public string organ { get; set; }
     public string author { get; set; }
@@ -85,6 +85,7 @@ public class GetPlantData : MonoBehaviour
     // byte array stores the images data
     byte[] byteArray;
     ScreenshotHandler screenshotHandler;
+    public GameObject scanningPanel;
     
     
     // loading screen while waiting for api response
@@ -144,8 +145,6 @@ public class GetPlantData : MonoBehaviour
                 Debug.Log(species.commonNames);
                 string commonName = species.commonNames.Count == 0 ? species.scientificName : species.commonNames[0];
                 string scientificName = species.scientificName;
-                //int resultImage = result.images[0];
-                Debug.Log(result.images[0]);
 
 
                 Debug.Log(String.Format("Common Name: {0}, Scientific Name: {1}", commonName, scientificName));
@@ -154,9 +153,10 @@ public class GetPlantData : MonoBehaviour
                 // save the plant info to game manager
                 StaticData.plantInfo = root;
                 StaticData.plantImage = plantImage;
-                
+
 
                 // move to plant info scene
+                scanningPanel.SetActive(false);
                 GetComponent<ChangeScene>().MoveToScene(plantInfoScene);
             }
             LoadingScreen.SetActive(false);

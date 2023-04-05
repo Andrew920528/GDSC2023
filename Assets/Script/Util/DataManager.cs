@@ -9,18 +9,28 @@ public class DataManager : MonoBehaviour
 {
     // Class for storing player data
     private Data gameData;
+    private DataBaseManager dbManager;
     private static string dataFilePath = Path.Combine(Application.persistentDataPath, "GameData.json");
 
     public DataManager(int level = 0, int currentExperience = 0, double totalDistance = 0,
-        Dictionary<int, QuestData> questTracker = null, List<Plantomo> plantomoInventory = null, int plantomoID = 0)
+        List<QuestData> questTracker = null, List<Plantomo> plantomoInventory = null,
+        int plantomoID = 0, int coins = 0)
     {
         gameData = new Data();
         gameData.level = level;
         gameData.currentExperience = currentExperience;
-        gameData.totalDistance = totalDistance;
+        gameData.distanceWalked = totalDistance;
         gameData.questTracker = questTracker;
         gameData.plantomoInventory = plantomoInventory;
         gameData.plantomoID = plantomoID;
+        gameData.coins = coins;
+    }
+
+    private void Awake()
+    {
+        dbManager = GetComponent<DataBaseManager>();
+
+
     }
 
 
@@ -51,12 +61,12 @@ public class DataManager : MonoBehaviour
         {
             gameData = new Data();
         }
-        gameData.questTracker = new Dictionary<int, QuestData>();
+        gameData.questTracker = new List<QuestData>();
         for (int i = 0; i < quests.Count; ++i)
         {
             Quest quest = quests[i];
-            gameData.questTracker[i] = new QuestData(i, quest.Goals[0].GetType().ToString(),
-                quest.Goals[0].CurrentAmount, quest.Goals[0].RequiredAmount, quest.Goals[0].Completed);
+            gameData.questTracker.Add(new QuestData(i, quest.Goals[0].GetType().ToString(),
+                quest.Goals[0].CurrentAmount, quest.Goals[0].RequiredAmount, quest.Goals[0].Completed));
         }
     }
 
@@ -66,15 +76,7 @@ public class DataManager : MonoBehaviour
         {
             gameData = new Data();
         }
-        gameData.plantomoInventory = new List<Plantomo>();
-        foreach (Plantomo plantomo in plantomos) if (plantomo.GetName() != null)
-        {
-         
-            gameData.plantomoInventory.Add(plantomo);
-            Debug.Log(plantomo.GetName());
-        }
-        Debug.Log(gameData.plantomoInventory[gameData.plantomoInventory.Count - 1].GetName());
-        Debug.Log(gameData.plantomoInventory);
+        gameData.plantomoInventory = plantomos;
     }
 
     public void SetDistance(double distance)
@@ -84,7 +86,7 @@ public class DataManager : MonoBehaviour
             gameData = new Data();
         }
 
-        gameData.totalDistance += distance;
+        gameData.distanceWalked += distance;
     }
 
     public void SetPlantomoID()
@@ -94,6 +96,24 @@ public class DataManager : MonoBehaviour
             gameData = new Data();
         }
         gameData.plantomoID++;
+    }
+
+    public void SetCoins(int coins)
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+        gameData.coins = coins;
+    }
+
+    public void SetItems(Dictionary<string, int> items)
+    {
+        if (gameData == null)
+        {
+            gameData = new Data();
+        }
+        gameData.itemInventory = items;
     }
 
     // The method to return the loaded game data when needed
@@ -113,7 +133,7 @@ public class DataManager : MonoBehaviour
 
             //string dataToWrite = JsonConvert.SerializeObject(gameData, Formatting.Indented);
 
-            Debug.Log(dataToWrite);
+            Debug.Log("data to write: " + dataToWrite);
 
             JsonSerializer serializer = new JsonSerializer();
 
@@ -121,6 +141,7 @@ public class DataManager : MonoBehaviour
             serializer.Serialize(file, gameData);
             file.Close();
         }
+        
     }
 
     public void Load()
@@ -134,7 +155,7 @@ public class DataManager : MonoBehaviour
             string dataToLoad = reader.ReadToEnd();
 
             // if the json file is empty
-            if (dataToLoad.Length == 0)
+            if (dataToLoad.Length < 5)
             {
                 gameData = new Data();
             }
@@ -146,8 +167,7 @@ public class DataManager : MonoBehaviour
 
                 gameData = JsonConvert.DeserializeObject<Data>(jsonResult);
 
-                Debug.Log("quest: " + gameData.questTracker);
-                Debug.Log("total distance: " + gameData.totalDistance);
+                Debug.Log("total distance: " + gameData.distanceWalked);
             }
 
             reader.Close();
@@ -167,27 +187,52 @@ public class DataManager : MonoBehaviour
         //}
     }
 
-
     [Serializable]
     public class Data
     {
         // The actual data we want to save goes here, for this example we'll only use an integer to represent the level
         public int level = 0;
         public int currentExperience = 0;
-        public Dictionary<int, QuestData> questTracker = null;
-        public double totalDistance = 0;
+        public List<QuestData> questTracker = null;
+        public double distanceWalked = 0;
         public List<Plantomo> plantomoInventory = null;
         public int plantomoID = 0;
+        public int coins = 0;
+        public Dictionary<string, int> itemInventory = null;
 
         public Data()
         {
             level = 0;
             currentExperience = 0;
-            questTracker = new Dictionary<int, QuestData>();
-            totalDistance = 0;
+            questTracker = new List<QuestData>();
+            distanceWalked = 0;
             plantomoInventory = new List<Plantomo>();
             plantomoID = 0;
+            coins = 0;
+            itemInventory = new Dictionary<string, int>()
+            {
+                { "Water", 0 },
+                { "Sunlight", 0 },
+                { "Soil", 0 },
+            };
+        }
 
+        public Data(int level, int currentExperience, List<QuestData> questTracker, int distanceWalked,
+            List<Plantomo> plantomoInventory, int plantomoID, int coins, Dictionary<string, int> itemInventory)
+        {
+            this.level = level;
+            this.currentExperience = currentExperience;
+            this.questTracker = questTracker;
+            this.distanceWalked = distanceWalked;
+            this.plantomoInventory = plantomoInventory;
+            this.plantomoID = plantomoID;
+            this.coins = coins;
+            this.itemInventory = new Dictionary<string, int>
+            {
+                { "Water", 0 },
+                { "Sunlight", 0 },
+                { "Soil", 0 },
+            };
         }
     }
 
@@ -209,6 +254,21 @@ public class DataManager : MonoBehaviour
             this.completed = completed;
 
         }
+
+        public QuestData(QuestData questData)
+        {
+            this.index = questData.index;
+            this.questType = questData.questType;
+            this.currentAmount = questData.currentAmount;
+            this.requiredAmount = questData.requiredAmount;
+            this.completed = questData.completed;
+        }
+
+        public QuestData()
+        {
+            // Default constructor for JSON
+        }
+        
     }
 
 }

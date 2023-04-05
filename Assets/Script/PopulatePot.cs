@@ -6,12 +6,13 @@ using TMPro;
 
 public class PopulatePot : MonoBehaviour
 {
-    public List<GameObject> plantomos = new List<GameObject>();
+    
     public GameObject nameCard;
+    public TMP_Text levelField;
     [SerializeField]
     private int plantomoScale = 50;
-    private DataManager dataManager;
-    // Start is called before the first frame update
+    private float plantomoOffsetY = 70;
+
 
     void Start()
     {
@@ -19,30 +20,31 @@ public class PopulatePot : MonoBehaviour
 
         // get info about the plantomo whose wiki page we're looking at
         // we saved the selection in a static data file in CreateWikiEntry
-        string name = StaticData.SelectedPlantomo;
 
-        if (name == null)
+        if (StaticData.SelectedPlantomo == null)
         {
             nameCard.GetComponent<TMP_Text>().text = "This pot is empty.";
+            levelField.SetText("");
             return;
         }
-        Plantomo plantomoData = StaticData.plantomoDict[name];
-        Plant plantData = plantomoData.GetPlant();
+
+        
+        Plantomo plantomoData = StaticData.plantomoList[StaticData.SelectedPlantomo.Id];
+        string name = plantomoData.Name;
+
+        Plant plantData = StaticData.plantDict[plantomoData.PlantID];
+
 
         nameCard.GetComponent<TMP_Text>().text = name;
 
-        GameObject plantomo = plantomos[plantomoData.GetID()];
+        GameObject plantomo = plantomoData.PlantomoPrefab;
 
         GameObject pc = Instantiate(plantomo, new Vector3(0, 0, 0), Quaternion.identity, transform.parent);
-        pc.transform.localPosition = new Vector3(0, 0, 0);
+        pc.transform.localPosition = new Vector3(0, plantomoOffsetY, -1);
         pc.transform.localScale = new Vector3(plantomoScale, plantomoScale, 1);
 
 
-    }
+        levelField.SetText("lvl. " + StaticData.plantomoInventory[StaticData.SelectedPotIndex].Level);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

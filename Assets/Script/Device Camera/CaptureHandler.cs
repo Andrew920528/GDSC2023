@@ -9,6 +9,10 @@ using UnityEngine.UI;
 
 public class CaptureHandler : MonoBehaviour
 {
+    [SerializeField]
+    private int screenShotWidth;
+    [SerializeField]
+    private int screenShotHeight;
     private string imagePath = Application.dataPath + "/Screenshots/";
     public class Plant
     {
@@ -34,7 +38,7 @@ public class CaptureHandler : MonoBehaviour
 
     public void TakeScreenshot()
     {
-        ScreenshotHandler.TakeScreenshot_Static(Screen.width, Screen.height);
+        ScreenshotHandler.TakeScreenshot_Static(screenShotWidth, screenShotHeight);
     }
 
     public void TestScreenShot(string name)
